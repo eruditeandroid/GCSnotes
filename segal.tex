@@ -1,0 +1,196 @@
+\chapter{Graeme Segal -- A Perspective on Quantum Field Theory}
+
+\section{6/10 -- Overview of QFT}
+
+\subsection{From classical to quantum}
+
+In classical mechanics, one focuses one's attention on a fixed space $M_0$ and obtains a configuration space $X$ from that.
+Dynamics are specified by giving a Lagrangian $L: TX \to \RR$, which we assume is positive, inhomogeneous, and quadratic on tangent vectors.
+Under these hypotheses, the Lagrangian can be viewed as a generalized Riemannian metric, so that time evolution is given by a (generalized) ``geodesic flow.''
+This gives rise to a symplectic form $\omega$ and Poisson bracket $\{-,-\}$ on $T^* X$.
+Furthermore, from the Lagrangian $L$, we may extract a Hamiltonian $H: T^*X \to \RR$ such that
+\[
+	\frac{d}{dt} f = \{ H, f \} \hspace{1em} \forall f \in \Cinfty(X).
+\]
+Thus we may view a classical dynamical system as a triple $(Y, \omega, H)$ with $(Y, \omega)$ a symplectic manifold and $H: Y \to \RR$ a function.
+
+Quantum mechanics can be viewed as a complex noncommutative analogue of this.
+We replace $(Y, \omega, H)$ by a triple $(\Ac, \star, H)$ with $\Ac$ a (topological) $\CC$-algebra, $\star$ an antilinear involution on $\Ac$, and $H \in \Ac$.
+For an observable $f \in \Ac$, we require
+\[
+	\frac{d}{dt} f = i h [H, f].
+\]
+If the quantum system $(\Ac, \star, H)$ is a ``quantization'' of a classical system $(Y, \omega, H)$, then there is a deep relationship between the two.
+For example, we should view $\Ac$ as a completion / extension of $\Cinfty(Y)$, and we can relate the values of an observable to the eigenvalues of the corresponding operator.
+
+The above picture privileges the time dimension, so it is fundamentally non-relativistic.
+Working relativistically requires us to move from finite-dimensional spaces to infinite-dimensional spaces.
+Heuristically, we take $Y$ to be our space of fields on spacetime (typically $M = M_0 \times \RR$), and we fix a Lagrangian $L: Y \to \RR$.
+However, $\Ac$ should now be viewed as a space of functions on an ``almost finite-dimensional manifold.''
+This requires many corrections! 
+
+\begin{ex}
+	Consider scalar field theory, with $M = M_0 \times \RR$ and $Y = \Cinfty(M)$.
+	Then $\Ac$ looks like functions on a stratified configuration space
+	\[
+		\coprod_{n \geq 0} \Conf_n(M_0),
+	\]
+	where $\Conf_n(M_0)$ is the space of sets of $n$ distinct unordered points on $M_0$.
+\end{ex}
+
+\subsection{Approaching quantum field theory}
+
+Heuristically, we should ``spread things out over spacetime'' by attaching an algebra $\Oc_x$ to every point $x \in M$ and letting
+\[
+	\Ac \approx \bigotimes_{x \in M} \Oc_x.
+\]
+This has been formalized in the approach of algebraic quantum field theory -- see e.g.\ the definition of Haag, which assigns an algebra $\Ac_U$ to each open set $U \subset M$.
+
+An alternative approach, which we will pursue, privileges the time dimension.
+In this approach, we define a $d$-dimensional quantum field theory as a symmetric monoidal functor
+\[
+	E: \Cob_{d-1} \to \Vect.
+\]
+Here $\Cob_{d-1}$ is the symmetric monoidal category with:
+\begin{itemize}
+	\item Objects: $(d - 1)$-manifolds, often assumed compact or compact with boundary (and thought of as time slices)
+	\item Morphisms $M_0 \to M_1$: $d$-dimensional cobordisms from $M_0$ to $M_1$ (thought of as controlling time evolution)
+	\item Monoidal structure: disjoint union of manifolds / cobordisms
+\end{itemize}
+and $\Vect$ is the symmetric monoidal category of (possibly infinite-dimensional) topological vector spaces (with $\otimes$ as tensor product).
+
+There are many other ways to view quantum field theory.
+For example, one could think of QFT as a continuum limit of lattice models.
+
+QFT is traditionally seen as describing ``the world except for gravity.''
+That is, we think of spacetime as fixed, without allowing for the effects of gravity.
+However, QFT can tell us about what sorts of gravitational effects are possible.
+
+The perspective on QFT that we will follow has the advantage that it allows for direct comparisons between QFTs.
+Thus, in principle, we may consider a ``moduli space'' of QFTs (of a given type).
+We can think of gravitational effects as acting upon this moduli space.
+
+\subsection{The perspective of Connes}
+
+We'd like to use geometry to understand the noncommutative world of QFT.
+This can be accessed by studying the spectrum of our Hamiltonian $H$.
+Operators which evolve slowly in time ``nearly commute'' with $H$ and thus must be ``nearly diagonal.''
+We're mostly interested in studying such operators (as the time scale of humans is much slower than that of the universe).
+Thus, when studying QFT, we're interested in algebras which are ``nearly commutative.''
+
+Connes was interested in finding a mildly noncommutative generalization of algebras of functions on a manifold $M$.
+Recall that we can define the Clifford algebra $\Cliff(T_m M)$ as the algebra with generators $\{ \gamma_\xi \}_{\xi \in T_m M}$ and relations $\gamma_\xi^2 = -\norm{\xi}^2$.
+Let $\Bc$ be a bundle of finite-dimensional algebras on $M$ containing $\Cliff(T_m M)$, and take a connection on $\Bc$.
+Let $\Dsl$ be the Dirac operator
+\[
+	\Dsl = \sum_i \gamma_{\xi_i} \otimes \frac{\partial}{\partial x_i},
+\]
+and let $H = \Dsl^2$.
+Connes gave a formula for $\tr \Dsl^2$ and extracted interesting physical objects, e.g.\ the Higgs field, from $\Dsl$.
+From Connes' perspective, the Dirac operator is ``as good as'' the metric.
+
+\subsection{Algebra from functorial QFT}
+
+Suppose we view spacetime $M$ as a cobordism from $M_0$ to $M_1$.
+Fix a $d$-dimensional quantum field theory $E$, where $E = \dim M$.
+For $x \in M$, we can define a vector space of operators $\Oc_x$ by taking a small disk $D_x$ about $x$ and letting $\Oc_x = E_{\partial D_x}$.
+We can view a punctured copy of $M$ as giving a cobordism
+\[
+	M \sqcup \left(\sqcup_i \partial D_{x_i} \right) \to M_1,
+\]
+so that applying $E$ gives $E_{M_0} \otimes (\otimes_i \Oc_{x_i}) \to E_{M_1}$.
+This gives a sort of ``higher multiplication'' on the spaces of operators $\Oc_{x_i}$.
+
+We can make this much more precise in special cases.
+For example, if $E$ is topological, then $\Oc_{x_i} = \Oc$ is independent of $x_i$.
+Taking $M_0 = \emptyset$ and $M_1 = S^{d-1}$, we obtain a family of multiplications $\Oc^{\otimes n} \to \Oc$.
+
+\begin{ex}
+	If $d = 2$, the cap / cup / pair-of-pants cobordisms equip $A = \Oc$ with the structure of a finite-dimensional commutative Frobenius algebra.
+	This means that $A$ is a unital algebra with a nondegenerate trace $\theta: A \to \CC$.
+\end{ex}
+
+It is interesting to extend this picture to non-topological $2$-dimensional QFTs.
+Here, one can set up a moduli space of QFTs and obtain a gravitational flow.
+This was a major historical motivation for string theory.
+
+The second lecture will discuss the importance of positive energy to this theory.
+The third lecture will discuss scaling, and the fourth lecture will focus on finding a suitable definition for $\Cob$.
+
+\section{6/10 -- Positive Energy}
+
+\subsection{Warmup}
+
+Consider a quantum mechanical system with Hilbert space $\Hc$.
+The Hamiltonian is a self-adjoint operator $H: \Hc \to \Hc$, and we can integrate $iH$ to get unitary operators $U_t = e^{i H t}: \Hc \to \Hc$ describing the time evolution of the system.
+
+Assuming $H \geq 0$ has strong consequences for the theory.
+In this case, $U_{-}: \RR \to \End(\Hc)$ is the boundary value of the function on the complex upper half-plane also given by $t \mapsto e^{i H t}$.
+
+To fit this into QFT, consider $\CC$ as a bundle over $\RR$, where the inner product on the base is Lorentzian and the inner product on the fiber is Riemannian.
+Think of $\RR$ as our spacetime $M$ and the fiber as $V = T_x M$.
+
+We will introduce the notion of a \emph{complex metric} on a real vector space $V$.
+This is a quadratic form $V \to \CC$ satisfying a certain condition to be determined later.
+
+\subsection{Historical digression}
+
+The notion of a complex metric was introduced by Kontsevich and Segal.
+Segal was originally interested in loop groups $\Lc G = \Map(S^1, G)$.
+There is a nice class of ``positive energy'' representations of loop groups.
+These extend to representations of $\Diff^+(S^1) \ltimes \Lc G$ which are also ``positive energy'' in a certain sense.
+This notion effectively means that the actions respect the grading $\Hc = \oplus_{k \geq 0} \Hc_k$ coming from an $S^1$-action.
+
+An even simpler illustrative case is that of ``discrete series'' representations of $\PSL_2(\RR)$.
+Embed $\PSL_2(\RR) \hookrightarrow \PSL_2(\CC)$.
+Let $\PSL_2^<(\CC)$ be the subsemigroup of M\"obius transformations sending the unit disk $D$ to a proper subdisk of itself.
+Then $\PSL_2^<(\CC)$ acts by contraction on the discrete series representations.
+
+There is a similar story for loop groups, if we consider the semigroup of holomorphic $f: D \to D$ with $f(D) \subset \mathring{D}$.
+The Kontsevich-Segal definition connects to this somehow (I didn't quite catch how).
+
+\subsection{Complex metrics}
+
+\begin{dfn}
+	A \emph{complex metric} on a real vector space $V$ is a quadratic form $g: V \to \CC$ such that, if $\lambda_k$ are the eigenvalues of the matrix corresponding to $g$ and $\lambda_k = e^{i \theta_k} \abs{\lambda_k}$, then $\sum_i \abs{\theta_i} < \pi$.
+\end{dfn}
+
+We can equivalently state this as
+\[
+	-\pi \leq \sum_i \pm \theta_i \leq \pi.
+\]
+One may view the $\theta_i$ as weights of the corresponding spin representation.
+
+For $v \in V$, we have $g(v) \in \CC \setminus (-\infty, 0)$, so $g(v)$ has a canonical square root.
+Thus we may assign a ``complex length'' in the positive half-plane to every $v \in V$.
+
+Given an inner product $V \times V \to \CC$, we get an inner product on $\wedge^k V$ with squared norm given by $\alpha \wedge (\star \alpha)$.
+Really, this is better thought of as a map $\wedge^k V \times \wedge^k V \to \wedge^d V$, for $d = \dim V$.
+
+We'll change topics now.
+
+\subsection{Application to QFT}
+
+If we want to view a QFT as a functor $E$ defined on a category of cobordisms, we should require:
+\begin{itemize}
+	\item Cobordisms should be equipped with complex metrics.
+	\item The induced maps $U_M : E_{M_0} \to E_{M_1}$ should be holomorphic in $M$ (viewed as living in some complex analytic moduli space of complex metrics).
+	\item The operators $U_M$ should be \emph{trace class}: there should be bases $\xi_i$ for $E_{M_0}$ and $\eta_i$ for $E_{M_1}$ with $\xi_i \mapsto \lambda_i \eta_i$ and $\sum_i \abs{\lambda_i} < \infty$.
+\end{itemize}
+
+The case of Lorentzian metrics occurs ``on the boundary'' of the moduli space of complex metrics.
+Thus usual Lorentzian QFTs can be viewed as holomorphic degenerations of nice QFTs.
+
+Some simpler examples are similar in principle:
+\begin{itemize}
+	\item $\Diff^+(S^1)$ can be viewed as the boundary of the semigroup of contraction mappings.
+	\item $\U(n) \subset \GL_n(\CC)$ can be viewed as the boundary of the semigroup of contraction operators $\CC^n \to \CC^n$.
+\end{itemize}
+
+However, $\PSL_2(\RR)$ is not compact, so we can't view it as a boundary.
+
+Viewing our spacetime $M$ as Lorentzian, we can ask for $M$ to be ``globally hyperbolic,'' so every point in $M_0$ can be connected to a point in $M_1$ via a timelike curve.
+This is similar to requiring that there are no black holes.
+The results of Kontsevich-Segal are best in the case of globally hyperbolic metrics.
+
+Heuristically, we are requiring the existence of a Dirac operator and requiring that this Dirac operator is a contraction operator.
