@@ -1,0 +1,234 @@
+\chapter{Ibou Bah -- Lagrangian Methods for Categorical Symmetries}
+
+\section{6/11 -- What is QFT?}
+
+This will be a physics-y, intuitive series of lectures.
+We will start by giving some idea of QFT in general.
+In the second lecture, we will move on to finite symmetry groups and use these to construct topological operators.
+In the third lecture, we will discuss the action of finite symmetry groups on fields (with an emphasis on the example of $\SU(N)$ Yang-Mills theory).
+Finally, we will discuss the general construction of topological operators using Lagrangians.
+
+\subsection{What should a QFT do?}
+
+We don't actually know what a QFT \emph{is}.
+However, we have an excellent physical idea of what a QFT should \emph{do}.
+QFTs should have:
+\begin{itemize}
+	\item A list of operators: point operators $\{ \Oc_i(x) \}$, line operators $\{ U_\alpha(\gamma_p) \}$, and other operators.
+	\item A Hilbert space $\Hc$ of states on spacetime $M = \RR_t \times Y$.
+	\item A partition function sending combinations / products of operators to complex numbers, e.g.\ $\langle \Oc_i \Oc_j \rangle$.
+\end{itemize}
+These should satisfy three key properties: \emph{unitarity}, \emph{locality}, and \emph{causality}. 
+Let's discuss each of these in more detail.
+
+\subsection{Unitarity, locality, and causality}
+
+Unitarity can be interpreted as ``preservation of probability.''
+For example, for many QFTs, we can construct an ``$S$-matrix'' governing scattering amplitudes of particles, and unitarity forces $S^\dagger S = 1$.
+This specific interpretation doesn't work for CFTs / TFTs.
+Instead, we use a notion of \emph{reflection positivity}.
+
+To explain this, recall that time evolution in quantum mechanics is governed by
+\[
+	\ket{\psi} \mapsto e^{-i H t} \ket{\psi(t)}
+\]
+and
+\[
+	\Oc(x, 0) \ket{\psi} \mapsto \Oc(x, t) \ket{\psi}.
+\]
+We should have
+\[
+	\bra{\psi} \Oc^\dagger \Oc \ket{\psi} = \norm{\Oc(x, t) \ket{\psi}} \geq 0.
+\]
+To make sense of $\Oc^\dagger$, we allow our time variable to take complex values.
+Say that $\Oc(x, t + i \tau)^\dagger = \Oc(x, t - i \tau)$.
+Then the above condition forces $\langle \Oc(x, t - i \tau) \Oc(x, t + i \tau) \rangle \geq 0$.
+Taking $t = 0$, we see that reflection positivity requires $\langle \Oc(x, -i \tau) \Oc(x, i \tau) \rangle \geq 0$.
+More generally, reflection positivity forces
+\[
+	\langle \Oc_i(x, -i \tau) \Oc_j(x, -i \tau) \dots \Oc_j(x, i \tau) \Oc_i(x, i \tau) \rangle \geq 0.
+\]
+
+Locality forces point operators to have an \emph{operator product expansion}
+\[
+	\Oc_i(x_1) \Oc_j(x_2) = \sum_k c_{ij}^k(x_1, x_2) \Oc(x_1)
+\]
+governing the behavior as $x_1 \to x_2$.
+(For conformal field theories, the $c_{ij}^k$ should be meromorphic.)
+More generally, the interaction of operators should depend only on their behavior in a common tubular neighborhood.
+If two point operators are outside the same light cone, then we can find a reference frame where the two operators take place at the same time but at different points in space.
+
+Finally, causality requires that any operators which are spacelike separated commute with each other.
+If two point operators are in the interior of the same light cone, then we can find a reference frame where the operators take place at the same point in space but at different points in time.
+Things are more complicated for extended operators.
+
+\subsection{Extra features}
+
+In many QFTs, we can expect other nice properties to hold:\footnote{There's also a last property of ``analyticity'' which is hard to formulate.}
+\begin{itemize}
+	\item Cluster decomposition:
+	\[
+	\lim_{b \to \infty} \langle \Oc_i(x_1) \Oc_j(x_2) \dots \Oc_{i'}(x_1 + b) \Oc_{j'}(x_2 + b) \dots \rangle = \langle \Oc_i(x_1) \Oc_j(x_2) \dots \rangle \langle \Oc_{i'}(x_1 + b) \Oc_{j'}(x_2 + b) \dots \rangle.
+	\]
+	\item Renormalization: high energy / short distance / UV physics and low energy / long distance / IR physics decouple, at least up to finitely many parameters.
+\end{itemize}
+Axiomatic treatments can take these as additional axioms.
+
+Gravity fails both of these conditions and locality.
+Black holes are UV phenomena which are still visible at low energy.
+Furthermore, black holes also break cluster decomposition.
+Whatever quantum gravity is, unitarity ``must'' be retained, since it's fundamental to quantum physics.
+
+The goal of the Simons collaboration is to understand the kinematics of operators in QFT.
+This is governed by symmetries!
+We can essentially think of this as understanding the \emph{labels} of operators $\Oc_i(x)$, $U_\alpha(\gamma)$, etc.
+
+\subsection{Where do QFTs come from?}
+
+There are many sources of QFTs.
+
+\begin{ex}[Lattices]
+	Consider a lattice at which each point behaves according to quantum mechanics.
+	Taking a continuum limit of the lattice gives a quantum field theory.
+	This limit leads to the appearance of infinities and other strange phenomena.
+	Nevertheless, it's the most physically ``rigorous'' way of constructing QFTs.
+\end{ex}
+
+\begin{ex}[Geometric engineering]
+	Start with a string theory, and ``decouple gravity'' by freezing some dimensions.
+	This produces a QFT involving geometric objects.
+	Class $\Sc$ theories arise in this way.
+\end{ex}
+
+\begin{ex}[Lagrangians]
+	We can construct many QFTs from Lagrangians.
+	We'll spend most of our time focusing on this perspective.
+\end{ex}
+
+Each perspective has advantages over the others:
+\begin{itemize}
+	\item Lattices make renormalization straightforward.
+	\item Geometric engineering makes the geometric nature of objects more apparent.
+	\item Lagrangians make locality explicit.
+\end{itemize}
+	
+\subsection{Lagrangians}
+
+A Lagrangian is a functional depending on the fields $\phi_\alpha(x)$:
+\[
+	L(x) = L(\phi_\alpha(x), \partial \phi_\alpha(x), \dots)
+\]
+This is a classical object.
+Locality enforces that $L$ only depends on the behavior of the fields at the given input point (unlike, say, Green's functions $G(x_1, x_2)$).
+Locality also ensures that there are only finitely many derivative terms appearing in $L$.
+
+Lorentz symmetry (which we will assume implicitly) tells us that our fields can be:
+\begin{itemize}
+	\item Scalar fields $\phi(x)$
+	\item Vector fields / gauge fields $A_\mu(x)$, either:
+		\begin{itemize}
+			\item Massless: living in the representation $(1, -1)$, or
+			\item Massive: living in $(1, 0, 1)$
+		\end{itemize}
+	\item Fermions $\psi_a$ (representations of a Clifford algebra)
+	\item Metrics $g_{\mu \nu}$
+\end{itemize}
+We won't consider gravitational theories, so we'll ignore $g_{\mu \nu}$.
+
+\section{6/11 -- Lagrangians in QFT}
+
+Unitarity is true for closed quantum systems.
+For open quantum systems, where we ``trace away'' some information, we can drop this assumption.
+We must restore unitarity as we restore data to our system.
+This explains e.g.\ where the $W$-boson and Higgs boson come from: they're needed to restore unitarity in the Standard Model.
+
+\subsection{Lagrangians}
+
+Consider a Lagrangian
+\[
+	\Lc(x) = \Lc(\phi_\alpha(x), \partial \phi_\alpha(x), \dots).
+\]
+From this (classical) data, we can define a (quantum) partition function
+\[
+	Z = \int D[\phi_\alpha] e^{i \int_M \sqrt{g} \Lc(\phi_\alpha)}
+\]
+This can be thought of as a formal expression: heuristically, it is a sum over all possible field configurations.
+
+We can obtain correlation functions, etc.\ by inserting local operators
+\[
+	\Oc_i(\phi_\alpha(x), \partial \phi_\alpha(x), \dots)
+\]
+or extended operators
+\[
+	U_a(\gamma) = U\left(\int_\gamma F(\phi_\alpha(x)), \dots\right).
+\]
+Namely, we declare
+\[
+	\langle \Oc_i \dots \rangle = \frac{1}{Z(0)} \int D[\phi_\alpha] e^{i \int \Lc} \Oc_i \dots.
+\]
+
+\subsection{Parameters}
+
+In general, it is possible that our Lagrangian depends on some additional parameters, say $\tau_a$, $\tau_b$.
+The partition function then also depends on the $\tau$'s.
+We will assume that these parameters are \emph{perturbative}: that small changes in our theory are governed by Taylor expansions in terms of the $\tau$'s.
+Often, there is a large parameter space for a given QFT, and there are many perturbative regions within this space corresponding to different weakly coupled versions of the theory.
+These \emph{duality frames} can have different fields, different Lagrangians, and different gauge groups.
+(Gauge symmetry is a redundancy in parametrization -- it is not a physical symmetry, but rather a ``trick'' enabling the use of local Lagrangians.)
+
+However, the global symmetry, Hilbert space, and local operators are the same in every duality frame.\footnote{The term ``global'' is not related to this, however.}
+This may not always be visible (at least at the classical level) but it is true.
+Global symmetry permutes the operators, while gauge symmetry does nothing to the operators.
+
+\begin{ex}
+	We can view 4d $\Nc = 4$ super-Yang-Mills as part of the same parameter space as type IIB supergravity on $\mathrm{AdS}_5 \times S^5$.
+	Thus these are versions of the same theory.
+\end{ex}
+
+In addition to varying our parameters, we can also turn on background fields $B_i(x)$, i.e.\ add in new fields which do not fluctuate.
+
+\subsection{Examples}
+
+Consider a theory with one free massless scalar field $\phi$.
+The Lagrangian is
+\[
+	\Lc = \frac{1}{e^2} d \phi \wedge \star d \phi,
+\]
+a single kinetic term.
+The partition function is
+\[
+	Z = \int D[\phi] \exp\left( \frac{i}{e^2} \int d\phi \wedge \star d\phi \right).
+\]
+Taking the coupling parameter $e \to 0$ yields $d\phi = 0$.
+
+We can also add matter, incorporated via a term $m^2 \phi^2 \Vol(M)$ added to the Lagrangian.
+Taking $m \to \infty$ gives $\phi = 0$.
+
+The stress tensor of the theory is
+\[
+	T_{\mu\nu} = \frac{\delta \Lc}{\delta g^{\mu\nu}}.
+\]
+In our above setup, there are kinetic terms, so $T_{\mu\nu} \neq 0$ and the theory is not topological.
+However, the theory does become topological in certain limits.
+
+Suppose we add a gauge field $A_\mu$ transforming (under local gauge transformations) according to $A_\mu \mapsto A_\mu + d\lambda$.
+Taking $\phi$ to be a complex scalar, setting $D\phi = d\phi + i A \phi$, and letting $F = dA$, we can define a Lagrangian
+\[
+	\Lc = D \phi \wedge \star D\phi + \frac{1}{e^2} F \wedge \star F.
+\]
+This produces a non-topological gauge theory.
+
+We can produce a topological theory by adding topological coupling terms: $\theta F \wedge F$ or $A \wedge d\phi \wedge F$.
+These terms would have coefficients determined by the gauge theory.
+Alternatively, we could add boundary terms.
+
+\subsection{More remarks on Lagrangians}
+
+The constraints depend on the choice of gauge group.
+For example, having gauge group $\RR$ would allow for only local transformations (corresponding to exact 1-forms $d \lambda$).
+Gauge group $\U(1)$ would allow more interesting global transformations (e.g.\ $\omega \in H^1(-; \ZZ)$ allowing $A_\mu \mapsto A_\mu + \omega$).
+
+We can split a typical Lagrangian into a \emph{kinetic term}, an \emph{interaction term}, and a \emph{topological term}.
+The kinetic term reflects the behavior of free fields.
+The interaction term consists of a polynomial in the $\phi_\alpha$, and the signs of the coefficients are constrained by locality and causality.
+The topological term is (broadly) independent of the metric.
