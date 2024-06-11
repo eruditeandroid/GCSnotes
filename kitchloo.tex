@@ -1,4 +1,4 @@
-\chapter{Nitu Kitchloo -- Symmetry operators, surface defects, and link homologies}
+\chapter{Nitu Kitchloo -- Symmetry Breaking, Surface Defects, and Link Homologies}
 
 \section{6/10 -- Overview}
 
@@ -288,13 +288,137 @@ More generally, for a multi-index $I$, we let
 	L_I = \U(n) \times^T (G_{i_1} \times^T G_{i_2} \times^T \dots \times^T G_{i_k})
 \]
 where $T$ acts by conjugation on $G_{i_1}$ and $G_{i_k}$.
-An analogous argument to the above gives $H^\bullet_{\U(n)}(L_I) \cong HH(\bS_I)$.
+An argument analogous to the above gives $H^\bullet_{\U(n)}(L_I) \cong HH(\bS_I)$.
 
 For $J \subset I$, we get an inclusion $L_J \to L_I$ that behaves well with respect to composition of inclusions.
 These assemble into a complex
 \[
 	\begin{tikzcd}
+		H^\bullet_{\U(n)}(L_I) \rar & \oplus_{\abs{J} = k-1, J \subset I} H^\bullet_{\U(n)}(L_J) \rar & \dots 
+	\end{tikzcd}
+\]
+which is isomorphic to $HH(C_I)$.\footnote{This is a ``cubical complex,'' related to crossing resolutions for nice presentations of knots.}
+
+\section{6/11 -- Local systems and twisted cohomology}
+
+\subsection{Review of bundle theory}
+
+Let $G$ be a topological group.
+Principal $G$-bundles are classified by pulling back a ``universal bundle'' $EG \to BG$.
+That is, for any principal $G$-bundle $E \to B$, there exists an $f: B \to BG$ (unique up to homotopy) such that $E = f^* EG$.
+To construct $EG \to BG$, just take any contractible space $EG$ with free $G$-action, and let $BG = EG / G$.
+
+We will write a $G$-space $X$ as $X \sslash G$.
+From such a space, we may construct the \emph{homotopy orbits} $X \sslash^h G = EG \times^G X := (EG \times X) / G$, where $G$ imposes the relation $(e, x) \sim (eg, g\inv x)$.
+We define the \emph{$G$-equivariant cohomology} of $X$ to be
+\[
+	H^\bullet_G(X) := H^\bullet(X \sslash^h G).
+\]
+
+If $K \subset G$, then we may take $EG$ as a model for $EK$.
+Because $EG \times^G (G \times^K Y) = EG \times^K Y = EK \times^K Y$, we obtain
+\[
+	H^\bullet_G(G \times^K Y) = H^\bullet_K(Y).
+\]
+
+Given a principal $G$-bundle $E \to B$, we may ask whether or not $E$ is extended from a principal $K$-bundle, i.e.\ whether $E \cong E' \times^K G$ for some principal $K$-bundle $E' \to B$.
+This is equivalent to asking whether the classifying map $f_E: B \to BG$ lifts to a map $f_{E'}: B \to BK$.
+Note that $BK \to BG$ has fiber $G/K$, so in particular reductions of structure group of the trivial $G$-bundle to $K$ correspond to maps $B \to G / K$.
+
+\subsection{Recap}
+
+Last time, we defined subgroups $G_i \subset \U(n)$ for $1 \leq i < n$.
+For each multi-index $I = (i_1, \dots, i_k$, we defined spaces $\BS_I = \U(n) \times^T (G_{i_1} \times^T G_{i_2} \times^T \dots \times^T G_{i_k} / T)$.
+We showed
+\[
+	H^\bullet_{\U(n)}(\BS_I) = \bS_{i_1} \otimes_{R_n} \dots \otimes_{R_n} \bS_{i_k}
+\]
+for $\bS_i = R_n \otimes_{R_n^{\sigma_i}} R_n$.
+The spaces $\BS_I$ are functorial with respect to inclusions of multi-indices.
+
+\begin{ex}
+	Let $I = \{ i \}$ and $J = \emptyset$, so $\BS_i = \U(n) \times^T G_i / T$ and $\BS_\emptyset = \U(n) \times^T (T / T) = \U(n) / T$.
+	Note that $H^\bullet_{\U(n)}(\BS_i) = \bS_i$ and $H^\bullet_{\U(n)}(\U(n) / T) = H^\bullet_T(\pt) = R_n$.
+	The inclusion $\BS_\emptyset \to \BS_i$ comes from $T \subset G_i$, and the induced map on cohomology is the multiplication map
+	\[
+		\bS_i = R_n \otimes_{R_n^{\sigma_i}} R_n \to R_n.
+	\]
+	This is the chain complex $C_i$ appearing in Rouquier's work.
+\end{ex}
+
+We also defined spaces $L_I = \U(n) \times^T (G_{i_1} \times^T G_{i_2} \times^T \dots G_{i_k})$ where $T$ acts on $G_{i_1}$ and $G_{i_k}$ by conjugation.
+These spaces may be viewed as moduli of $\U(n)$-bundles on $S^1$ with $k + 1$ marked points with reduction of structure group to $G_{i_j}$ on the $j$th interval and to $T$ at each marked point.
+The cohomologies can be used to construct a chain complex which recovers Khovanov's link homology.
+Specifically, we have $H^\bullet_{\U(n)}(L_I) = HH(\bS_I)$.
+
+\subsection{Recovering $\slfr_N$-link homology}
+
+There is a forgetful map $L_I \sslash \U(n) \to \U(n) \sslash \U(n)$, where $\U(n)$ acts on itself via the adjoint representation.
+This map is given by the formula
+\[
+	[g, g_1, \dots, g_k] \mapsto g g_1 \dots g_k g\inv.
+\]
+If one thinks of the bundles appearing in the moduli description of $L_I$ as having connections, this is essentially taking the product of the holonomies.
+
+The functorial maps of $L_I \sslash \U(n)$ are compatible with the forgetful maps to $\U(n) \sslash \U(n)$.
+In particular, Khovanov's chain complex
+\[
+	\begin{tikzcd}
 		H^\bullet_{\U(n)}(L_I) \rar & \oplus_{\abs{J} = k-1, J \subset I}(L_J) \rar & \dots 
 	\end{tikzcd}
 \]
-which is isomorphic to $HH(C_I)$.
+is a complex over the torsion-free $H^\bullet_{\U(n)}(\U(n))$.
+Let's think about what happens if we take termwise cohomology with respect to odd elements of $H^\bullet_{\U(n)}(\U(n))$.
+
+There is a non-canonical ring isomorphism 
+\[
+	H^\bullet_{\U(n)}(\U(n)) \cong H^\bullet_{\U(n)}(\pt) \otimes H^\bullet(\U(n)).
+\]
+The non-canonicalness of this is related to the fact that $\U(n) \sslash^h \U(n) \not\simeq B\U(n) \times \U(n)$.
+Essentially, it's not clear what to do on primitive Hopf algebra elements.
+
+However, if we take $n \to \infty$ (and write $\U = \U(\infty)$), we do get a canonical equivalence
+\[
+	\U \sslash^h \U \simeq B\U \times \U.
+\]
+Pulling back the elements of $H^\bullet(\U)$ gives odd elements $d_1, d_3, \dots$, and we can modify Khovanov's complex to get
+\[
+	\begin{tikzcd}
+		H^\bullet(H_{\U(n)}(L_I), d_{2N-1}) \rar & \oplus_{\abs{J} = k-1, J \subset I}H^\bullet(H_{\U(n)}(L_J), d_{2n-1}) \rar & \dots 
+	\end{tikzcd}
+\]
+Here $n$ and $N$ are unrelated.
+
+\begin{thm}[T. Gomez]
+	This complex is isomorphic to the link homology $\slfr_N(\Lc)$ for the link $\Lc = [\sigma_I]$.
+\end{thm}
+
+\begin{ex}
+	Let $\Lc$ be the unknot, so $\Lc = [\sigma_1]$.
+	Then $\slfr_\infty(\Lc) = H^\bullet_{\U(1)}(\U(1) \times^T T) = H^\bullet_T(T) = \ZZ[x_2, y_1]$.
+	Here $d_N$ corresponds to the odd class $y_1 x^N$.
+	We get
+	\[
+		H^\bullet(H_{\U(1)}(L_I), d_N) \cong (\ZZ[x] / x^N) \langle y_1 \rangle.
+	\]
+\end{ex}
+
+\subsection{Local systems}
+
+The above story was a bit ad hoc, so we'd like to fit it into a more topological context.
+We can think of $\U(n)$ as $B \Omega \U(n)$, so $\Omega U(n)$ is really acting everywhere.
+In fact, we'd like the second Markov move (stabilization) to play well with our theory, so we should pass to an $\Omega \U$-action.
+We can implement this by using a \emph{twisted cohomology theory}
+\[
+	\Hc = \Omega \U_+ \wedge H_\ZZ = (\ZZ \times B\U)_+ \wedge H_\ZZ.
+\]
+One can compute
+\[
+	\pi_\bullet \Hc = \pi_\bullet H[b_0^\pm, b_1, b_2, \dots]
+\]
+with $\abs{b_i} = 2i$.
+
+Setting $b_0 = b_N = 1$ and $b_i = 0$ otherwise (and indicating this with the subscript $N$), one can calculate
+\[
+	\tilde{\Hc}_{\U(n)}^\bullet(L_I)_N \simeq H^\bullet(H_{\U(n)}(L_I), d_n).
+\]

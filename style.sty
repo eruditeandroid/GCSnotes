@@ -15,9 +15,13 @@
 
 % general use
 \newcommand{\inv}{^{-1}}
-\newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
-\newcommand{\abs}[1]{\left|#1\right|}
-\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\newcommand{\ip}[2]{\left\langle {#1}, {#2} \right\rangle}
+\newcommand{\abs}[1]{\left|{#1}\right|}
+\newcommand{\norm}[1]{\left|\left|{#1}\right|\right|}
+\newcommand{\bra}[1]{\left\langle{#1}\right|}
+\newcommand{\ket}[1]{\left|{#1}\right\rangle}
+
+
 \newcommand{\ol}{\overline}
 \newcommand{\ul}{\underline}
 \newcommand{\sslash}{\mathbin{/\mkern-6mu/}}
@@ -56,11 +60,13 @@
 
 % Smooth manifolds
 \newcommand{\Cinfty}{\mathcal{C}^\infty}
+\DeclareMathOperator{\Dens}{Dens}
 \DeclareMathOperator{\Diff}{Diff}
 
 % Mathematical physics
 \newcommand{\Dsl}{\slashed{D}}
 \DeclareMathOperator{\Cliff}{Cliff}
+\DeclareMathOperator{\Vol}{Vol}
 
 % Topology
 \newcommand{\Br}{\mathrm{Br}}

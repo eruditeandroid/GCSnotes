@@ -194,3 +194,91 @@ This is similar to requiring that there are no black holes.
 The results of Kontsevich-Segal are best in the case of globally hyperbolic metrics.
 
 Heuristically, we are requiring the existence of a Dirac operator and requiring that this Dirac operator is a contraction operator.
+
+\section{6/11 -- Desired Properties of QFT and Scaling}
+
+In his first lecture, Ibou Bah proposed five properties that a (nice) QFT should satisfy: \emph{unitarity}, \emph{locality}, \emph{causality}, \emph{cluster decomposition}, and \emph{renormalization}.
+We will first try to understand how these relate to Segal's perspective.
+
+\subsection{Renormalization}
+
+Historically, understanding renormalization was crucial to the development of QFT.
+This is somewhat arcane from a mathematical point of view.
+However, one should note that renormalizability of a Lagrangian does have a natural relationship to the calculus of variations.
+
+Consider a $\sigma$-model where our fields are maps $M \to N$.
+If $M$ and $N$ have Riemannian metrics, we can define an energy functional.
+For $M = \RR$ or $S^1$, this recovers the usual energy functional on paths.
+This is well-behaved and has a good Morse theory.
+When $\dim M = 2$, this is almost well-behaved, except there are problems with bubbling.
+For $\dim M > 2$, things are terrible.
+
+The upshot is that (at least in this case?) renormalizability happens exactly when we expect things to be mathematically well-behaved.
+
+\subsection{Unitarity}
+
+If $M$ is a cobordism from $M_0$ to $M_1$, we can reverse orientations on the boundary and view $\ol{M}$ as a cobordism from $\ol{M}_1$ to $\ol{M}_0$.
+When $M$ is Riemannian, this doesn't significantly affect things.
+However, when $M$ is Lorentzian, this changes the direction of time.
+
+If $U_M: \Hc_{M_0} \to \Hc_{M_1}$ is the induced map, then we can think of $U_{\ol{M}}: \Hc_{\ol{M}_1} \to \Hc_{\ol{M}_0}$ as suitably ``adjoint'' to $U_M$.
+More precisely, we can write $\Hc_{M_i}$ and $\Hc_{\ol{M}_i}$ as duals, and this connects $U_M$ to $U_{\ol{M}}$.
+We will assume that $U_{\ol{M}} = \ol{U_M}$.
+Reflection-positivity turns into the assumption that the pairing $\Hc_{M_0} \otimes \Hc_{\ol{M}_0} \to \CC$ is positive (at least in nice cases?).
+
+\subsection{Locality}
+
+Given a point $x \in M$, we can view point operators as being defined on sufficiently small disks $D$ about $x$.
+This gives algebras $\Oc_x = \lim_{x \in D} E_D$, where $E$ is the QFT.
+In the first lecture here, we discussed how this relates to operadic multiplication.
+This is quite similar to the language of operator product expansion used in physics.
+
+\subsection{Cluster decomposition}
+
+Saying that two events are a long time apart is essentially saying that there is a long cylinder between them in spacetime.
+This can also be viewed as factorizing the cobordism defining spacetime into a product involving said long cylinder.
+Recall that the long cylinder in spacetime corresponds to time evolution $e^{-i H t}$ in the QFT.
+
+\subsection{Causality}
+
+Consider a Lorentzian spacetime $M$ with boundaries $M_0$ and $M_1$.
+Placing operations at points $x$ in the interior of $M$ gives operations $\Oc_x \otimes E_{M_0} \to E_{M_1}$.
+
+We assume that our spacetime is globally hyperbolic, so every point in $M_0$ can be connected to a point in $M_1$ via a timelike path.
+This splits $M$ into a family of time slices (all diffeomorphic to each other).
+Given distinct points $x_i$ on the same time slice (so the $x_i$ are spacelike separated), causality ensures that we can define
+\[
+	\Oc_{x_1, \dots, x_n} \otimes \check{E}_{M_0} \to \hat{E}_{M_1},
+\]
+where $\check{-}$ denotes a dense subspace and $\hat{-}$ denotes a completion.
+This product is independent of the ordering.
+Using global hyperbolicity, we can extend this to any collection of spacelike separated points.
+
+The notion of ``small disk'' makes complete sense in a Riemannian metric, but it seems a bit odd in a Lorentzian metric.
+To make sense of this, we recall our notion of complex metric $g: V \to \CC$.
+If we pass to the complexification, we get a standard quadratic form $V_\CC \to \CC$.
+Thus we may consider $V$ as a subspace of $\CC^d \cong V_\CC$.
+The space of allowable complex metrics can be viewed as a contractible subspace of the Grassmannian of real subspaces of $V$.
+One can make sense of the algebras $\Oc_x$ from this perspective.
+
+\subsection{Scaling}
+
+Let's return to the originally proposed topic of this lecture.
+Many things we'd like to prove about QFT can't be proved from the axioms we've given.
+
+Viewing our spacetime $M$ as a cobordism from $M_0$ to $M_1$, we should view a scalar field as a compactly-supported density on $M$.
+Such a scalar field should give an operator $E_{M_0} \to E_{M_1}$.
+This transformation $\Dens_c(M) \to \Hom(E_{M_0}, E_{M_1})$ can be called a \emph{Wightman field}.
+It's not clear how to relate this to the bundle of algebras $\Oc$ we've been discussing earlier.
+
+We also don't really know what to do about Lagrangians.
+From our definition, we can make sense of a moduli space of theories, and we get a renormalization group flow on this moduli space (by rescaling metrics).
+Reconciling our notion of fields (using this space) should help us make sense of Lagrangians.
+(It's not clear how global symmetries fit into this description.)
+
+We should be able to fix these with a scaling axiom (defined in Riemannian signature).
+This should be something saying that our spaces of local operators $E_{(r)}$ (defined on disks of radius $r$) tend to a limit $E_{(0)}$.
+This would provide a filtration on the spaces $\Oc_x$ with associated graded $E_{(0)}$.
+Using this should allow us to relate $\Oc_x$ with densities.
+
+Extending our theories to codimension 2 should also help us prove things.
