@@ -232,3 +232,185 @@ We can split a typical Lagrangian into a \emph{kinetic term}, an \emph{interacti
 The kinetic term reflects the behavior of free fields.
 The interaction term consists of a polynomial in the $\phi_\alpha$, and the signs of the coefficients are constrained by locality and causality.
 The topological term is (broadly) independent of the metric.
+
+\section{6/12 -- Introduction to BF Theory}
+
+We start by clarifying something from last time.
+
+\subsection{Jumping global symmetry}
+
+The global symmetry can jump as we move throughout the moduli space of theories.
+
+\begin{ex}
+	Suppose we have a theory with two scalar fields $\phi_1$ and $\phi_2$ and Lagrangian
+	\[
+		\Lc = \frac{1}{2} (\partial_\mu \phi_i)^2 + m_1^2 \phi_1^2 + m_2^2 \phi_2^2.
+	\]
+	When $m_1 = m_2$, the symmetry of this theory increases to $\SO(2)$.
+	This leads to new and interesting physics.
+\end{ex}
+
+\subsection{Definition of BF Theory}
+
+BF theory is the TFT with fields $b$ (a $p$-form) and $c$ (a codimension $p+1$ form) and action $S = N \int_M b \wedge dc$ (for some fixed $N$).
+The partition function is then
+\[
+	Z = \int D[b] D[c] \exp\left(-2\pi i N \int_M b \wedge dc \right)
+\]
+For specificity, we will take $d = 5$, letting $b$ and $c$ be 2-forms.
+However, our discussion will make sense in any dimension.
+
+We can allow different classes of gauge symmetries:
+\begin{itemize}
+	\item $R$-gauge: $b \mapsto b + d \lambda_1$
+	\item $\U(1)$ gauge: $b \mapsto b + \omega$ for $\omega \in H^2(M; \ZZ)$
+	\item Trivial gauge: $b \mapsto b + \omega$ for $\omega \in H^2(M; \RR)$.
+\end{itemize}
+We may consider independent transformations for $c$.
+
+BF theory has observables (where $\gamma'$ has codimension $p+1$ and $\gamma$ has dimension $p$):
+\begin{align*}
+	W_c(\gamma) &= \exp\left(2\pi i \oint_\gamma c\right) \\
+	W_b(\gamma') &= \exp\left(2\pi i \oint_{\gamma'} b\right).
+\end{align*}
+These operators have different behaviors with respect to different gauge symmetries:
+\begin{itemize}
+	\item $R$-gauge: operators are gauge invariant for all $b$ (or $c$).
+	\item $\U(1)$ gauge: $b$ (or $c$) must have holonomy in $\U(1)$.
+	\item Trivial gauge: none of these observables are gauge invariant.
+\end{itemize}
+We will focus on the case of $\U(1)$ gauge symmetry.
+
+Note that BF theory doesn't have any ``iterated gauge symmetries'' or ``St\"uckelberg fields.''
+Thus we do not need to worry about some of the more complicated aspects of gauge theories.
+
+\subsection{Linking numbers from correlation functions}
+
+We'd like to compute
+\begin{align*}
+	\langle W_c(\gamma) W_b(\gamma) \rangle &= \int D[b] D[c] \exp\left(-S + 2\pi i \int_\gamma c + 2\pi i \int_\gamma b\right) \\
+						&= \int D[b] D[c] \exp\left(-i N 2\pi (b \wedge dc + b \wedge dc_0) + 2\pi i \int_\gamma (c + c_0) + 2\pi i \int_{\gamma'} b\right) \\
+						&= \int D[b] D[c] \exp\left(-i N 2\pi b \wedge dc + 2\pi i \int_\gamma c\right) \exp\left( \frac{2\pi i}{N} \int_\gamma c_0 \right) \\
+						&= Z \exp\left(\frac{2\pi i}{N} L(\gamma, \gamma')\right)
+\end{align*}
+where $L(\gamma, \gamma')$ is the linking number of $\gamma$ and $\gamma'$.
+
+Under $\gamma \mapsto \gamma + N \beta$, we have $W_c(\gamma) \sim W_c(\gamma + N \beta)$, and thus $W_c^N(\gamma) = 1$.
+The analogous statement holds for $W_b(\gamma')$.
+The upshot is that the theory actually has a $\ZZ_N \times \ZZ_N$ gauge symmetry, coming from the maps
+\[
+	\begin{tikzcd}
+		H^1(-; \ZZ_N) \rar & H^1(-; \U(1)) \rar & H^1(-; \U(1))
+	\end{tikzcd}
+\]
+where the last map is induced by $a \mapsto a^N$.
+
+We can write
+\[
+	W_c(\gamma) W_b(\gamma') = \exp\left(\frac{2\pi i}{N} L(\gamma, \gamma')\right) W_b(\gamma') W_c(\gamma).
+\]
+This can be read as saying that the operators $W_c(\gamma)$ are topological operators generating a $\ZZ_N$ global symmetry, where the charged objects are the $W_b(\gamma')$.
+The corresponding statement with the roles of $b$ and $c$ reversed is also true.
+
+\subsection{Quantizing BF theory}
+
+Classically, BF theory seems trivial: the equations of motion for $b$ give $N dc = 0$, and the equations of motion for $c$ give $N db = 0$.
+Thus classical solutions are just flat connections.
+Interesting behavior only appears at the quantum level.
+
+Canonical quantization for $b$ and $c$ gives
+\[
+	[b(x), c(y)] = \frac{2\pi i}{N} \delta(x - y) \Vol(M).
+\]
+We can write
+\[
+	e^{2\pi i \int_\gamma b} e^{2\pi i \int_{\gamma'} c} = e^{\left[2\pi i \int_\gamma b, 2\pi i \int_{\gamma'} c\right]} e^{2\pi i \int_{\gamma'} c} e^{2\pi i \int_\gamma b}
+\]
+Combining this with the above construction of commutators recovers our previous results.
+
+\subsection{Cheeger-Simons maps for more general gauge theories}
+
+In general, consider a $p$-form $A$ with gauge symmetry $A \mapsto A + \omega$ for $\omega \in H^p(M; \ZZ)$.
+We have a natural operator given by the Cheeger-Simons map
+\[
+	\chi(\Sigma_p) = \exp\left(2\pi i \int_{\Sigma_p} A\right).
+\]
+Field configurations for which $\chi$ is gauge-invariant are classified by the differential cohomology $\check{H}^{p+2}(M)$, which fits into the hexagon
+\[
+	\begin{tikzcd}
+		& & & & 0 \\
+		& \Omega^p / \Omega^p_{\ZZ} \ar[rr, "d"] \ar[dr] & & \Omega^{p+1} \ar[ur] \ar[dr] & \\
+		H^p(M; \RR) \ar[ur] \ar[dr] & & \check{H} \ar[ur] \ar[dr] & & H^{p+1}(M; \RR) \\
+		& H^p(M; \RR / \ZZ) \ar[rr, "\beta"] \ar[ur] & & H^{p+1}(M; \ZZ) \ar[ur] \ar[dr] & \\
+		0 \ar[ur] & & & & 0 \\
+	\end{tikzcd}
+\]
+This is a lot larger than what one would na\"ively expect.
+Things are much simpler in BF theory where we only consider flat connections.
+One can see this written up in a paper of Freed, Moore, and Segal.
+
+\section{6/12 -- Global symmetries in variants of BF theory}
+
+\subsection{Simultaneous BF theories}
+
+Let's see what happens when we combine two versions of BF theory at once.
+Consider the 5d theory with fields $b_2$, $c_2$, $A_1$, and $c_3$ and action
+\[
+	S = 2 \pi i \int N b_2 \wedge dc_1 + 2N A_1 \wedge dc_3.
+\]
+The first term gives a $\ZZ_N^{(1)} \times \ZZ_N^{(1)}$ gauge symmetry, and the second term gives a $\ZZ_{2N}^{(0)} \times \ZZ_{2N}^{(2)}$ gauge symmetry.
+From the operators $W_c$ and $W_b$ corresponding to the first term, we get $\ZZ_N^{(2)}$ and $\ZZ_N^{(2)}$ global symmetries.
+From the (similarly defined) operators $V_A$ and $V_{c_3}$, we get $\ZZ_N^{(3)}$ and $\ZZ_N^{(1)}$ global symmetries.
+
+\subsection{Interacting terms}
+
+Can we get non-invertible global symmetries from something like this
+Yes: add in non-dynamical fields $\phi$ and $\beta$, and add an interaction term to the action:
+\[
+	S = 2 \pi i \int N b_2 \wedge dc_1 + 2N A_1 \wedge dc_3 + \frac{1}{2N} (d\phi - 2 N A) \wedge (d\beta - N b)^2.
+\]
+This forces the gauge symmetry groups to interact with each other.
+
+The new equations of motion include
+\[
+	2N dc_3 - (d\beta - Nb)^2 = 0.
+\]
+This equation implies that our original $V_{c_3}$ is no longer a topological operator.
+We seek to correct this somehow.
+If $\Sigma_3$ is a boundary, say $\Sigma_3 = \partial Y$, then we can require
+\[
+	V_{c_3}(\Sigma_3) = \exp\left(\frac{1}{2} N \int_Y b^2\right).
+\]
+In general, we can define a topological operator
+\[
+	V_{c_3}(\Sigma_3) = \int d[a] \exp\left(2\pi i \int_{\Sigma_3} c_3 + 2\pi i \int_{\Sigma_3} N a \wedge da + a \wedge b\right)
+\]
+Essentially, we have an anomaly on the bulk (breaking the $\ZZ_N^{(2)}$ symmetry), and we define a new TQFT on the defect to cancel this out.
+This is ``stacking.''
+There are other theories we could use to cancel the anomaly, but the above method is ``minimal.''
+
+\subsection{Fusion rules}
+
+We can compute some fusion rules of this new $V$ operator:
+\begin{align*}
+	V(\Sigma_3) \otimes V^\dagger(\Sigma_3) &= \int d[a] d[a'] \exp\left(2\pi i \int_{\Sigma_3} N (a da - a' da') + (a - a') \wedge b\right) \\
+						&= \int d[\alpha] d[\alpha'] \exp\left(2\pi i N \int_{\Sigma_3} \alpha' \wedge d\alpha + \alpha d\alpha + \alpha \wedge b\right)
+\end{align*}
+or something similar.
+Ultimately, this localizes to 
+\[
+	V \otimes V^\dagger = A(\Sigma_3) \sum_{b \in H^2(\Sigma_3; \ZZ_N)} e^{2\pi i \int_{\Sigma_3} b}.
+\]
+for some TQFT coefficient $A(\Sigma_3)$ (depending only on $\Sigma_3$, not on the bulk).
+The sum here is a ``condensation defect.''
+Working this out precisely is left to the reader as an exercise (though if anyone reading this has all the details, feel free to add them).
+
+The upshot is that the Lagrangian approach allows us to understand much of what's going on with categorical symmetries.
+We can even get the TQFT coefficients out of this.
+Adding more interaction terms can give even more complicated fusion rules (which are still accessible via the Lagrangian presentation).
+
+\subsection{Super Yang-Mills}
+
+In general, we can consider the action of a 5d symmetry TFT on 4d $\SU(N)$ or $\PSU(N)$ super-Yang-Mills.
+This 4d theory has interesting topological operators: Wilson lines and 't Hooft lines.
+Fully understanding the bulk TFT allows us to work with the symmetries of the boundary theory.

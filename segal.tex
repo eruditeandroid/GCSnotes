@@ -195,7 +195,7 @@ The results of Kontsevich-Segal are best in the case of globally hyperbolic metr
 
 Heuristically, we are requiring the existence of a Dirac operator and requiring that this Dirac operator is a contraction operator.
 
-\section{6/11 -- Desired Properties of QFT and Scaling}
+\section{6/11 -- Desired Properties of QFT; Scaling}
 
 In his first lecture, Ibou Bah proposed five properties that a (nice) QFT should satisfy: \emph{unitarity}, \emph{locality}, \emph{causality}, \emph{cluster decomposition}, and \emph{renormalization}.
 We will first try to understand how these relate to Segal's perspective.
@@ -282,3 +282,97 @@ This would provide a filtration on the spaces $\Oc_x$ with associated graded $E_
 Using this should allow us to relate $\Oc_x$ with densities.
 
 Extending our theories to codimension 2 should also help us prove things.
+
+\section{6/12 -- More Desired Properties of QFT; Connection to Homotopy Theory}
+
+\subsection{More on scaling}
+
+The notion of scaling seems quite common in physical treatments of QFT but is largely absent from mathematical treatments of the same.
+
+Segal began by studying 2d CFT to understand T-duality.
+One version of this identifies a sigma-model with torus target $T$ and another sigma-model with dual torus target $T^*$.
+This isomorphism isn't compatible with scaling: it interchanges short-distance and long-distance aspects of the theories.
+
+\subsection{Locality}
+
+Suppose that our theory sends a $(d-1)$-manifold $M$ to a (topological) vector space $E_M$.
+To say that our theory is local, we'd like to say that $E_M$ can be constructed ``locally on $M$.''
+More precisely, if $M = M_1 \cup_{\Sigma^{d-2}} M_2$, we'd like to construct $E_M$ from $E_{M_1}$, $E_{M_2}$, and ``$E_{\Sigma^{d-2}}$.''
+A na\"ive guess, ignoring the unknown $E_{\Sigma}$, fails: we typically have $E_{M_1} \otimes E_{M_2} \not\cong E_M$.
+To understand this further, let's consider an example.
+
+\begin{ex}
+	Let $G$ be a compact Lie group and $\Lc G$ the loop group of $G$.
+	Assume $E_M$ is an irrep of $\Lc G$.
+	If we think of $M$ as an interval with glued endpoints, then considering paths from any subinterval to $G$ gives rise to a dense subspace of $E_M$.
+	It's not clear how to combine such subspaces to get $E_M$.
+\end{ex}
+
+In our case $M = M_1 \cup_{\Sigma^{d-2}} M_2$, we can construct $E_M$ as ``the space of operators on fields on all of $M$.''
+The algebras of local operators $\Ac_{M_1}$ and $\Ac_{M_2}$ acts on $E_M$.
+If we enlarge $M_1$ and $M_2$ slightly past $\Sigma$ (to get $M_1^+, M_2^+ \subset M$), we can get good results.
+Specifically, if $\Ac_{M_1}^{\mathrm{comm}}$ is the commutant of $\Ac_{M_1}$ acting on $E_M$, then $\Ac_{M_1}^{\mathrm{comm}}$ contains $\Ac_{M_2}$ and $\Ac_{M_1^+}$.
+The Tomita-Takesaki theorem tells us that $\Ac_{M_1}^{\mathrm{comm}}$ is the von Neumann algebra closure of $\Ac_{M_1}$ (?).
+Combining this with the action of $\Ac_{M_2}$ allows us to recover $E_M$ from the behavior of the field theory $M_1$ and $M_2$.
+Here $\Sigma$ gives us a bimodule relating $\Ac_{M_1}$ and $\Ac_{M_2}$.
+
+\begin{ex}
+	Returning to loop groups, suppose we decompose the interval $I = I_1 \cup_{\pt} I_2$.
+	Consider the algebras of loops supported on each subinterval.
+	To glue these together, we need to be able to extend these slightly across $\pt$.
+	This corresponds to a bimodule relating the algebras.
+	In functional analysis, this corresponds to the ``Tomita-Takesaki flow.''
+	This is related to the action of Poincar\'e boosts in special relativity.
+\end{ex}
+
+\subsection{Non-commutative geometry}
+
+We can reconstruct a manifold $M$ from the behavior of modules over $\Cinfty(M)$.
+More generally, in non-commutative geometry, we study the category of modules over an algebra $A$.
+We say that Morita-equivalent algebras have the same geometry.
+
+For example, we can study the $K$-theory of $A$.
+When $A = \Cinfty(M)$, the Chern character isomorphism lets us write
+\[
+	K(A) \otimes \QQ \cong \oplus_i H^{2i}(M; \QQ).
+\]
+The grading here relies on the existence of Adams operations (based on $E \mapsto \wedge^n E$, at least for line bundles).
+
+In the non-commutative context, we don't have Adams operations.
+Instead, there's a formal group law, and we get lots of strangeness governed by chromatic homotopy theory.
+From a QFT perspective, the grading relies on some sort of scaling.
+
+Rings of $\Cinfty$ functions also experience a sort of Bott periodicity.
+Consider the Schwartz space $\Cinfty_S(\RR^2)$ of functions decaying sufficiently rapidly at infinity.
+We can construct a non-commutative deformation $\Cinfty_S(\RR^2)_{(h)}$, which is isomorphic (via Fourier transformation) to the algebra of ``smoothing operators'' from $\Cinfty(\RR)$ to itself.
+By ``smoothing operator,'' we mean a smooth function $K(x, y)$, viewed as an integral transform
+\[
+	(Kf)(x) = \int f(y) K(x, y) dy.
+\]
+This algebra is Morita equivalent to $\CC$ (?), and deforming again recovers $\Cinfty_S(\RR^2)$ (?).
+
+More generally, we can relate the geometry of $X$ with a compactified geometry of $X \times \RR^2$.
+This ends up producing Floer homotopy types.
+
+\subsection{The smooth homotopy category}
+
+Long-distance behavior in QFT looks somewhat like homotopy theory.
+Short-distance behavior in QFT is a bit more open to debate.
+Many people like to think about lattices.
+However, Segal prefers to think about the short-distance behavior in terms of (rings of functions of) manifolds.\footnote{This may be more a matter of human taste in describing the universe than a fundamental fact of nature.}
+
+We can ask how to represent QFTs geometrically.
+Classically, Brown's representability theorem lets us view homotopy theory as captured by contravariant functors from the homotopy category of finite CW complexes to sets.
+The ``smooth homotopy category'' replaces sets here by manifolds (and interprets everything in terms of suitable model categories).
+
+\begin{ex}
+	Given a Lie algebra $\gfr$, we can view the smooth homotopy type of $\gfr$ as given by sending $M$ to the moduli space of flat $\gfr$-connections on the trivial bundle on $M$.
+	Similarly, given a Lie group $G$, we can view the smooth homotopy type of $G$ as given by sending $M$ to the moduli space of flat $G$-bundles on $M$.
+\end{ex}
+
+There's a paper of Kapranov which interprets the Lie algebra of a based loop group $\Omega X$ in this context.
+Curvature is captured by maps $\Omega X \to G$.
+
+Classical homotopy theory is ``perturbative:'' it is built one step at a time from sets (by adding homotopies, higher homotopies, etc.).
+Analysis is also ``perturbative:'' we take higher derivatives one at a time.
+However, the theories are ``perturbative'' in different dirrections: homotopy theory gives the ``long-distance perturbative theory'' while analysis gives ``short-distance perturbative theory.''

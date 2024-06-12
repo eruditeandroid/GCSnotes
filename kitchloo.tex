@@ -146,7 +146,7 @@ Rouquier's theorem is nontrivial for two reasons:
 	\item We need to make sure that this respects the triviality of the higher morphisms in $* \sslash \Br_n$.
 \end{itemize}
 
-\section{6/10 -- Geometric interpretations for the $\U(n)$ case}
+\section{6/10 -- Geometric Interpretations for the $\U(n)$ Case}
 
 Last time, we discussed a categorification of $\Br_n$.
 We'd like to obtain a corresponding categorification of $[\Br_n]$.
@@ -249,7 +249,7 @@ This inclusion respects composition of inclusions of multi-indices.
 Rouquier's chain complex $C_I$ is isomorphic to
 \[
 	\begin{tikzcd}
-		H^\bullet_{\U(n)}(\BS_I) \rar & \oplus_{\abs{J} = k-1, J \subset I} \rar & \dots \rar & H^\bullet_{\U(n)}(\U(n)/T).
+		H^\bullet_{\U(n)}(\BS_I) \rar & \oplus_{\abs{J} = k-1, J \subset I} H^\bullet_{\U(n)}(L_J) \rar & \dots \rar & H^\bullet_{\U(n)}(\U(n)/T).
 	\end{tikzcd}
 \]
 All differentials here are obtained from (signed) inclusions $\BS_J \to \BS_{J'}$.
@@ -299,7 +299,7 @@ These assemble into a complex
 \]
 which is isomorphic to $HH(C_I)$.\footnote{This is a ``cubical complex,'' related to crossing resolutions for nice presentations of knots.}
 
-\section{6/11 -- Local systems and twisted cohomology}
+\section{6/11 -- Local Systems and Twisted Cohomology}
 
 \subsection{Review of bundle theory}
 
@@ -384,7 +384,7 @@ However, if we take $n \to \infty$ (and write $\U = \U(\infty)$), we do get a ca
 Pulling back the elements of $H^\bullet(\U)$ gives odd elements $d_1, d_3, \dots$, and we can modify Khovanov's complex to get
 \[
 	\begin{tikzcd}
-		H^\bullet(H_{\U(n)}(L_I), d_{2N-1}) \rar & \oplus_{\abs{J} = k-1, J \subset I}H^\bullet(H_{\U(n)}(L_J), d_{2n-1}) \rar & \dots 
+		H^\bullet(H_{\U(n)}(L_I), d_{2N-1}) \rar & \oplus_{\abs{J} = k-1, J \subset I} H^\bullet(H_{\U(n)}(L_J), d_{2n-1}) \rar & \dots 
 	\end{tikzcd}
 \]
 Here $n$ and $N$ are unrelated.
@@ -422,3 +422,137 @@ Setting $b_0 = b_N = 1$ and $b_i = 0$ otherwise (and indicating this with the su
 \[
 	\tilde{\Hc}_{\U(n)}^\bullet(L_I)_N \simeq H^\bullet(H_{\U(n)}(L_I), d_n).
 \]
+
+\section{6/12 -- Spectral Sequence Invariants; Relationship to TQFT}
+
+\subsection{Remarks on questions}
+
+Previously, we constructed (for $G = \U(n)$) a $G$-space $L_I$ such that $H_G(L_I) = HH(\bS_I)$.
+There is a $G$-equivariant map $L_I \to G$ (where $G$ acts on itself by convolution), and we can view this as a derived local system.
+For these purposes, we should view $G = B(\Omega G)$.
+
+\begin{ex}
+	Consider $\Omega G$-twisted cohomology $\Hc = (\Omega \U)_+ \wedge H_\ZZ$.
+	Then $\pi_\bullet \Hc = (H_\ZZ)_\bullet [b_0^{\pm 1}, b_1, \dots]$.
+	Here the $b_i$ control the possible twistings.
+	Setting $b_0 = b_N = 1$ and $b_i = 0$ otherwise gives $\slfr_N$-link homology.
+	We can consider the power series $\sum_i b_i x^i$, which can be viewed in a matrix factorization context as the derivative of our superpotential.
+\end{ex}
+
+\begin{ex}
+	We can also consider twisted $K$-theory.
+	Note that $K_G$ has twistings indexed by $\NN$.
+	Here (for $N \in \NN$)
+	\[
+		{}^N K_{\U(1)}(L_\emptyset) = \ZZ[x^{\pm 1}] / (x^N - 1)
+	\]
+	gives the corresponding invariant for the unknot.
+	Freed-Hopkins-Teleman allows us to identify this with the ring controlling level $N$ representations of the loop group $L\U(1)$.
+	There is a ``level-rank duality'' going on here relating this to $\ZZ[x] / (x^N)$.
+\end{ex}
+
+Twisted $K$-theory is a functor defined on $G$-spaces $X$ over $G$.
+This produces modules over ${}^0 K_G(X)$.
+
+\subsection{Spectral sequence interpretation of Khovanov homology}
+
+Recall that an inclusion of multi-indices $J \subset I$ induces $L_J \subset L_I$.
+We used this to construct a complex producing Khovanov homology.
+We'd like to interpret this topologically.
+To this end, we construct a filtered $G$-equivariant space $F_\bullet(sL_I)$ with 
+\begin{align*}
+	F_0(sL_I) &= \cone(\emptyset \to L_I) = L_I \\
+	F_1(sL_I) &= \cone\left(\cup_{|J|=k-1} L_J \to L_I\right) \\
+	F_2(sL_I) &= \cone\left(\cup_{|J|=k-1 \textrm{ or } k-2} L_J \to L_I\right) \\
+		  &\dots
+\end{align*}
+We can compute $F_k(sL_I) / F_{k-1}(sL_I) = \vee_{\abs{J}=n-r} \Sigma^r (L_{J})_+$.
+This yields a spectral sequence with $E_1$ term $HH(C_I^\bullet)$ converging to $H^\bullet_{\U(n)}(F_k(sL_I))$.
+This limit space is not particularly interesting -- it's just a Thom space, and it counts the number of components of the link.
+However, the terms of the spectral sequence are more interesting.
+
+\begin{thm}
+	The pages $E_i$ for $i \geq 2$ are invariants of the link $\sigma_I$.
+\end{thm}
+
+We'd like to view the filtered $G$-space $F_\bullet(sL_I)$ as a link invariant itself.
+First, we need a notion of equivalence for such objects.
+We will consider filtered $G$-spaces as giving key examples of $G$-spectra.
+
+\begin{dfn}
+	Let $F_\bullet$, $G_\bullet$ be $G$-spectra.
+	We say that a map $f_\bullet: F_\bullet \to G_\bullet$ is an \emph{elementary quasi-equivalence} if its (co)fiber $Z_\bullet$ is acyclic, i.e.\ the identity on $Z_\bullet$ is homotopic to $0$.
+	More generally, we say $F_\bullet$ and $G_\bullet$ are \emph{quasi-equivalent} if they are connected by a zigzag of elementary quasi-equivalences.
+\end{dfn}
+
+\begin{thm}
+	The filtered $G$-space $F_\bullet(sL_I)$ is an invariant of the link $\sigma_I$ up to quasi-equivalence.
+\end{thm}
+
+\subsection{Towards a TQFT interpretation}
+
+Suppose that $M$ is a manifold with a $G$-bundle (thought of as a background field).
+This is classified by a map $f_M: M \to BG$.
+For $M = N \times S^1$, we may regard the classifying map as equivalent to a map $\hat{f}_N: N \to LBG = \Map(S^1, BG)$.
+
+\begin{prop}
+	The free loop space $LBG$ is equivalent to $G \sslash^h G = EG \times^G G$ (where $G$ acts on itself by conjugation).
+\end{prop}
+
+\begin{proof}
+	Decomposing $S^1 = D^+ \cup_{S^0} D^-$, we may view the data of a map $S^1 \to BG$ as consisting of a bundle on $D^+$, a bundle on $D^-$, and an equivalence of the two on $S^0$.
+	Written another way, this is a homotopy fiber product
+	\[
+		\begin{tikzcd}
+			LBG \rar \dar & BG \dar["\Delta"] \\
+			BG \rar["\Delta"] & BG \times BG.
+		\end{tikzcd}
+	\]
+	Writing
+	\begin{align*}
+		   BG &\simeq E(G \times G) / \Delta \\
+		   &\simeq E(G \times G) \times^{G \times G} (G \times G) / \Delta \\
+		   &\simeq E(G \times G) \times^{G \times G} G,
+	\end{align*}
+	we can write $LBG = BG \times_{BG \times BG}^h (E(G \times G) \times^{G \times G} G)$, which gives the desired result.
+\end{proof}
+
+The upshot is that $G$-background fields on $N \times S^1$ are equivalent to $G \sslash^h G$-background fields on $N$.
+It follows that we should study $G \sslash G$ and $G \sslash^h G$.
+If we let $G / G$ be the space of bona-fide $G$-orbits, we get a map $G \sslash G \to G / G$.
+
+Recall that every element of $G$ is conjugate to an element of $T$, so we can write $G / G = T / W$, where $W = N_G(T) / T$.
+For $\hfr = \Lie(T)$, we have an exponential map $\exp: \hfr / W \to T / W$, where $\hfr / W$ is equivalent to a Weyl chamber.
+We can interpret $G \sslash G$ or ($G \sslash^h G$) as stacks / spaces over $\hfr / W$.
+In the open parts of the Weyl chambers, the fibers look like $(G / T) \sslash G$.
+Along the walls of the Weyl chambers, we get jumps / defects where the fibers become $(G / G_i) \sslash G$.
+
+We can also interpret the spaces $L_I$.
+Given $I$, inscribe $S^1$ in $\hfr / W$ so that the circle hits the wall $\alpha_{i_j} = 0$ between the points $x_j$ and $x_{j+1}$.
+Then $L_I$ consists of sections
+\[
+	\begin{tikzcd}
+		 & {G \sslash G} \dar \\
+		S^1 \rar \ar[ur, dashed] & \hfr / W
+	\end{tikzcd}
+\]
+
+\subsection{Homotopy TQFT interpretation}
+
+We may view $L_I$ as $G \sslash G$-background fields on $S^1$, or equivalently as $G$-background fields on $S^1 \times S^1$.
+Let $\Cob_n(\pt \sslash^h G)$ be the $(\infty, n)$-category of manifolds with $G$-background.
+Let $\Hc$ be a commutative ``global'' cohomology theory -- see the book of Stefan Schwede for details of what this means.
+Write $\Cc_n$ for the category of $\EE_{n-1}$-algebras in $\Hc$-modules.
+
+There is a functor $\Cob_n(\pt \sslash^h G) \to \Cc_n$ given by $\pt \sslash G \mapsto \Hc$.
+Compactifying this along $S^1$ (i.e.\ considering values on manifolds of the form $M = N \times S^1$) gives a functor $\Cob_{n-1}(G \sslash^h G) \to \Cc_{n-1}$, defined by $G \sslash^h G \mapsto (\Hc \times G) \sslash G$.
+On $S^1$ with $L_I$ background, we get $(L_I \times \Hc \to L_I) \sslash G$.
+This is an invertible theory, and we can gauge / take $G$-equivariant global sections to get
+\[
+	\Hc_G(L_I) \simeq HH(\bS_I).
+\]
+The inclusions $L_J \hookrightarrow L_I$ give Khovanov's complex.
+
+Twisted theories give modules over $\Hc$, which doesn't quite make sense in the above story.
+Instead, we want to view our theory as being the boundary of a 4d theory.
+That is, Khovanov-Rozansky $\slfr_N$-link homology comes from a 3d theory on the boundary of a 4d theory.
