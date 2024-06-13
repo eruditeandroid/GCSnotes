@@ -1,0 +1,271 @@
+\chapter{Claudia Scheimbauer -- Higher Categories and TQFT}
+
+\section{6/13 -- Motivation, Examples, and First Definition}
+
+There are many examples that shape how we might want to think about higher categories.
+
+\subsection{Example 1: Categories}
+
+The collection of all categories naturally forms a 2-category.
+Instead of demanding isomorphism of categories, we typically only want to ask for ``equivalence.''
+Formalizing this requires a notion of ``natural isomorphism.''
+
+To encapsulate this information, we need a structure with three layers:
+\begin{itemize}
+	\item 0-morphisms / objects: categories,
+	\item 1-morphisms: functors, and
+	\item 2-morphisms: natural transformations.
+\end{itemize}
+We also need notions of composition of 1-morphisms and 2-morphisms.
+
+\subsection{Example 2: Bordisms}
+
+In the Segal-Atiyah approach to QFT, we assemble the possible ``spacetimes'' into a ``category'' $\Cob_{n,n-1}$ controlling cutting and pasting along codimension 1 slices.
+The category $\Cob_{n,n-1}$ has:
+\begin{itemize}
+	\item 0-morphisms / objects: closed $(n-1)$-manifolds with boundary, and
+	\item 1-morphisms $M_0 \to M_1$: $n$-dimensional smooth bordisms (i.e.\ manifolds $\Sigma$ with boundary together with a diffeomorphism $\partial \Sigma \xrightarrow{\sim} M_0 \sqcup M_1$).
+\end{itemize}
+Here composition is via gluing along the common boundary (but see below!).
+We are often interested in adding additional structure to the objects of $\Cob_{n,n-1}$: Riemannian metrics, flat $G$-bundles, etc.
+
+A (topological) quantum field theory is a symmetric monoidal functor $Z: \Cob_{n,n-1} \to \Vect$.
+In the topological case, we require that all structures appearing in $\Cob$ are topological.
+In more general cases, we may consider modifications of the target, e.g.\ replacing $\Vect$ by the category of topological vector spaces.
+We'll focus on the case of TQFT.
+
+As defined above, composition of bordisms does not necessarily produce a smooth bordism.
+There are a few ways to fix this.
+For example, we can consider bordisms only up to diffeomorphism, in which case we can adjust things so that composites inherit smooth structures.
+Alternatively, we can enhance bordisms by adding the data of collars around the boundary.
+
+The former approach reflects the fact that bordisms really live in a higher category, with:
+\begin{itemize}
+	\item 0-morphisms: closed $(n-1)$-manifolds,
+	\item 1-morphisms: $n$-dimensional bordisms, and
+	\item 2-morphisms: diffeomorphisms between bordisms up to isotopy.
+\end{itemize}
+This allows us access to mapping class groups, which are interesting!
+From a physics perspective, we often want the values of our field theory to vary smoothly in the moduli space of bordisms.
+Really, we want to consider the space of diffeomorphisms as well, so we should allow 3-morphisms corresponding to isotopies, 4-morphisms corresponding to isotopies of isotopies, etc.
+
+We often take our bordisms to be pointing ``forward in time'' -- however, there's no mathematical reason to prefer a specific direction.
+In particular, we should be able to compute $Z$ by slicing up our manifolds along different directions.
+Note that, if we compare slices taken in two different directions, we typically get codimension 2 submanifolds along the intersections of the slices.
+Iterating this process produces closed submanifolds of higher codimension, and we should explain what $Z$ assigns to such manifolds.
+To this end, we can expand our bordism category to a $k$-category, allowing
+\begin{itemize}
+	\item 0-morphisms: closed $(n-k)$-manifolds,
+	\item 1-morphisms: $(n-k+1)$-dimensional bordisms,
+	\item \dots
+	\item $(n - 1)$-morphisms: $(n-1)$-dimensional bordisms of bordisms of \dots,
+	\item $n$-morphisms: $n$-dimensional bordisms of bordisms of \dots
+\end{itemize}
+Including the diffeomorphism groups discussed earlier, we should really consider an $(\infty, k)$-category $\Bord_{n,n-k}$.\footnote{For non-$\infty$ categories, we will write $\Cob$.
+For $(\infty, -)$-categories, we will write $\Bord$.}
+
+\subsection{Example 3: Targets}
+
+If we want to define a TQFT as a functor out of $\Bord_{n,n-k}$, the codomain should also be an $(\infty, k)$-category.
+What $(\infty, k)$-categories should we consider?
+
+\begin{ex}
+	For a first example, consider functors from $\Cob_{3,2,1}$.
+	Following Segal's lectures, we may send $S^1$ to an algebra, 1-dimensional bordisms to bimodules, and 2-dimensional bordisms of bordisms to bimodule homomorphisms.
+	That is, we take functors valued in the Morita bicategory $\Alg$, with:
+	\begin{itemize}
+		\item 0-morphisms: algebras (over our favorite field),
+		\item 1-morphisms $A \to B$: $(A, B)$-bimodules, and
+		\item 2-morphisms: bimodule homomorphisms.
+	\end{itemize}
+	In particular, the TQFT sends 2-manifolds or 2-dimensional bordisms to scalars or more generally linear maps.
+\end{ex}
+
+We can define other targets similarly.
+
+\subsection{What is a (weak) 2-category?}
+
+Now that we've completed our motivation, we should find an actual mathematical definition of higher categories.
+
+Let's first recall how we define monoidal categories:
+
+\begin{dfn}
+	A \emph{monoidal category} is:
+	\begin{itemize}
+		\item A category $\Mc$, with
+		\item A tensor product functor $\otimes: \Mc \times \Mc \to \Mc$,
+		\item A unit object $\onebb$,
+		\item An associator natural transformation $(A \otimes B) \otimes C \xrightarrow{\sim} A \otimes (B \otimes C)$, and
+		\item Left and right unitor natural transformations $\onebb \otimes A \xrightarrow{\sim} A \xleftarrow{\sim} A \otimes \onebb$.
+	\end{itemize}
+	These are required to satisfy:
+	\begin{itemize}
+		\item A ``pentagon axiom'' ensuring nice behavior of the associator, and
+		\item A ``triangle axiom'' ensuring nice behavior of the unitors.
+	\end{itemize}
+	We say that the monoidal category $\Mc$ is \emph{strict} if the associators and unitors are the identity maps.
+\end{dfn}
+
+The definition of weak 2-categories is quite similar!
+
+\begin{dfn}
+	A \emph{weak 2-category} or \emph{bicategory} $\Bc$ consists of:
+	\begin{itemize}
+		\item A collection of objects $\ob \Bc$,
+		\item For all $X, Y \in \ob \Bc$, a category of morphisms $\Hom_{\Bc}(X, Y)$,
+		\item For all $X, Y, Z \in \ob \Bc$, a composition functor $\circ: \Hom_{\Bc}(Y, Z) \times \Hom_{\Bc}(X, Z)$,
+		\item For all $X \in \ob \Bc$, a functor $* \to \Hom_{\Bc}(X, X)$ (corresponding to $\id_X$ and $\id_{\id_X}$),
+		\item An associator (natural isomorphism between threefold composites), and
+		\item Unitors (natural isomorphisms between morphisms and their composites with the identity)
+	\end{itemize}
+	satisfying the pentagon and triangle axioms.
+	We say that a 2-category $\Bc$ is \emph{strict} if the associators and unitors are the identities.
+\end{dfn}
+
+In general, we need the flexibility of ``weak'' / ``non-strict'' constructions.
+Most examples that arise in practice are not strict!
+
+\section{6/13 -- Formal Definition}
+
+\subsection{Examples of weak 2-categories}
+
+Some examples we've considered are (possibly weak) 2-categories.
+
+\begin{ex}
+	Categories, functors, and natural transformations form a strict 2-category.
+\end{ex}
+
+\begin{ex}
+	The collection of cobordisms down to codimension 2, $\Cob_{n,n-1,n-2}$, forms a weak 2-category.
+\end{ex}
+
+\begin{ex}
+	Algebras, bimodules, and bimodule homomorphisms form a weak 2-category.
+\end{ex}
+
+Checking the examples can be difficult, especially when we move into higher-dimensional cases.
+Furthermore, while weak 2-categories and strict 2-categories are (in some suitable sense) equivalent, this breaks down in higher dimensions.
+We'd like to find a suitable framework for dealing with higher category theory.
+
+\subsection{Simplicial sets and redefining categories}
+
+There are many definitions of $(\infty, 1)$-categories in the literature, but all are equivalent.
+The most common model is that of \emph{quasicategory}, called $\infty$-category by Lurie.
+We'll use a somewhat different definition that is more suited to our needs.
+Let's first consider the case of ordinary categories.
+
+Let $\Delta$ be the skeletal category of nonempty linearly ordered finite sets, i.e.\ the category with:
+\begin{itemize}
+	\item Objects: $[0]$, $[1]$, $[2]$, etc.\ where $[n] = \{ 0 < 1 < \dots < n \}$
+	\item Morphisms: (non-strictly) order-preserving maps.
+\end{itemize}
+
+\begin{ex}
+	From $[1]$ to $[2]$, there are six maps:
+	\begin{itemize}
+		\item $0 \mapsto 0, 1 \mapsto 1$,
+		\item $0 \mapsto 0, 1 \mapsto 2$,
+		\item $0 \mapsto 1, 1 \mapsto 2$, and
+		\item $0 \mapsto k, 1 \mapsto k$ for $k = 0$, $1$, or $2$.
+	\end{itemize}
+\end{ex}
+
+\begin{ex}
+	From $[2]$ to $[1]$, there are four maps:
+	\begin{itemize}
+		\item $0 \mapsto 0, 1 \mapsto 1, 2 \mapsto 1$,
+		\item $0 \mapsto 0, 1 \mapsto 0, 2 \mapsto 1$, and
+		\item $0 \mapsto k, 1 \mapsto k, 2 \mapsto k$ for $k = 0$ or $1$.
+	\end{itemize}
+\end{ex}
+
+\begin{dfn}
+	A \emph{simplicial set} is a functor $X_\bullet: \Delta\op \to \Set$.
+	More generally, a \emph{simplicial object} in a category $\Cc$ is a functor $X_\bullet: \Delta\op \to \Cc$.
+	We write $X_n$ for the image of $[n]$ under $X_\bullet$.
+\end{dfn}
+
+\begin{ex}
+	Let $\Cc$ be a small category.
+	The \emph{nerve} of $\Cc$ is the simplicial set $N\Cc: \Delta\op \to \Set$ with $N\Cc_0 = \ob \Cc$ and $(N \Cc)_i$ the set of composable sequences of $i$ morphisms.
+	For example,
+	\[
+		(N\Cc)_2 = \sqcup_{X,Y,Z \in \ob \Cc} \Hom_{\Cc}(Y, Z) \times \Hom_{\Cc}(X, Y) = \mor \Cc \times_{s,\ob \Cc,t} \mor \Cc
+	\]
+	The structure maps are given by source maps, target maps, composition, and diagonals.
+\end{ex}
+
+For every $i \in \{0, \dots, n-1\}$, there is a morphism $[1] \to [n]$ in $\Delta$ given by $0 \mapsto i$ and $1 \mapsto i+1$.
+In a simplicial set $X$ these induce maps $\gamma_i: X_n \to X_1$.
+
+\begin{ex}
+	In $N \Cc$, these $\gamma_i$ are given by $(f_1, \dots, f_n) \mapsto f_i$.
+\end{ex}
+
+We may use the above discussion to arrive at a new definition of a category.
+
+\begin{dfn}
+	A \emph{category} is a simplicial set $X_\bullet$ such that the natural maps $X_n \to X_1 \times_{X_0} X_1 \times_{X_0} \dots \times_{X_0} X_1$ (induced by the $\gamma_i$) are bijections.
+	A \emph{monoid} is a category with $X_0 = *$.
+\end{dfn}
+
+\subsection{Category objects}
+
+The advantage of the above definition is that it allows us to generalize the notion of category.
+
+\begin{dfn}
+	Let $\Sc$ be a category with finite limits. 
+	A \emph{category object} in $\Sc$ is a simplicial object $X_\bullet: \Delta\op \to \Sc$ satisfying the \emph{Segal condition}: the natural maps $X_n \to X_1 \times_{X_0} \dots \times X_1$ are isomorphisms.
+	If $\Sc$ has a notion of weak equivalence, then we take homotopy fiber products and require that the natural maps are weak equivalences.
+\end{dfn}
+
+\begin{ex}
+	In $\Cat$ with weak equivalences given by isomorphisms, the category objects are strict 2-categories.
+	We can use this to produce an inductive definition of strict $n$-category.
+	Namely, strict $n$-categories are category objects in $\Cat_{n-1}$ (the category of strict $(n-1)$-categories) with weak equivalences given by isomorphisms.
+\end{ex}
+
+\begin{ex}
+	In $\Cat$ with weak equivalences given by the usual equivalences, the category objects are weak 2-categories.
+\end{ex}
+
+We can also consider category objects in the $(\infty, 1)$-category $\Spaces$ of spaces (i.e.\ $\infty$-groupoids).
+If we are careful enough, we can avoid circular reasoning.
+
+\begin{dfn}
+	A \emph{Segal space} (or \emph{pre-$(\infty, 1)$-category} or \emph{flagged $(\infty, 1)$-category}) is a category object in $\Spaces$, i.e.\ a simplicial space $X_\bullet: \Delta\op \to \Spaces$ satisfying the Segal condition $X_n \xrightarrow{\sim} X_1 \times_{X_0} \dots \times_{X_0} X_1$.
+	An \emph{$(\infty, 1)$-category} is a flagged $(\infty, 1)$-category satisfying a ``univalence equals completeness axiom'' $X_0 \xrightarrow{sim} X_1^{\textrm{inv}}$.\footnote{This is essentially saying that we can reconstruct the objects from the equivalences.}
+\end{dfn}
+
+\subsection{Bordisms}
+
+We would like to understand bordisms from this perspective.
+Specifically, we seek to construct a simplicial object $X_\bullet = (\Bord_{d,d+1})_\bullet$ where the $X_n$ are composable sequences of $n$ bordisms.
+
+From another perspective, we can see $X_n$ as the space of large bordisms with certain ``allowed'' cuts.
+
+\begin{dfn}
+	Let $X_n$ be the ``space'' with each point labeled by
+	\begin{itemize}
+		\item An interval $(a, b) \subset \RR$,
+		\item An $n$-dimensional submanifold $M \subset (a, b) \times \RR^{\infty}$, and
+		\item Closed subintervals $I_0, \dots, I_n \subset (a, b)$ with endpoints $a = a_0$, $b_0$, \dots, $a_n$, $b_n = b$ (giving collars of the cut values)
+	\end{itemize}
+	such that
+	\begin{itemize}
+		\item $a_0 \leq \dots \leq a_n$ and $b_0 \leq \dots \leq b_n$,
+		\item The projection $\pi: M \to (a, b)$ is submersive over each $I_i$, and
+		\item $\pi$ is proper.
+	\end{itemize}
+\end{dfn}
+
+The upshot here is that we avoid thinking about singularities by focusing entirely on $n$-dimensional objects (with $(n-1)$-dimensional objects viewed as cylinders),
+The restriction that $\pi$ is submersive over each $I_i$ avoids cutting at a Morse critical point (where the slice may be singular, e.g.\ a figure-eight).
+The properness of $\pi$ ensures that all fibers are compact, so we don't have to worry about anything going off to infinity.
+
+\begin{ex}
+	For $X_0$, we have $I_0 = (a, b)$, so $\pi: M \to (a, b)$ is a proper submersion.
+	Ehresmann's fibration theorem implies that $\pi$ is a fiber bundle, so contractibility of $(a, b)$ tells us that $M \cong M_0 \times (a, b)$ for some $M_0$.
+	Thus $X_0$, the space of ``objects,'' can be identified with the space of $(n-1)$-manifolds.
+\end{ex}
+

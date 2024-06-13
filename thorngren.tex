@@ -1,0 +1,269 @@
+\chapter{Ryan Thorngren -- Symmetry Breaking, Higher Berry Phase, Family Anomalies, and the Long Exact Sequence}
+
+These talks are based on joint work with A.\ Debray, S.\ Devalapurkar, C.\ Krulewski, Y.\ L.\ Liu, N.\ Pacheco-Tallaj, available at \url{https://arxiv.org/abs/2309.16749} and \url{https://arxiv.org/abs/2405.04649}.
+A sketch of what we'd like to discuss: 
+\begin{enumerate}
+	\item Symmetry breaking defects including $\rho$-defects, domain walls, and vortices
+	\item Gapless modes and defect / bulk anomaly matching
+	\item Family anomalies, higher Berry phase, phase diagrams
+	\item Incorporating symmetries, index theory
+	\item Long exact sequence connecting everything
+\end{enumerate}
+
+\section{6/13 -- Symmetry breaking and defects}
+
+\subsection{Symmetry breaking}
+
+There are multiple types of ``symmetry breaking'' in physics.
+We'll consider spontaneous symmetry breaking and explicit symmetry breaking.
+
+In \emph{spontaneous symmetry breaking}, there is a global symmetry (e.g.\ a Lie group $G$), but the ground states are not symmetric (or perhaps their symmetries lie in a subgroup $H \subset G$).
+
+\begin{ex}
+	Consider four vertices which lie in a square.
+	We'd like to connect the vertices by a collection of strings of shortest total length.
+	There are two solutions, both somewhat between an H shape an X shape.
+	Each solution has $D_4$ symmetry rather than the $D_8$ symmetry of the point configuration.
+\end{ex}
+
+\begin{ex}
+	We'd like to minimize the potential $V = -x^2 + x^4$ on $\RR$.
+	The potential is preserved by the $\ZZ_2$ reflection symmetry of $\RR$.
+	However, this swaps the minima, so the symmetry is broken to the trivial group.
+\end{ex}
+
+In \emph{explicit symmetry breaking}, a system which has a symmetry $G$ is subjected to small perturbations breaking the $G$-symmetry.
+
+\begin{ex}
+	In the last example, we can change our potential to $V = \epsilon x - x^2 + x^4$.
+	This breaks the symmetry between the minima.
+\end{ex}
+
+\subsection{Spatial locality}
+
+\begin{ex}
+	Consider the problem of minimizing
+	\[
+		E = \int [(\nabla \phi)^2 - \phi^2 + \phi^4] dx.
+	\]
+	This is just given by $\phi$ taking a constant value at a minimum of $V(x) = -x^2 + x^4$.
+	Let's make things more interesting and assume we're doing thermodynamics or quantum physics, so that we want to understand ``nearly minimal'' configurations as well.
+	This allows $\phi$ to flip between different minima along \emph{domain walls}.
+\end{ex}
+
+Define the \emph{correlation function}
+\[
+	\langle \phi(0) \phi(x) \rangle_c = \langle \phi(0) \phi(x) \rangle - \langle \phi(0) \rangle \langle \phi(x) \rangle.
+\]
+The value of this is determined by the presence or absence of domain walls.
+
+\begin{ex}
+	Let $G = \U(1)$ and $H = 1$.
+	Consider a complex scalar field $\phi: X \to \CC$ and the potential $V = -\abs{\phi}^2 + \abs{\phi}^4$.
+	For $\phi = re^{ikx}$, we get energy scaling with $k$.
+	These configurations are known as \emph{Goldstone modes}.
+
+	For $\phi = z$, we get logarithmic energy, with $\partial_\theta \phi$ and $(\partial_\theta \phi)^2$.
+	This spoils the order in 2d, and we get ``quasi-long-range order'' where the correlation function decays according to a power law.
+\end{ex}
+
+\subsection{Symmetry defects}
+
+Suppose that our symmetry group $G$ acts transitively on the space of ground states (which can then be identified with $G / H$).
+For spontaneous symmetry breaking, codimension $k$ defects correspond to $\pi_{k-1}(G / H)$.
+
+Explicit symmetry breaking is given by a linear perturbation living in a representation $\rho$ of $G$.
+
+\begin{ex}
+	For $V = \epsilon x - x^2 + x^4$, the perturbation transforms according to the sign representation of $\ZZ_2$.
+\end{ex}
+
+More generally, we can write $\Delta V = \int d^d x \epsilon_a \Oc^a(x)$.
+
+\begin{ex}
+	For
+	\[
+		E = \int d^d x [(\nabla \vec{\phi})^2 - \norm{\vec{\phi}}^2 + \norm{\vec{\phi}}^4 + \vec{\epsilon} \cdot \vec{\phi},
+	\]
+	the perturbation transforms with the vector representation of $\Orm(N)$.
+\end{ex}
+
+We can construct a ``$\rho$-defect'' (for $\dim \rho = k$) as
+\[
+	\epsilon_a(y_1, \dots, y_k, x_{k+1}, \dots, x_d) = f\left(\sum_{i=1}^k y_i^2\right) \cdot \frac{y_a}{\abs{y_a}}
+\]
+for some scalar-valued $f$, typically growing linearly near zero and with or without a cutoff at infinity.
+This $\epsilon$ ``winds around a $(k-1)$-sphere $S(\rho) \subset \rho$.''
+The defect has codimension $k$.
+
+The explicit symmetry breaking defects we've seen so far are examples of $\rho$-defects.
+
+\subsection{Jackiw-Rebbe zero modes}
+
+Consider 1+1d QFT with (real or complex) two-component fermions.
+Say $\gamma^0 = i Y$ and $\gamma^1 = X$.
+We take the Lagrangian
+\[
+	\Lc = i \psi^\dagger \gamma^0 \gamma^\mu \psi + i m \psi^\dagger \gamma^0 \psi.
+\]
+The equations of motion are
+\[
+	(\gamma^\mu \partial_\mu + m) \psi = 0,
+\]
+so we get solutions 
+\[
+	\psi^i(x, t) = u^i(E, k) e^{i E t + i k x}
+\]
+where $E = \sqrt{k^2 + m^2}$.
+
+The lowest energy state ($k = 0$) has energy $m$ -- we call this a \emph{mass gap}.
+Letting our mass vary with space according to an odd function, we get gapped systems both left and right of the origin.
+We get a 0-dimensional $\rho$-defect (with $\rho$ the sign representation) for time-reversal symmetry $\psi \mapsto \gamma^0 \psi$ and $m \mapsto -m$.
+
+If $m(x) = x$, the equations of motion
+\[
+	(\gamma^\mu \partial_\mu + x) \psi = 0
+\]
+have a time-independent solution $\psi_{\pm} = u_{\pm} e^{-\mp x^2/ 2}$ where $\gamma^1 u_{\pm} = \pm u \pm$.
+With the $+$ sign, this is normalizable; with the $-$ sign, this is not.
+Somehow this ties in to anomalies.
+
+\begin{exer}
+	For a 2+1d theory with real 2-component fermions and $\gamma^2 = Z$, show that for
+	\[
+		\psi^i(t, x_1, y_2) = f(x_1) \chi^i(t, y_2),
+	\]
+	we can choose $f(x_1)$ such that $\chi^i$ is chiral and satisfies the massless Majorana equation.
+\end{exer}
+
+\begin{exer}
+	For a 3+1d theory with complex 2-component Weyl fermions, considering
+	\[
+		x_1 \bar{\psi} \psi + x_2 i \bar{\psi} \gamma^3 \psi,
+	\]
+	there is a real chiral massless fermion along the vortex line.
+\end{exer}
+
+We'd like to understand how these behave as we add deformations.
+
+\section{6/13 -- ('t Hooft) Anomalies}
+
+\subsection{General theory}
+
+Suppose we have a quantum system with $D$-dimensional spacetime $X$ and background $G$-gauge field / symmetry $A$.
+In general, $Z(X, A)$ transforms via
+\[
+	Z(X, A^g) = e^{i \Omega(X, A, g)} Z(X, A).
+\]
+One can think of $Z$ as a \emph{section of a line bundle} on the space of connections on $X$ (rather than as a \emph{function}) on said space).
+Stated better, one may view $\ket{Z(X, A)}$ as an element of a Hilbert space of an invertible $(D+1)$-dimensional TQFT on $X \times [0, 1]$.
+Here $X \times [0, 1]$ (with $e^{i \Omega(\dots)}$) connects $X \times 0$ (with $Z(X, A)$) to $X \times 1$ (with $Z(X, A^g)$).
+
+``Cobordism theory'' tells us that these form a group $\Omega^{D+1}_G$.
+The anomaly TQFTs are determined by their partition functions $\omega(Z^{D+1}, A)$.
+Furthermore, $e^{i \omega(\dots)}$ behaves like the holonomy of a connection.
+The actual topological quantity here is the Chern number of this connection.
+We get a universal coefficient sequence
+\[
+	\begin{tikzcd}
+		1 \rar & \Omega_{D+1}^{G,\mathrm{tors}} \rar & \Omega^{D+1}_G \rar & \Hom(\Omega_{D+2}^G, \ZZ) \rar & 1
+	\end{tikzcd}
+\]
+Here $\Omega_r^G$ is the bordism group of $r$-manifolds with $G$-connection.
+As with the usual universal coefficient sequence, the above sequence splits, but not naturally.
+
+\subsection{Adding structure}
+
+We'd like to consider manifolds with more structure.
+For bosonic theories, we want an orientation.
+For fermionic theories, we want a spin structure.
+We'll refer to these and similar topological structures as \emph{$s$-structures} on the tangent bundle $TX$.
+In general, we'll ``twist'' these as follows.
+
+Take a \emph{twisting vector bundle} $\eta$ on $BG$, and view our gauge field as giving $A: X \to BG$.
+We say that an \emph{$\eta$-twisted $s$-structure} is an $s$-structure on $TX \oplus A^* \eta$.
+
+The class $w_1(\eta): G \to \ZZ_2$ controls which elements reverse the orientation of spacetime.
+
+\begin{ex}
+	Let $G = \U(1)$, let $s = \SO$ be orientation structure, and let $\eta$ be trivial.
+	Then
+	\[
+		\Omega^3_{\U(1),\SO} = \Hom(\Omega+4^{\U(1),\SO}, \ZZ) = \ZZ^{c_1^2} \oplus \ZZ^{p_1}.
+	\]
+\end{ex}
+
+In general, we have a useful map $H^{D+2}(BG; \ZZ) \to \Omega^{D+1}_{G,s}$.
+
+\begin{ex}
+	Majorana zero modes are associated with the Arf invariant in $\Omega^2_{\Spin} = \ZZ_2$.
+\end{ex}
+
+\begin{ex}
+	Consider time reversal symmetry with $T^2 = 1$.
+	Let $w_2(\eta) = 0$ and $w_1(\eta) \neq 0$ -- say $\eta$ is the sign representation of $\ZZ_2$.
+	Note
+	\[
+		0 = w_1(TX \oplus A^* \eta) = w_1(TX) + w_1(A^* \eta) = w_1(TX) + A
+	\]
+	and
+	\[
+		0 = w_2(TX \oplus A^* \eta) = w_2(TX) + w_1^2(TX).
+	\]
+	We end up with $\Pin^-$ appearing somehow.
+	Note $\Omega^2_{\Pin^-} = \Omega^2_{\ZZ_2,\Spin,\sgn} = \ZZ_8$.
+\end{ex}
+
+\subsection{Defect anomaly matching}
+
+Consider a gauge group $G$ with a representation $\rho$.
+Assume our theory has operators $\Oc^a$ transforming with $\rho$ such that, for large $\epsilon_a \in \rho$, the theory perturbed by $\epsilon_a \Oc^a$ is non-degenerately gapped.
+We call such a theory \emph{$\rho$-gappable}.
+This produces a $\rho$-defect local $(D-k)$ dimensional system.
+How can we relate the anomalies with the bulk?
+
+On $X^{D+1}$ with background field $A$, we want to choose a section $\phi$ of $A^*\rho$.
+Let $Y = \phi^*(0)$; for generic $\phi$, this is a codimension $k$ submanifold.
+The theory is trivialized away from $Y$, so we can write
+\[
+	\omega(X^{D+1}, A, \xi) = \alpha(Y^{D-k+1}, A|_Y, \xi|_Y).
+\]
+This lets us reconstruct the bulk anomaly $\omega$ from the defect $\alpha$.
+Here $\xi$ is an $\eta$-twisted $s$-structure on $TX$.
+
+Note that $TX|_Y = TY + NY$, where $NY$ is the vector bundle associated to $A^*\rho|_Y = A|Y^* \rho$.
+Thus $\xi|_Y$ is actually an $(\eta + \rho)$-twisted $s$-structure.
+
+We end up with a linear map
+\[
+	\Def_\rho: \Omega^{D-k+1}_{G,s,\eta+\rho} \to \Omega^{D+1}_{G,s,\eta}.
+\]
+This satisfies $\Def_\rho \alpha = \omega$.
+Note that, if this map is not injective, then $\alpha$ is not uniquely defined by $\omega$.
+Similarly, if the map is not surjective, there may not be an $\alpha$ corresponding to $\omega$.
+(This latter case is covered by the possibility that the theory is not $\rho$-gappable.)
+
+The extra twisting here arises from the fact that, in the presence of a $\rho$-defect, we don't really have $G$-symmetry.
+One can understand this in examples involving CRT symmetry.
+
+\begin{ex}
+	Consider a 3+1d complex 4-component Dirac fermion $\psi_L, \psi_R$ with $\U(1)_L$ background field.
+	Take $\eta$ to be trivial.
+	We get an anomaly
+	\[
+		\frac{1}{6} c_{1,L}^3 - \frac{1}{24} c_{1,L} p_1(TX^6).
+	\]
+	Let $\rho$ be the charge 1 representation.
+	Take a section $\phi$ of the bundle associated with $A^* \rho$; then $Y = \phi\inv(0)$ is Poincar\'e dual to $c_{1,L}$.
+	We can write
+	\[
+		\int_{X^6} \frac{1}{6} c_{1,L}^3 - \frac{1}{24} c_{1,L} p_1(TX^6) = \int_Y \frac{1}{6} c_{1,L}^2 - \frac{1}{24} p_1(TX).
+	\]
+	We can write $p_1(TX)|_Y = p_1(TY \oplus A^* \rho) = p_1(TY) + p_1(A^* \rho)$.
+	As $\CC \otimes A^* \rho = A^* \rho \oplus \ol{A^* \rho}$, we get $p_1(TX)|_Y = p_1(TY) + c_{1,L}^2$.
+	It follows that the defect anomaly is
+	\[
+		\frac{1}{8} c_1^2 - \frac{1}{24} p_1(TY) \in \Omega^3_{\Spin^c}.
+	\]
+	This matches the anomaly of the 1+1d Weyl fermion with charge 1 under $\U(1)$.
+\end{ex}
