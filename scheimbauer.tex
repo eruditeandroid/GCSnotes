@@ -1,4 +1,4 @@
-\chapter{Claudia Scheimbauer -- Higher Categories and TQFT}
+\chapter{Claudia Scheimbauer -- Higher Categories for TQFT}
 
 \section{6/13 -- Motivation, Examples, and First Definition}
 
@@ -269,3 +269,283 @@ The properness of $\pi$ ensures that all fibers are compact, so we don't have to
 	Thus $X_0$, the space of ``objects,'' can be identified with the space of $(n-1)$-manifolds.
 \end{ex}
 
+\section{6/14 -- More Bordisms; Factorization Algebras}
+
+\subsection{Bordisms, continued}
+
+Last time, we sketched the construction of a Segal space $X_\bullet = (\Bord_{d,d+1})_\bullet$.\footnote{This is not complete in high dimensions due to the existence of $H$-cobordisms.
+Details can be found in Lurie's paper on the cobordism hypothesis.}
+More precisely, we described the points of $X_n$ as bordisms with $n$ allowed cut loci.
+The topology is hard to describe precisely but comes from allowing ``wiggling'' of both the bordism and the intervals.
+
+We should also describe the structure maps of the simplicial space.
+The face maps $X_i \to X_{i-1}$ are given by forgetting cuts (for inner faces) or discarding the outer parts of the manifold (for outer faces).
+Degeneracy maps $X_i \to X_{i+1}$ correspond to repeating intervals.
+These maps (and the intervals themselves) are essentially bookkeeping.
+
+\subsection{Extended bordisms and the cobordism hypothesis}
+
+Recall that $(\infty, 1)$-categories are defined as simplicial spaces $\Delta\op \to \Spaces$ satisfying the Segal condition and a completeness condition.
+Similarly, we define $(\infty, k)$-categories to be $k$-simplicial spaces $(\Delta\op)^{\times k} \to \Spaces$ satisfying a Segal condition, a completeness condition, and ``globularity.''
+From this perspective, defining $(\infty, k)$-categories is not too much harder than defining $(\infty, 1)$-categories.
+
+To define an $(\infty, k)$-category of bordisms $\Bord_{d,d-k}$, we:
+\begin{itemize}
+	\item Embed $M$ in $\RR^k \times \RR^\infty$,
+	\item Take the ``intervals'' labeling our cuts to be rectangles in $\RR^k$, and
+	\item Modify the submersivity condition on $\pi$.
+\end{itemize}
+
+For $k = d$, we get an $(\infty, d)$-category $\Bord_d := \Bord_{d,0}$.
+We say that a topological field theory is \emph{fully extended} if it is defined on $\Bord_d$.
+
+The \emph{cobordism hypothesis} (due to Baez-Dolan, Lurie, and others) is a way of formalizing the notion that (fully extended) TFTs are fully local.
+This can be stated as follows.
+Let $\Cc$ be a symmetric monoidal $(\infty, d)$-category.
+Write $\Bord_d^{\mathrm{fr}}$ for the \emph{framed} bordism category.
+Then evaluation at $\pt$ gives an equivalence
+\[
+	\Fun^\otimes(\Bord_d^{\mathrm{fr}}, \Cc) \xrightarrow{\sim} (\Cc^{d\mathrm{-dualizable}})^{\simeq}
+\]
+between the $(\infty, d)$-category of symmetric monoidal functors from $\Bord_d^{\mathrm{fr}}$ to $\Cc$ and the maximal $\infty$-groupoid of $d$-dualizable objects in $\Cc$.
+For more details, see the lectures of David Jordan at the GCS summer school last year.
+
+There are also variants allowing for different tangential structures on the TFTs.
+The above discussion doesn't account for anomalous theories; corrections are needed to deal with these.
+
+\subsection{TFT targets}
+
+What should we take as the codomain $\Cc$ of a TFT?
+
+\begin{ex}
+	One weak $2$-category that shows up frequently in practice is the category $\Alg_1(\Vect)$ (denoted $\Alg$ earlier) with:
+	\begin{itemize}
+		\item Objects: algebras,
+		\item 1-morphisms: bimodules, and
+		\item 2-morphisms: bimodule homomorphisms.
+	\end{itemize}
+	Here composition is given by the relative tensor product: ${}_B N_C \circ {}_A M_B = {}_A M \otimes_B N_C$.
+	Note that this is only weakly associative.
+\end{ex}
+
+\begin{ex}
+	Trying to define a 3-categorical example, we can let $\Alg_1(\Cat^{\textrm{lin}})$ be the weak 3-category with:
+	\begin{itemize}
+		\item Objects: tensor categories,
+		\item 1-morphisms: bimodule categories,
+		\item 2-morphisms: functors,
+		\item 3-morphisms: natural transformations.
+	\end{itemize}
+	This is tricky -- we first have to figure out what we mean by ``weak 3-category.''
+	However, this example is relevant to practical examples such as Witten-Reshetikhin-Turaev theories and Turaev-Viro theories.
+\end{ex}
+
+\begin{ex}
+	Recent work has made progress in defining $\Alg_2(\Cat^{\textrm{lin}})$ and $\Alg_3(\Cat^{\textrm{lin}})$.
+	This gets progressively harder as the subscript increases!
+\end{ex}
+
+It seems difficult (but worthwhile) to understand what's going on here.
+We'll instead think about a different approach.
+
+\subsection{(Pointless) factorization algebras}
+
+Factorization algebras show up frequently in studies of TFT:
+\begin{itemize}
+	\item They give a variation of algebraic QFT (which assigns an algebra $\Ac(U)$ to every open subset $U$ of spacetime).
+	\item They axiomatize observables in (perturbative) QFT -- the work of Costello-Gwilliam has explained BV quantization from this perspective.
+	\item They encapsulate $A_\infty$-algebras, bimodules, $\EE_n$-algebras, etc.
+\end{itemize}
+We'll try to use these to understand TFT.
+
+\begin{dfn}
+	Let $X$ be a topological space.
+	The operad $\Open(X)^{\otimes}$ of opens in $X$ has open sets of $X$ as colors and one operation $(U_1, \dots, U_n; V)$ if the $U_i$ are disjoint subsets of $V$.
+	A \emph{prefactorization algebra} on $X$ with values in $(\Sc, \otimes)$ (often $\Sc = \Ch$) is an algebra $\Ac$ for this operad.
+	In more detail, for every $U_1 \sqcup \dots \sqcup U_n \subset V$, we have $\Ac(U_1) \otimes \dots \Ac(U_n) \to \Ac(V)$ ``coherently.''
+	That is, for $O_1 \sqcup \dots \sqcup O_n \subset U_1$, $O_1' \sqcup \dots \subset U_2$, \dots, and $U_1 \sqcup U_2 \sqcup \dots \subset V$, the triangle
+	\[
+		\begin{tikzcd}
+			\Ac(O_1) \otimes \dots \otimes \Ac(O_n) \otimes \Ac(O_1') \otimes \dots \ar[rr] \ar[dr] & & \Ac(U_1) \otimes \Ac(U_2) \otimes \dots \ar[dl] \\
+														& \Ac(V) &
+		\end{tikzcd}
+	\]
+	commutes (up to coherent homotopy).
+	This last condition is encapsulated nicely by the language of operads and $(\infty, 1)$-categories.
+\end{dfn}
+
+\begin{rmk}
+	This makes sense with $\Open(X)$ replaced by any poset of opens in $X$.
+\end{rmk}
+
+Let's see how this captures the examples we've seen so far.
+
+\begin{ex}
+	Let $X = \RR$ and let $A$ be an associative algebra over a field $k$.
+	We can define $\Ac$ on the poset $\Intsf$ of intervals in $X$ via the assignment $\Ac(I) = A$, with $\Ac(\emptyset) = k$.
+	For nonempty $I$, the map $\Ac(\emptyset) \to \Ac(I)$, equivalently $k \to A$, gives the unit of $A$.
+	For nonempty $I_1, I_2 \subset I_3$, the map $\Ac(I_1) \otimes \Ac(I_2) \to \Ac(I_3)$, equivalently $A \otimes A \to A$, gives the multiplication on $A$.
+	Coherence of $\Ac$ corresponds to associativity of $A$.
+\end{ex}
+
+\begin{ex}
+	Let $p \in X = \RR$, let $M$ be an $(A, B)$-bimodule, and let $m \in M$.
+	Define a prefactorization algebra on $\Intsf$ by $\Ac(\emptyset) = k$
+	\[
+		\Ac((x, y)) = \begin{cases}
+			A & y \leq p \\
+			M & x < p < y \\
+			B & p < x.
+		\end{cases}
+	\]
+	This obtains a natural structure of prefactorization algebra.
+	(The maps $k \to M$ are just specified by the choice of $m$.)
+\end{ex}
+
+\begin{ex}
+	Let $X = \RR^2$ and consider the poset of disks within the unit disk.
+	The corresponding operad is the $\EE_2$-operad.
+	The corresponding prefactorization algebras in $\Vect$ are commutative algebras, while the corresponding prefactorization algebras in $\Cat$ are braided monoidal categories.
+\end{ex}
+
+\section{6/14 -- Factorization algebras and the Morita category}
+
+\subsection{Factorization algebras}
+
+We've talked about prefactorization algebras -- what does it mean to drop the ``pre?''
+
+\begin{dfn}
+	A \emph{factorization algebra} on a topological space $X$ with values in $(\Sc, \otimes)$ is a prefactorization algebra $\Ac$ such that:
+	\begin{enumerate}
+		\item $\Ac$ is multiplicative, i.e.\ $\Ac(U_1) \otimes \dots \otimes \Ac(U_n) \xrightarrow{\sim} \Ac(U_1 \sqcup \dots \sqcup U_n)$ and $\Ac(\emptyset) \simeq \onebb$.
+		\item $\Ac$ satisfies descent for Weiss covers.
+	\end{enumerate}
+	Here a \emph{Weiss cover} is a collection $\Uc$ of open sets of $X$ such that for all finite subsets $S \subset X$, there exists $U_S \in \Uc$ such that $S \subset U_S$.
+	Descent means that, if $\Uc$ is a Weiss cover of $V$, then
+	\[
+		\colim_{\{ U_1, \dots, U_n \} \in \Uc} \Ac(U_1 \cap \dots U_n) \xrightarrow{\sim} \Ac(V).
+	\]
+\end{dfn}
+
+The Weiss condition is a bit strange and hard to think about.
+However, it gives us a way to extend from a prefactorization algebra on a basis to a factorization algebra on the whole space.
+This can be implemented using Kan extensions -- see work of Karlsson-Scheimbauer-Walde.
+
+\begin{ex}
+	Given an associative algebra $A$, we get a prefactorization algebra $\Ac$ on $\Intsf$ as before.
+	Multiplicativity tells us how to extend this to $\Intsf^{\sqcup}$ (finite disjoint unions of intervals).
+	The Weiss condition tells us how to extend to a factorization algebra on all of $\Open(\RR)$.
+\end{ex}
+
+\subsection{Constructibility}
+
+We are particularly interested in prefactorization algebras that interact well with stratified manifold structures.
+
+\begin{dfn}
+	Let $X$ be a conically smooth manifold.\footnote{This is a ``nice'' stratified space, e.g.\ a stratification of an $n$-dimensional manifold by smooth submanifolds.}
+	A prefactorization algebra $\Ac$ on $X$ is \emph{constructible} if, for every inclusion $U \subset V$ of abstractly isomorphic disks (accounting for the stratification), we get an equivalence $\Ac(U) \xrightarrow{\sim} \Ac(V)$.
+\end{dfn}
+
+\begin{thm}[Lurie]
+	Equip $\RR^n$ with the trivial stratification $\emptyset \subset \RR^n$.
+	There is an equivalence
+	\[
+		\Fact_{\RR^n}\cstr \simeq \EE_n\dAlg.
+	\]
+\end{thm}
+
+\begin{thm}[Ayala-Francis-Tanaka]
+	Equip $\RR$ with the stratification $\emptyset \subset \{ p \} \subset \RR$.
+	There is an equivalence between $\Fact_{\RR}\cstr$ and the $(\infty, 1)$-category of pointed bimodules. 
+\end{thm}
+
+Constructible factorization algebras glue, so it suffices to define them locally.
+That is:
+
+\begin{thm}[Karlsson-Scheimbauer-Walde]
+	Given an open cover $\Uc$ of $X$, there is an equivalence
+	\[
+		\colim_{\{U_1, \dots, U_n\} \subset \Uc} \Fact_{U_1 \cap \dots U_n}\cstr \xrightarrow{\sim} \Fact_X\cstr.
+	\]
+\end{thm}
+
+\begin{ex}
+	We can glue our ``pointed bimodule'' example to get a picture of smashing defects on the real line.
+\end{ex}
+
+The preceding theorem is surprisingly difficult to prove -- it had been claimed for years, but a proof is only appearing now.
+It is not known whether the result extends to all factorization algebras.
+The ultimate reason is that Weiss covers are hard to work with!
+
+One can also prove other useful results in the constructible context.
+
+\begin{thm}[KSW]
+	The category $\Fact_X\cstr$ has a symmetric monoidal structure given (at a na\"ive level) by $(\Fc \otimes \Gc)(U) = \Fc(U) \otimes \Gc(U)$.
+\end{thm}
+
+It's also possible to understand constructible factorization algebras on a cone.
+
+\begin{thm}[Brav-Rozenblyum, KSW]
+	Let $C(Z) = Z \times [0, 1) / (Z \times \{0\})$.
+	There is a pullback square
+	\[
+		\begin{tikzcd}
+			\Fact_{C(Z)}\cstr \rar \dar & \Fact_{Z \times (0,1)}\cstr \dar \\
+			\Fact_{[0, 1)}\cstr \rar & \Fact_{(0,1)}\cstr.
+		\end{tikzcd}
+	\]
+\end{thm}
+
+One can understand the terms in this pullback individually:
+\begin{itemize}
+	\item $\Fact_{[0,1)}\cstr$ consists of algebras together with a pointed left module.
+	\item $\Fact_{(0,1)}\cstr \simeq \EE_1\dAlg$ by Lurie's result above.
+	\item $\Fact_{Z \times (0,1)}\cstr \simeq \Fact_Z\cstr(\EE_1\dAlg)$ by work in progress of \v{S}vraka.
+\end{itemize}
+A few more comments on this last equivalence: Ayala-Berry proved that
+\[
+	\Fact_{X \times Y} \simeq \Fact_X(\Fact_Y)
+\]
+in the non-constructible case.
+The work of \v{S}vraka extends this to the constructible case.
+
+\subsection{Pointless factorization algebras}
+
+We'd like to use the above results to understand the Morita bicategory and other important target categories in TFT.
+However, what we've done so far requires \emph{pointed} bimodules, which aren't quite what we want!
+Work in progress of Karlsson fixes this.
+
+Let $X$ be a stratified space, and let $X_0$ be a collection of chosen points (forming a 0-dimensional stratum).
+Replace $\Open(X)$ by the poset $\Open^m(X)$ consisting of all open sets of $X$ but with only inclusions $U \subset V$ such that $U \cup X_0 \xrightarrow{\sim} V \cap X_0$ abstractly.
+Karlsson's work redoes the above theorems in this context.
+
+\subsection{The Morita category}
+
+From the above perspective, we can construct the Morita category as the Segal space $X_\bullet: \Delta\op \to \Spaces$ with:
+\begin{itemize}
+	\item $X_0$ consisting of constructible factorization algebras on $\RR$ (equivalently, $\EE_1$-algebras),
+	\item $X_1$ consisting of constructible factorization algebras on $\RR$ with one marked point (almost...), i.e.\ bimodules,
+	\item $X_2$ consisting of constructible factorization algebras on $\RR$ with two marked points (almost...), i.e.\ pairs of compatible bimodules,
+	\item \dots
+\end{itemize}
+The face maps come from either forgetting the leftmost or rightmost algebra and bimodule or tensoring adjacent pairs of bimodules.
+From the factorization algebra viewpoint, this corresponds to a pushforward.
+Degeneracy maps require some cleverness -- for example, we can use an approach like that used for bordisms above.
+One can also modify the definitions slightly to get an easier definition.
+There's some hard bookkeeping so that we can allow the points to vary.
+
+We can also replace $\Spaces$ by $\Cat_{(\infty,1)}$ or other interesting targets.
+This recovers other notions of Morita categories.
+
+This construction is due to Calaque-Scheimbauer and is in Scheimbauer's thesis.
+Work of Karlsson will extend this to the pointless case.
+Haugseng accomplishes a similar goal without factorization algebras.
+
+\subsection{Outlook}
+
+From this perspective, we can construct a pointed version of $\Alg_n$ based on a stratification of $\RR^n$.
+To understand dualizability, work of Karlsson uses the geometry of factorization algebras (as opposed to the operadic approach of Haugseng).
+Future work will compare Haugseng's approach to the pointless version.
+
+There is also much work on understanding unitarity in this context.
+Many people involved in this task will be at the conference.

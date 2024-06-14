@@ -24,15 +24,14 @@
 \newcommand{\bra}[1]{\left\langle{#1}\right|}
 \newcommand{\ket}[1]{\left|{#1}\right\rangle}
 
-
 \newcommand{\ol}{\overline}
 \newcommand{\ul}{\underline}
 \newcommand{\sslash}{\mathbin{/\mkern-6mu/}}
 
-\newcommand{\stacks}[1]{\cite[\href{https://stacks.math.columbia.edu/tag/#1}{Tag #1}]{stacks}}
 
 % mathrm superscripts / subscripts
 \newcommand{\op}{^{\mathrm{op}}}
+\newcommand{\cstr}{^{\mathrm{cstr}}}
 
 % math operators
 \DeclareMathOperator{\Aut}{Aut}
@@ -47,12 +46,14 @@
 \DeclareMathOperator{\Hom}{Hom}
 \newcommand{\scHom}{\mathcal{H}\mkern-3mu\operatorname{om}}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Ind}{Ind}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\mor}{mor}
 \DeclareMathOperator{\Map}{Map}
 \DeclareMathOperator{\ob}{ob}
 \DeclareMathOperator{\pr}{pr}
 \DeclareMathOperator{\pt}{pt}
+\DeclareMathOperator{\Res}{Res}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\Stab}{Stab}
@@ -62,6 +63,7 @@
 
 \renewcommand{\Re}{\mathop{Re}}
 \renewcommand{\Im}{\mathop{Im}}
+
 
 % Smooth manifolds
 \newcommand{\Cinfty}{\mathcal{C}^\infty}
@@ -201,7 +203,9 @@
 \newcommand{\Coh}{\mathsf{Coh}}
 \newcommand{\dAlg}{\textrm{-}\Alg}
 \newcommand{\dMod}{\textrm{-}\Mod}
+\newcommand{\Fact}{\mathsf{Fact}}
 \newcommand{\Fun}{\mathsf{Fun}}
+\newcommand{\Intsf}{\mathsf{Int}}
 \newcommand{\Mod}{\mathsf{Mod}}
 \newcommand{\Open}{\mathsf{Open}}
 \newcommand{\PSh}{\mathsf{PSh}}
@@ -212,7 +216,7 @@
 \newcommand{\Set}{\mathsf{Set}}
 \newcommand{\sSet}{\mathsf{sSet}}
 \newcommand{\Sh}{\mathsf{Sh}}
-\newcommand{\Spaces}{\mathcal{S}} % standard notation?
+\newcommand{\Spaces}{\mathsf{Spaces}} 
 \newcommand{\Top}{\mathsf{Top}}
 \newcommand{\Vect}{\mathsf{Vect}}
 

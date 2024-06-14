@@ -1,4 +1,4 @@
-\chapter{Ryan Thorngren -- Symmetry Breaking, Higher Berry Phase, Family Anomalies, and the Long Exact Sequence}
+\chapter{Ryan Thorngren -- Symmetry Breaking, Higher Berry Phase, and the Long Exact Sequence}
 
 These talks are based on joint work with A.\ Debray, S.\ Devalapurkar, C.\ Krulewski, Y.\ L.\ Liu, N.\ Pacheco-Tallaj, available at \url{https://arxiv.org/abs/2309.16749} and \url{https://arxiv.org/abs/2405.04649}.
 A sketch of what we'd like to discuss: 
@@ -10,7 +10,7 @@ A sketch of what we'd like to discuss:
 	\item Long exact sequence connecting everything
 \end{enumerate}
 
-\section{6/13 -- Symmetry breaking and defects}
+\section{6/13 -- Symmetry Breaking and Defects}
 
 \subsection{Symmetry breaking}
 
@@ -266,4 +266,263 @@ One can understand this in examples involving CRT symmetry.
 		\frac{1}{8} c_1^2 - \frac{1}{24} p_1(TY) \in \Omega^3_{\Spin^c}.
 	\]
 	This matches the anomaly of the 1+1d Weyl fermion with charge 1 under $\U(1)$.
+\end{ex}
+
+\section{6/14 -- Defect Anomalies and Families}
+
+\subsection{Review}
+
+Last time, we constructed a defect anomaly map
+\[
+	\Def_\rho: \Omega^{D-k+1}_{G,s,\eta+\rho} \to \Omega^{D+1}_{G,s,\eta}.
+\]
+This sends the anomaly of the $\rho$-defect to the bulk anomaly.
+
+\begin{ex}
+	For a 3+1d $\U(1)$-symmetric Dirac fermion, where the map is
+	\[
+		\Def_\rho: \Omega^3_{\Spin^c} \to \Omega^5_{\U(1),\Spin}.
+	\]
+	We can show that this is an isomorphism
+	\[
+		\ZZ^{c_1^2} \oplus \ZZ^{c_1^2 / 8 - p_1 / 24} \to \ZZ^{c_1^3 / 6 - c_1 p_1 / 24} \oplus \ZZ^{c_1^3}.
+	\]
+\end{ex}
+
+More generally, we want to understand the kernel and image of $\Def_\rho$.
+
+\subsection{Families of QFTs}
+
+\begin{ex}
+	Consider a 1+1d Dirac fermion with
+	\[
+		a \ol{\psi} \psi + i b \ol{\psi} \gamma^c \psi.
+	\]
+	Let's understand the behavior of the theory as a function of $(a, b)$.
+	At $a = b = 0$, this is gapless.
+	Away from $(0, 0)$, this theory has trivial phase.
+
+	We can ask whether the gapless point is protected, or whether it will disappear under small perturbations.
+	With $\U(1)$ symmetry, this point is protected: as we move (``adiabatically slowly'') along a circle around the gapless point, we get a current $j = \partial_t \theta / 2\pi$.
+	Moving around a full circle, one unit of charge gets ``pumped'' via the ``Thouless pump.''
+	This charge is quantized, so we can't get rid of the gapless point.
+\end{ex}
+
+This is analogous to Berry phase.
+
+\begin{ex}
+	Consider a two-state system with Hamiltonian
+	\[
+		H = a \cdot \sigma^x + b \cdot \sigma^y + c \cdot \sigma^z.
+	\]
+	At $a = b = c = 0$, we have a twofold degenerate state.
+	This is topologically protected: moving around it corresponds to a line bundle on $S^2$ with Chern number 1.
+	In optics, such a point is called a ``diabolical point.''
+\end{ex}
+
+In QFT, we can also find nontrivial families without symmetry.
+
+\begin{ex}
+	Consider the 1+1d CFT $\SU(2)_1$ (where 1 is the ``level'').
+	Add an $\SO(4)$ vector to break the symmetries and get a trivial theory.
+	We get an interesting $S^3 \subset \RR^4$.
+	We may take an effective field theory $\phi: X \to S^3$ which contains a Wess-Zumino--Witten theory at level 1.
+	This theory has a quantized term protecting the behavior of our original theory at the origin.
+	We may call this a ``higher Berry phase.''
+\end{ex}
+
+We want to generalize our cobordism theory to include such $\phi$.
+Let $\Omega^D_{G,s,\eta}(M)$ classify cobordism invariants of $D$-manifolds $X$ with $G$-background field, $\eta$-twistes $s$-structure, and $\phi: X \to M$.
+This can also be viewed as parametrizing $G$-symmetric theories of invertible theories.
+
+\begin{ex}
+	We can write $\Omega^2_{\U(1),\SO}(S^1) = \Omega^2_{\U(1),\SO} \oplus \Omega^1_{\U(1),\SO}$.
+	Here $\Omega^1_{\U(1),\SO} = \ZZ$ is what gets pumped.
+	We can write
+	\[
+		e^{i S_{\textrm{eff}}} = e^{i \int_{X^2} A \frac{d\phi}{2\pi}}
+	\]
+	where $j_x = \partial_t \phi / 2\pi$ is our current.
+	Note that this is bosonic: we get similar phenomena in both bosonic and fermionic cases.
+\end{ex}
+
+Family anomalies happen at boundaries of nontrivial invertible families.
+
+\begin{ex}
+	Consider a Thouless pump with boundary (looking something like an interval).
+	The current flows in one direction, accumulating charge at the endpoint.
+
+	Suppose in particular that we have a level crossing along the ray $\theta = \pi$ in parameter space.
+	At the origin, we have a bulk diabolical point.
+	Away from the origin and $\theta = \pi$, we have a unique ground state.
+	There are also two rays on which we have doubly degenerate ground states.
+\end{ex}
+
+The above is largely academic; the following is more exciting.
+
+\begin{ex}
+	Consider 1+1d QED with $N$ charge 1 bosons (giving $\CC\PP^{n-1}$), a $\theta$-angle, and $\PSU(N)$ flavor symmetry.
+	For $N$ even, there is an anomaly at $\theta = \pi$.
+	This corresponds to $u_3 \in H^3(B\PSU(N), \U(1)) = \ZZ_N$.
+
+	For $N$ odd, we may choose $k$ such that $2k \equiv 1 \mod N$.
+	We end up with $u_3 = d u_2 / N$, giving a counterterm $k u_2 / N$ canceling the anomaly.
+	There's still a family anomaly 
+	\[
+		\frac{1}{N} \int \frac{d\phi}{2\pi} u_2(\PSU(N))
+	\]
+	coming from the fact that there's no choice of counterterm over the whole family.
+\end{ex}
+
+Similar stories can be told in other contexts.
+
+\subsection{Explicit symmetry breaking in families}
+
+In general, we want to study the explicit symmetry breaking family we get on a big sphere $S(\rho)$ in the representation $\rho$.
+However, $G$ acts on $S(\rho)$ because we broke the symmetry.
+Thus we don't have a family of symmetric theories on $S(\rho)$ but rather a ``$G$-equivariant family on $S(\rho)$.''
+These can also be studied using bordism.
+
+Say we have an anomaly-free $G$-equivariant $M$-family of invertible theories where $G \curvearrowright M$.
+Via the cobordism hypothesis, this can be viewed as an invertible TQFT for manifolds equipped with a $G$-gauge field $A$, a (possibly $\eta$-twisted) $s$-structure $\xi$, and a section $\phi$ of $P_A \times^G M$.
+This latter map is equivalent to a map $X \to M /_h G$, as can be seen from the pullback square
+\[
+	\begin{tikzcd}
+		P_A \times_G M \rar \dar & M /_h G \dar \\
+		X \rar & BG.
+	\end{tikzcd}
+\]
+Such TQFTs are classified by $\Omega^D_{G,s,\eta}(M)$.
+
+\section{6/14 -- The long exact sequence and applications}
+
+\subsection{The long exact sequence}
+
+Recall that we wanted to compute the kernel and image of the defect map $\Def_\rho: \Omega_{G,s,\eta+\rho}^{D-k+1} \to \Omega_{G,s,\eta}^{D+1}$.
+This can be done using the \emph{symmetry breaking long exact sequence}
+\[
+	\begin{tikzcd}
+		\dots \rar & \Omega_{G,s,\eta}^D(S(\rho)) \rar["\Ind_\rho"] & \Omega_{G,s,\eta+\rho}^{D-k+1} \rar["\Def_\rho"] & \Omega_{G,s,\eta}^{D+1} \rar["\Res_\rho"] & \Omega_{G,s,\eta}^{D+1}(S(\rho)) \rar & \dots
+	\end{tikzcd}
+\]
+Here $\Ind_\rho$ is the \emph{index map} and $\Res_\rho$ is the \emph{residual family map}.
+
+\subsection{Examples: Majorana fermions}
+
+\begin{ex}
+	Consider a 2+1d Majorana fermion $\psi$.
+	We have a time reversal symmetry $T: \psi \mapsto \gamma^0 \psi$ with $T^2 = (-1)^F$.
+	This has an anomaly in $\Omega^4_{\Pin^+} = \ZZ_{16}$.
+	Taking $\rho$ to be the sign representation and considering $i m \ol{\psi} \psi$ with $T$ odd, we have two solutions $\psi_+$ (right-moving) and $\psi_-$ (left-moving) corresponding to eigenvectors of $\gamma^1$.
+	Only one of these is normalizable, but the choice depends on the signs involved.
+	We end up with a gravitational anomaly $\pm 1 \in \ZZ = \Omega^3_{\Spin}$, where the sign agrees with $\psi_{\pm}$.
+
+	Since we are dealing with Majorana fermions, charge conjugation acts trivially, so $CRT$ sends
+	\[
+		\psi(x_1, y_2, t) \mapsto \gamma^1 \gamma^0 \psi(-x_1, y_2, -t).
+	\]
+	The symmetry on the defect is $U := RT^2: \psi \mapsto -\gamma^1 \psi$.
+	We can write $\Omega^3_{\Spin,\ZZ_2} = \ZZ \oplus \ZZ_8$ where $\ZZ_8$ controls the number of right movers minus the number of left movers.
+	The right-moving chiral mode has anomaly $(1, 1)$, and the left-moving mode has anomaly $(-1, 0)$.
+
+	The defect map here is $\Def_\rho: \Omega^3_{\Spin,\ZZ_2} \to \Omega^4_{\Pin^+}$, and we can write this numerically as
+	\begin{align*}
+		\ZZ \oplus \ZZ_8 &\to \ZZ_{16} \\
+		(a, b) &\mapsto -a + 2b.
+	\end{align*}
+	The kernel is $\ZZ \cdot (2, 1)$, looking like two right movers, one of which is charged.
+\end{ex}
+
+\begin{ex}
+	Let's modify the preceding example to have $\psi_1$ and $\psi_2$ with $T: \psi_k \mapsto (-1)^k \gamma^0 \psi_k$.
+	This theory is anomaly free.
+	Here $i \ol{\psi}_1 \psi_1 - i \ol{\psi}_2 \psi_2$ lives in the sign representation.
+	
+	Solving this theory, we get two right movers, one of which is charged.
+	For $m_1 > 0$ and $m_2 < 0$, we get $1 \in \ZZ = \Omega^3_{\Spin}$, corresponding to $p + ip$.
+	For $m_1 < 0$ and $m_2 > 0$, we get $-1 \in \ZZ = \Omega^3_{\Spin}$, corresponding to $p - ip$.
+	The symmetry exchanges the movers, so the eigenvalues must be $\pm 1$.
+\end{ex}
+
+\subsection{Index maps}
+
+Let's consider $\Omega^D_{G,s,\eta}(S(\rho))$.
+This classifies anomaly-free $G$-equivariant invertible families on $S(\rho)$.
+The index map $\Ind_\rho: \Omega^D_{G,s,\eta}(S(\rho)) \to \Omega^{D-k+1}_{G,s,\eta+\rho}$ corresponds to compactification on $S(\rho)$.
+We can compute
+\[
+	\Ind_\rho(\beta)(Y^{D-k+1},A,\xi) = \beta(Y^{D-k+1} \times_A S(\rho), \pi^* A, \pi^*\xi, \phi)
+\]
+where $\phi: Y^{D-k+1} \times_A S(\rho) \to S(\rho)$.
+
+\begin{ex}
+	Returning to our example of two Majorana fermions, the domain of $\Ind_\rho$ is $\Omega^3_{\Pin^+}(S^0)$.
+	Here $S^0$ corresponds to the two points / theories $p - ip$ and $p + ip$.
+	The $T$-symmetry exchanges these two, so we have $\Omega^3_{\Pin^+}(S^0) = \ZZ$.
+	The index map corresponds to stacking the theories.
+\end{ex}
+
+\subsection{Residual family maps}
+
+Recall that, for the $\rho$-defect to be local, the theory must be non-degenerately gapped on $S(\rho)$.
+The map $\Res_\rho: \Omega^{D+1}_{G,s,\eta} \to \Omega^{D+1}_{G,s,\rho}(S(\rho))$ breaks the symmetry of the $(D+1)$-dimensional anomaly theory and tracks the $S(\rho)$-family.
+Mathematically,
+\[
+	\Res_\rho(\omega)(X^{D+1}, A, \xi, \phi) = \omega(X^{D+1}, A, \xi).
+\]
+By ignoring $\phi$, we are allowing more flexibility in constructing counterterms.
+
+This map is often zero -- for example, it is zero in the Majorana fermion example we considered.
+
+\begin{ex}
+	Consider a 2+1d Majorana fermion with $T^2 = (-1)^F$, taking $\rho$ to be two times the sign defect.
+	Can we find $T$-odd operators $\Oc_1$, $\Oc_2$ such that, for $r \gg 0$ and all $\theta$, the theory plus $r \cos \theta \cdot \Oc_1 + r \sin \theta \Oc_2$ is trivially gapped?
+	
+	No!
+	To compute the residual family anomaly, we can use any choice of $\Oc_1$ and $\Oc_2$, e.g.\
+	\[
+		\Oc_1 = \Oc_2 = i \ol{\psi} \psi.
+	\]
+	The theory is not $\rho$-gapped: any circle around the origin contains two gapless points (on the line $m = 0$).
+	One of these points adds a $p + ip$, while the other point adds a $p - ip$.
+	This corresponds to a 3+1d family on $S(\rho)$ where one point pumps $p+ip$ to 2 and the other pumps $p-ip$.
+	Time reversal symmetry acts as a $\pi$ rotation.
+	There's a $\ZZ_2$ invariant, and the residual family map $\Omega^4_{\Pin^+} \to \Omega^4_{\Pin^+}(S(\rho))$, equivalently $\ZZ_{16} \to \ZZ_2$, is reduction mod 2.
+\end{ex}
+
+\subsection{LES computations for nice groups}
+
+It is easy to compute the symmetry breaking LES when the groups involved are uncomplicated.
+
+\begin{ex}
+	Consider $\Pin^+$ with $\rho$ being twice the sign representation.
+	We can compute the cobordism groups as follows (with homomorphisms being computed using standard homological algebra):
+
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|} \hline
+			$D$ & $\Omega^{D-2}_{\Pin^-}$ & $\Omega^D_{\Pin^+}$ & $\Omega^D_{\Pin^+}(S(\rho)) = \tilde{\Omega}^{D+1}_{\Spin}(\RR\PP^2)$ \\ \hline
+			$0$ & $0$ & $\ZZ_2$ & $\ZZ_2$ \\ \hline
+			$1$ & $0$ & $0$ & $\ZZ_2$ \\ \hline
+			$2$ & $\ZZ_2$ & $\ZZ_2$ & $\ZZ_4$ \\ \hline
+			$3$ & $\ZZ_2$ & $\ZZ_2$ & $\ZZ_2$ \\ \hline
+			$4$ & $\ZZ_8$ & $\ZZ_{16}$ & $\ZZ_2$ \\ \hline
+		\end{tabular}
+	\end{center}
+\end{ex}
+
+\begin{ex}
+	For $\Pin^+$ with $\rho$ being the sign representation, we can also compute the cobordism groups.
+	Standard homological algebra again gives a (partially complete) description of the maps.
+	
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|} \hline
+			$D$ & $\Omega^{D-1}_{\ZZ_2,\Spin}$ & $\Omega^D_{\Pin^+}$ & $ \Omega^{D-1}_{\ZZ_2,\Spin} = \Omega^D_{\Spin}(S^0)$ \\ \hline
+			$-1$ & $0$ & $0$ & $\ZZ$ \\ \hline
+			$0$ & $\ZZ$ & $\ZZ_2$ & $0$ \\ \hline
+			$1$ & $0$ & $0$ & $\ZZ_2$ \\ \hline
+			$2$ & $\ZZ_2^2$ & $\ZZ_2$ & $\ZZ_2$ \\ \hline
+			$3$ & $\ZZ_2^2$ & $\ZZ_2$ & $\ZZ$ \\ \hline
+			$4$ & $\ZZ_8$ & $\ZZ_{16}$ & $0$ \\ \hline
+		\end{tabular}
+	\end{center}
 \end{ex}
