@@ -58,8 +58,8 @@ To this end, we can expand our bordism category to a $k$-category, allowing
 	\item 0-morphisms: closed $(n-k)$-manifolds,
 	\item 1-morphisms: $(n-k+1)$-dimensional bordisms,
 	\item \dots
-	\item $(n - 1)$-morphisms: $(n-1)$-dimensional bordisms of bordisms of \dots,
-	\item $n$-morphisms: $n$-dimensional bordisms of bordisms of \dots
+	\item $(k - 1)$-morphisms: $(n-1)$-dimensional bordisms of bordisms of \dots,
+	\item $k$-morphisms: $n$-dimensional bordisms of bordisms of \dots
 \end{itemize}
 Including the diffeomorphism groups discussed earlier, we should really consider an $(\infty, k)$-category $\Bord_{n,n-k}$.\footnote{For non-$\infty$ categories, we will write $\Cob$.
 For $(\infty, -)$-categories, we will write $\Bord$.}
@@ -95,13 +95,30 @@ Let's first recall how we define monoidal categories:
 		\item A category $\Mc$, with
 		\item A tensor product functor $\otimes: \Mc \times \Mc \to \Mc$,
 		\item A unit object $\onebb$,
-		\item An associator natural transformation $(A \otimes B) \otimes C \xrightarrow{\sim} A \otimes (B \otimes C)$, and
-		\item Left and right unitor natural transformations $\onebb \otimes A \xrightarrow{\sim} A \xleftarrow{\sim} A \otimes \onebb$.
+		\item An associator natural transformation $a_{A,B,C}:(A \otimes B) \otimes C \xrightarrow{\sim} A \otimes (B \otimes C)$, and
+		\item Left and right unitor natural transformations $\lambda_A:\onebb \otimes A \xrightarrow{\sim} A \xleftarrow{\sim} A \otimes \onebb:\rho_A$.
 	\end{itemize}
 	These are required to satisfy:
 	\begin{itemize}
-		\item A ``pentagon axiom'' ensuring nice behavior of the associator, and
-		\item A ``triangle axiom'' ensuring nice behavior of the unitors.
+		\item The ``pentagon axiom'', i.e., for all objects $A,B,C,D$ in $Mc$, the following diagram commutes:
+		\begin{equation*}
+            \begin{tikzcd}[column sep=0ex, row sep = large]
+                &&(A\otimes B)\otimes C)\otimes D \arrow[dll, "a_{A\otimes B,C,D}"'] \arrow[drr, "a_{A B,C}\otimes Id_D"] \\
+                (A\otimes B)\otimes(C\otimes D)\arrow[dr, "a_{A,B,C\otimes D}"']
+                &&&&(A\otimes(B\otimes C))\otimes D \arrow[dl, "a_{A,B\otimes C,D}"] \\
+                &A\otimes (B\otimes(C\otimes D))
+                &&A\otimes ((B\otimes C)\otimes D)\arrow[ll, "Id_A\otimes a_{B,C,D}"],
+            \end{tikzcd}
+        \end{equation*}		
+		and
+		\item The ``triangle axiom'', i.e., for all objects $A,B$ in $Mc$, the following diagram commutes:
+		\begin{equation*}
+			\begin{tikzcd}
+				(A\otimes \onebb)\otimes B \arrow[rr, "a_{A,\onebb,B}"] \arrow[dr, "\rho_A\otimes Id_B"']
+				&&A\otimes (\onebb\otimes B) \arrow[dl, "Id_A\otimes\lambda_B"]\\
+				&A\otimes B
+			\end{tikzcd}
+		\end{equation*}
 	\end{itemize}
 	We say that the monoidal category $\Mc$ is \emph{strict} if the associators and unitors are the identity maps.
 \end{dfn}
@@ -113,10 +130,38 @@ The definition of weak 2-categories is quite similar!
 	\begin{itemize}
 		\item A collection of objects $\ob \Bc$,
 		\item For all $X, Y \in \ob \Bc$, a category of morphisms $\Hom_{\Bc}(X, Y)$,
-		\item For all $X, Y, Z \in \ob \Bc$, a composition functor $\circ: \Hom_{\Bc}(Y, Z) \times \Hom_{\Bc}(X, Z)$,
-		\item For all $X \in \ob \Bc$, a functor $* \to \Hom_{\Bc}(X, X)$ (corresponding to $\id_X$ and $\id_{\id_X}$),
-		\item An associator (natural isomorphism between threefold composites), and
-		\item Unitors (natural isomorphisms between morphisms and their composites with the identity)
+		\item For all $X, Y, Z \in \ob \Bc$, a composition functor 
+		\begin{equation*}
+			\circ: \Hom_{\Bc}(Y, Z) \times \Hom_{\Bc}(X, Z) \to \Hom_{\Bc}(X,Z),
+		\end{equation*}
+		\item For all $X \in \ob \Bc$, a functor 
+		$$* \to \Hom_{\Bc}(X, X),$$
+		corresponding to $\id_X\in Hom_{\Bc}(X,X)$ and $\id_{\id_X}:id_X\Rightarrow id_X$,
+		
+		\item An associator, i.e., for all $X,Y,Z,W \in \ob \Bc$,
+		\begin{equation*}
+			\begin{tikzcd}
+				Hom_{\Bc}(Z,W)\times Hom_{\Bc}(Y,Z) \times Hom_{\Bc}(X,Y) \arrow[dd, shift left=-3ex, out=-135,in=135,"(-\circ(-\circ -)"']\arrow[dd, shift left=3ex, out=-45,in=45, "(-\circ -)\circ -"]\\
+				\xRightarrow[a_{X,Y,Z,W}]{\cong}\\
+				Hom_{\Bc}(X,W),
+			\end{tikzcd}
+		\end{equation*}
+		and
+		\item Left and right unitors , i.e., for all $X,Y \in \ob \Bc$,
+		\begin{equation*}
+			\begin{aligned}
+			\begin{tikzcd}
+				Hom_{\Bc}(X,Y)\arrow[dd, shift left=-2ex, out=-135,in=135,"Id_Y \circ -"']\arrow[dd, shift left=2ex, out=-45,in=45, "Id"]\\
+				\xRightarrow[\lambda_{X,Y}]{\cong}\\
+				Hom_{\Bc}(X,Y),
+			\end{tikzcd}
+			&&\begin{tikzcd}
+				Hom_{\Bc}(X,Y)\arrow[dd, shift left=-2ex, out=-135,in=135,"- \circ Id_X"']\arrow[dd, shift left=2ex, out=-45,in=45, "Id"]\\
+				\xRightarrow[\rho_{X,Y}]{\cong}\\
+				Hom_{\Bc}(X,Y),
+			\end{tikzcd}
+			\end{aligned}
+		\end{equation*}
 	\end{itemize}
 	satisfying the pentagon and triangle axioms.
 	We say that a 2-category $\Bc$ is \emph{strict} if the associators and unitors are the identities.
@@ -129,7 +174,7 @@ Most examples that arise in practice are not strict!
 
 \subsection{Examples of weak 2-categories}
 
-Some examples we've considered are (possibly weak) 2-categories.
+Some examples we have considered are (possibly weak) 2-categories.
 
 \begin{ex}
 	Categories, functors, and natural transformations form a strict 2-category.
@@ -154,7 +199,7 @@ The most common model is that of \emph{quasicategory}, called $\infty$-category 
 We'll use a somewhat different definition that is more suited to our needs.
 Let's first consider the case of ordinary categories.
 
-Let $\Delta$ be the skeletal category of nonempty linearly ordered finite sets, i.e.\ the category with:
+Let $\Delta$ be the skeletal category of nonempty linearly ordered finite sets and order preserving maps, i.e., the category with:
 \begin{itemize}
 	\item Objects: $[0]$, $[1]$, $[2]$, etc.\ where $[n] = \{ 0 < 1 < \dots < n \}$
 	\item Morphisms: (non-strictly) order-preserving maps.
@@ -178,7 +223,16 @@ Let $\Delta$ be the skeletal category of nonempty linearly ordered finite sets, 
 		\item $0 \mapsto k, 1 \mapsto k, 2 \mapsto k$ for $k = 0$ or $1$.
 	\end{itemize}
 \end{ex}
-
+Graphically,
+\begin{equation*}
+	\begin{tikzcd}
+	{[}0{]} \arrow[r, shift left=2, blue] \arrow[r, shift right=2, blue]
+	&{[}1{]} \arrow[l, purple] \arrow[r, shift left=4, blue] \arrow[r, shift right=4, blue] \arrow[r, blue]
+	&{[}2{]}  \arrow[l, shift left = 2, purple]  \arrow[l, purple, shift right=2] \arrow[r, shift left=2, blue] \arrow[r, shift right=2, blue] \arrow[r, shift left=6, blue] \arrow[r, shift right=6, blue]
+	&{[}3{]}... \arrow[l, shift left=4, purple] \arrow[l, shift right=4, purple] \arrow[l,purple]
+	\end{tikzcd}
+\end{equation*}
+We can then get all maps in $\Delta$ by composing them.
 \begin{dfn}
 	A \emph{simplicial set} is a functor $X_\bullet: \Delta\op \to \Set$.
 	More generally, a \emph{simplicial object} in a category $\Cc$ is a functor $X_\bullet: \Delta\op \to \Cc$.
@@ -187,11 +241,16 @@ Let $\Delta$ be the skeletal category of nonempty linearly ordered finite sets, 
 
 \begin{ex}
 	Let $\Cc$ be a small category.
-	The \emph{nerve} of $\Cc$ is the simplicial set $N\Cc: \Delta\op \to \Set$ with $N\Cc_0 = \ob \Cc$ and $(N \Cc)_i$ the set of composable sequences of $i$ morphisms.
-	For example,
-	\[
-		(N\Cc)_2 = \sqcup_{X,Y,Z \in \ob \Cc} \Hom_{\Cc}(Y, Z) \times \Hom_{\Cc}(X, Y) = \mor \Cc \times_{s,\ob \Cc,t} \mor \Cc
-	\]
+	The \emph{nerve} of $\Cc$ is the simplicial set $N\Cc: \Delta\op \to \Set$ with $N\Cc_0 = \ob \Cc$ and $(N \Cc)_i$ the set of composable sequences of $i$ morphisms, i.e.,
+	\begin{equation*}
+		\begin{aligned}
+			&N\Cc_0 = \ob \Cc \\
+			&N\Cc_1 = mor \Cc \\
+			&(N\Cc)_2 = \sqcup_{X,Y,Z \in \ob \Cc} \Hom_{\Cc}(Y, Z) \times \Hom_{\Cc}(X, Y) = \mor \Cc \times_{s,\ob \Cc,t} \mor \Cc \\
+			&...\\
+			&(N\Cc)_n = \sqcup_{X_0,...X_n \in \ob \Cc} \prod_{i=0}^{n-1} \Hom_{\Cc}(X_i, X_{i+1})
+		\end{aligned}
+	\end{equation*}
 	The structure maps are given by source maps, target maps, composition, and diagonals.
 \end{ex}
 
@@ -214,9 +273,24 @@ We may use the above discussion to arrive at a new definition of a category.
 The advantage of the above definition is that it allows us to generalize the notion of category.
 
 \begin{dfn}
-	Let $\Sc$ be a category with finite limits. 
+	Let $\Sc$ be a category with finite limits and monoidal structure given by the cartesian product. 
 	A \emph{category object} in $\Sc$ is a simplicial object $X_\bullet: \Delta\op \to \Sc$ satisfying the \emph{Segal condition}: the natural maps $X_n \to X_1 \times_{X_0} \dots \times X_1$ are isomorphisms.
 	If $\Sc$ has a notion of weak equivalence, then we take homotopy fiber products and require that the natural maps are weak equivalences.
+	The simplicial structure is given by
+	\begin{equation*}
+		\begin{tikzcd}
+			X_0 \arrow[r, purple] 
+			&X_1 \arrow[l, shift left=2, blue] \arrow[l, shift right=2, blue] \arrow[r, shift left = 2, purple]  \arrow[r, purple, shift right=2] 
+			&X_2 \arrow[l, shift left=4, blue] \arrow[l, shift right=4, blue] \arrow[l, blue] \arrow[r, shift left=4, purple] \arrow[r, shift right=4, purple] \arrow[r,purple] 
+			&X_3... \arrow[l, shift left=2, blue] \arrow[l, shift right=2, blue] \arrow[l, shift left=6, blue] \arrow[l, shift right=6, blue]
+		\end{tikzcd}
+	\end{equation*}
+	with the
+	\begin{itemize} \color{blue}
+		\item faces given by forgetting some interval (if it was $I_0$ or $I_n$, cut off the manifold) \color{purple}
+		\item degeneracies given by doubling an interval, i.e.,
+		$$I_0\leq I_1 \leq I_3 \mapsto I_0\leq I_1 \leq I_1 \leq I_2 $$
+	\end{itemize}
 \end{dfn}
 
 \begin{ex}
