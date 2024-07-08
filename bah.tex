@@ -14,7 +14,7 @@ We don't actually know what a QFT \emph{is}.
 However, we have an excellent physical idea of what a QFT should \emph{do}.
 QFTs should have:
 \begin{itemize}
-	\item A list of operators: point operators $\{ \Oc_i(x) \}$, line operators $\{ U_\alpha(\gamma_p) \}$, and other operators.
+	\item A list of operators: point (local) operators $\{ \Oc_i(x) \}$, line operators $\{ U_\alpha(\gamma_p) \}$, and other operators.
 	\item A Hilbert space $\Hc$ of states on spacetime $M = \RR_t \times Y$.
 	\item A partition function sending combinations / products of operators to complex numbers, e.g.\ $\langle \Oc_i \Oc_j \rangle$.
 \end{itemize}
@@ -38,7 +38,7 @@ and
 \]
 We should have
 \[
-	\bra{\psi} \Oc^\dagger \Oc \ket{\psi} = \norm{\Oc(x, t) \ket{\psi}} \geq 0.
+	\bra{\psi} \Oc^\dagger \Oc \ket{\psi} = \norm{\Oc(x, t) \ket{\psi}} \geq 0 \forall \Oc.
 \]
 To make sense of $\Oc^\dagger$, we allow our time variable to take complex values.
 Say that $\Oc(x, t + i \tau)^\dagger = \Oc(x, t - i \tau)$.
@@ -54,15 +54,15 @@ Locality forces point operators to have an \emph{operator product expansion}
 	\Oc_i(x_1) \Oc_j(x_2) = \sum_k c_{ij}^k(x_1, x_2) \Oc(x_1)
 \]
 governing the behavior as $x_1 \to x_2$.
-(For conformal field theories, the $c_{ij}^k$ should be meromorphic.)
-More generally, the interaction of operators should depend only on their behavior in a common tubular neighborhood.
+(For conformal field theories, this sum is well-defined and the $c_{ij}^k$ should be meromorphic. For a generic QFT, this should be taken to be an asymptotic series.)
+More generally, the interaction of operators should depend only on their behavior in a common tubular neighborhood. This enforces that ``physics happens'' only near the insertions.
 If two point operators are outside the same light cone, then we can find a reference frame where the two operators take place at the same time but at different points in space.
 
 Finally, causality requires that any operators which are spacelike separated commute with each other.
 If two point operators are in the interior of the same light cone, then we can find a reference frame where the operators take place at the same point in space but at different points in time.
 Things are more complicated for extended operators.
 
-\subsection{Extra features}
+\subsection{Other features}
 
 In many QFTs, we can expect other nice properties to hold:\footnote{There's also a last property of ``analyticity'' which is hard to formulate.}
 \begin{itemize}
@@ -72,11 +72,12 @@ In many QFTs, we can expect other nice properties to hold:\footnote{There's also
 	\]
 	\item Renormalization: high energy / short distance / UV physics and low energy / long distance / IR physics decouple, at least up to finitely many parameters.
 \end{itemize}
-Axiomatic treatments can take these as additional axioms.
+Axiomatic treatments can take these as additional axioms. We can also show that cluster decomposition follows from locality assuming an additional Lorentz structure. 
+
+We may think of the renormalisation property as cluster decomposition in the momentum space.
 
 Gravity fails both of these conditions and locality.
-Black holes are UV phenomena which are still visible at low energy.
-Furthermore, black holes also break cluster decomposition.
+Black holes are made of high energy states (UV phenomena) which are manifest at low energy. Furthermore, black holes also break cluster decomposition.
 Whatever quantum gravity is, unitarity ``must'' be retained, since it's fundamental to quantum physics.
 
 The goal of the Simons collaboration is to understand the kinematics of operators in QFT.
@@ -91,7 +92,7 @@ There are many sources of QFTs.
 	Consider a lattice at which each point behaves according to quantum mechanics.
 	Taking a continuum limit of the lattice gives a quantum field theory.
 	This limit leads to the appearance of infinities and other strange phenomena.
-	Nevertheless, it's the most physically ``rigorous'' way of constructing QFTs.
+	Nevertheless, it's physically the most ``rigorous'' way of constructing QFTs.
 \end{ex}
 
 \begin{ex}[Geometric engineering]
@@ -114,7 +115,7 @@ Each perspective has advantages over the others:
 	
 \subsection{Lagrangians}
 
-A Lagrangian is a functional depending on the fields $\phi_\alpha(x)$:
+A Lagrangian is a functional on the fields $\phi_\alpha(x)$ and their derivatives:
 \[
 	L(x) = L(\phi_\alpha(x), \partial \phi_\alpha(x), \dots)
 \]
@@ -124,14 +125,14 @@ Locality also ensures that there are only finitely many derivative terms appeari
 
 Lorentz symmetry (which we will assume implicitly) tells us that our fields can be:
 \begin{itemize}
-	\item Scalar fields $\phi(x)$
-	\item Vector fields / gauge fields $A_\mu(x)$, either:
+	\item Scalar fields $\phi(x)$ (spin $0$)
+	\item Vector fields / gauge fields $A_\mu(x)$ (spin $1$), either:
 		\begin{itemize}
 			\item Massless: living in the representation $(1, -1)$, or
 			\item Massive: living in $(1, 0, 1)$
 		\end{itemize}
 	\item Fermions $\psi_a$ (representations of a Clifford algebra)
-	\item Metrics $g_{\mu \nu}$
+	\item Metrics $g_{\mu \nu}$ (spin $2$)
 \end{itemize}
 We won't consider gravitational theories, so we'll ignore $g_{\mu \nu}$.
 
