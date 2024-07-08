@@ -149,11 +149,11 @@ Consider a Lagrangian
 \[
 	\Lc(x) = \Lc(\phi_\alpha(x), \partial \phi_\alpha(x), \dots).
 \]
-From this (classical) data, we can define a (quantum) partition function
+As a classical object, this gives rise to the (classical) equations of motion. From this data, we can define a (quantum) partition function
 \[
 	Z = \int D[\phi_\alpha] e^{i \int_M \sqrt{g} \Lc(\phi_\alpha)}
 \]
-This can be thought of as a formal expression: heuristically, it is a sum over all possible field configurations.
+Here, we have set $\hbar =1$. This can be thought of as a formal expression: heuristically, it is a sum over all possible field configurations.
 
 We can obtain correlation functions, etc.\ by inserting local operators
 \[
@@ -173,7 +173,7 @@ Namely, we declare
 In general, it is possible that our Lagrangian depends on some additional parameters, say $\tau_a$, $\tau_b$.
 The partition function then also depends on the $\tau$'s.
 We will assume that these parameters are \emph{perturbative}: that small changes in our theory are governed by Taylor expansions in terms of the $\tau$'s.
-Often, there is a large parameter space for a given QFT, and there are many perturbative regions within this space corresponding to different weakly coupled versions of the theory.
+Often, there is a large parameter space for a given QFT, and there are many perturbative regions within this space corresponding to different weakly coupled versions of the theory (small values of the parameters).
 These \emph{duality frames} can have different fields, different Lagrangians, and different gauge groups.
 (Gauge symmetry is a redundancy in parametrization -- it is not a physical symmetry, but rather a ``trick'' enabling the use of local Lagrangians.)
 
@@ -183,10 +183,11 @@ Global symmetry permutes the operators, while gauge symmetry does nothing to the
 
 \begin{ex}
 	We can view 4d $\Nc = 4$ super-Yang-Mills as part of the same parameter space as type IIB supergravity on $\mathrm{AdS}_5 \times S^5$.
-	Thus these are versions of the same theory.
+	Thus these are versions of the same theory; they have the same operators and correlation functions.
 \end{ex}
 
-In addition to varying our parameters, we can also turn on background fields $B_i(x)$, i.e.\ add in new fields which do not fluctuate.
+In addition to varying our parameters, we can also turn on background fields $B_i(x)$, i.e.\ add in new fields which do not fluctuate. This also gives rise to an appropriate space of background fields.
+For a fixed QFT, both the parameter space and the space of background fields are fixed. But a field theoretic description (Lagrangian) might not be the same at all points on these spaces.
 
 \subsection{Examples}
 
@@ -195,33 +196,36 @@ The Lagrangian is
 \[
 	\Lc = \frac{1}{e^2} d \phi \wedge \star d \phi,
 \]
-a single kinetic term.
+a single kinetic term. This is also called a free theory.
 The partition function is
 \[
 	Z = \int D[\phi] \exp\left( \frac{i}{e^2} \int d\phi \wedge \star d\phi \right).
 \]
-Taking the coupling parameter $e \to 0$ yields $d\phi = 0$.
+This is a Gaussian integral and the width, proportional to $e^2$, measures the quantum fluctuations. Taking the coupling parameter $e \to 0$ kills all the fluctuations, and the path integral localises to where $\Lc$ is minimised, i.e. $d\phi = 0$.
 
 We can also add matter, incorporated via a term $m^2 \phi^2 \Vol(M)$ added to the Lagrangian.
-Taking $m \to \infty$ gives $\phi = 0$.
+If we take $m \to \infty$, the latter term dominates and suppresses all the fluctutation; this forces $\phi = 0$.
 
 The stress tensor of the theory is
 \[
 	T_{\mu\nu} = \frac{\delta \Lc}{\delta g^{\mu\nu}}.
 \]
 In our above setup, there are kinetic terms, so $T_{\mu\nu} \neq 0$ and the theory is not topological.
-However, the theory does become topological in certain limits.
+However, the theory does become topological in certain limits, namely $e \to 0$ or $m \to \infty$. When $m \to \infty$, we get a \emph{gapped theory}, and this is why the infrared phase of a gapped theory is topological.
 
 Suppose we add a gauge field $A_\mu$ transforming (under local gauge transformations) according to $A_\mu \mapsto A_\mu + d\lambda$.
 Taking $\phi$ to be a complex scalar, setting $D\phi = d\phi + i A \phi$, and letting $F = dA$, we can define a Lagrangian
 \[
 	\Lc = D \phi \wedge \star D\phi + \frac{1}{e^2} F \wedge \star F.
 \]
-This produces a non-topological gauge theory.
+This is an interacting, non-topological gauge theory.
 
-We can produce a topological theory by adding topological coupling terms: $\theta F \wedge F$ or $A \wedge d\phi \wedge F$.
+We can also add topological coupling terms: $\theta F \wedge F$ or $A \wedge d\phi \wedge F$; this is topological in the sense that there is no metric dependence.
 These terms would have coefficients determined by the gauge theory.
-Alternatively, we could add boundary terms.
+
+The kinetic terms $D \phi \wedge \star D \phi$ and $F \wedge \star F$ count the local fluctuations of the fields. Here, both $\phi$ and $A$ are fluctuating. However, in the limit $e \to 0$, the gauge fields become non-fluctuating.
+
+We could also introduce additional interaction terms. These determine the global symmetries of the theory.
 
 \subsection{More remarks on Lagrangians}
 
@@ -240,45 +244,47 @@ We start by clarifying something from last time.
 
 \subsection{Jumping global symmetry}
 
-The global symmetry can jump as we move throughout the moduli space of theories.
+The global symmetry is generically the same throughout the moduli space of theories but there may be regions where the symmetries can jump. These are called accidental symmetries.
 
 \begin{ex}
-	Suppose we have a theory with two scalar fields $\phi_1$ and $\phi_2$ and Lagrangian
+	Suppose we have a theory with two scalar fields $\phi_1$ and $\phi_2$ and the Lagrangian
 	\[
-		\Lc = \frac{1}{2} (\partial_\mu \phi_i)^2 + m_1^2 \phi_1^2 + m_2^2 \phi_2^2.
+		\Lc = \frac{1}{2} \sum_{i=1,2} (\partial_\mu \phi_i)^2 + m_1^2 \phi_1^2 + m_2^2 \phi_2^2.
 	\]
-	When $m_1 = m_2$, the symmetry of this theory increases to $\SO(2)$.
-	This leads to new and interesting physics.
+	For generic masses $m_1, m_2$, this theory has a $\ZZ_2$ symmetry: $\phi_i \to - \phi_i$. However, when $m_1 = m_2$, the symmetry of this theory is enhanced to $\SO(2)$. This is an accidental symmetry. This leads to new and interesting physics.
 \end{ex}
 
 \subsection{Definition of BF Theory}
 
-BF theory is the TFT with fields $b$ (a $p$-form) and $c$ (a codimension $p+1$ form) and action $S = N \int_M b \wedge dc$ (for some fixed $N$).
+BF theory is a TFT with fields $b$ (a $p$-form) and $c$ (a codimension $p+1$ form) and action $S = N \int_M b \wedge dc$ (for some fixed $N$).
 The partition function is then
 \[
 	Z = \int D[b] D[c] \exp\left(-2\pi i N \int_M b \wedge dc \right)
 \]
-For specificity, we will take $d = 5$, letting $b$ and $c$ be 2-forms.
-However, our discussion will make sense in any dimension.
+For specificity, we will take $d = 5$, letting $b$ and $c$ be 2-forms. However, our discussion will make sense in any dimension.
+This 5d BF theory has the following local gauge symmetry:
+\[
+	b \to b + d\lambda^1, \quad c \to c + d \lambda^2
+\]
 
-We can allow different classes of gauge symmetries:
+However, depending on $\lambda^1$ and $\lambda^2$, the gauge group might vary.
 \begin{itemize}
-	\item $R$-gauge: $b \mapsto b + d \lambda_1$
+	\item $R$-gauge: when $\lambda^1, \lambda^2 \in \RR$
 	\item $\U(1)$ gauge: $b \mapsto b + \omega$ for $\omega \in H^2(M; \ZZ)$
 	\item Trivial gauge: $b \mapsto b + \omega$ for $\omega \in H^2(M; \RR)$.
 \end{itemize}
-We may consider independent transformations for $c$.
+We may similarly find an independent gauge group for $c$.
 
-BF theory has observables (where $\gamma'$ has codimension $p+1$ and $\gamma$ has dimension $p$):
+The gauge invariant BF theory observables are (where $\gamma'$ has codimension $p+1$ and $\gamma$ has dimension $p$):
 \begin{align*}
 	W_c(\gamma) &= \exp\left(2\pi i \oint_\gamma c\right) \\
 	W_b(\gamma') &= \exp\left(2\pi i \oint_{\gamma'} b\right).
 \end{align*}
-These operators have different behaviors with respect to different gauge symmetries:
+These operators have different behaviors depending on the gauge group:
 \begin{itemize}
-	\item $R$-gauge: operators are gauge invariant for all $b$ (or $c$).
+	\item $R$-gauge: operators are gauge invariant for all globally defined $\RR-$valued $b$ (or $c$).
 	\item $\U(1)$ gauge: $b$ (or $c$) must have holonomy in $\U(1)$.
-	\item Trivial gauge: none of these observables are gauge invariant.
+	\item Trivial gauge: none of these observables are gauge invariant. This is the reason the theory is trivial.
 \end{itemize}
 We will focus on the case of $\U(1)$ gauge symmetry.
 
@@ -289,16 +295,15 @@ Thus we do not need to worry about some of the more complicated aspects of gauge
 
 We'd like to compute
 \begin{align*}
-	\langle W_c(\gamma) W_b(\gamma) \rangle &= \int D[b] D[c] \exp\left(-S + 2\pi i \int_\gamma c + 2\pi i \int_\gamma b\right) \\
+	\langle W_c(\gamma) W_b(\gamma) \rangle &= \int D[b] D[c] \exp\left(-iS + 2\pi i \int_\gamma c + 2\pi i \int_\gamma b\right) \\
 						&= \int D[b] D[c] \exp\left(-i N 2\pi (b \wedge dc + b \wedge dc_0) + 2\pi i \int_\gamma (c + c_0) + 2\pi i \int_{\gamma'} b\right) \\
-						&= \int D[b] D[c] \exp\left(-i N 2\pi b \wedge dc + 2\pi i \int_\gamma c\right) \exp\left( \frac{2\pi i}{N} \int_\gamma c_0 \right) \\
+						&= \int D[b] D[c] \exp\left(-i N 2\pi \int b \wedge dc + 2\pi i \int_\gamma c\right) \exp\left( \frac{2\pi i}{N} \int_\gamma c_0 \right) \\
 						&= Z \exp\left(\frac{2\pi i}{N} L(\gamma, \gamma')\right)
 \end{align*}
-where $L(\gamma, \gamma')$ is the linking number of $\gamma$ and $\gamma'$.
+where $L(\gamma, \gamma')$ is the linking number of $\gamma$ and $\gamma'$. In the second line, we have shifted $c$ to $c + c_0$ where $d c_0 = \frac 1 N \delta(\gamma')$ ($\delta(\gamma)$ is the Poincar\'e dual of $\gamma$).
 
-Under $\gamma \mapsto \gamma + N \beta$, we have $W_c(\gamma) \sim W_c(\gamma + N \beta)$, and thus $W_c^N(\gamma) = 1$.
-The analogous statement holds for $W_b(\gamma')$.
-The upshot is that the theory actually has a $\ZZ_N \times \ZZ_N$ gauge symmetry, coming from the maps
+Under $\gamma \mapsto \gamma + N \beta$, we have $W_c(\gamma) = W_c(\gamma + N \beta)$, and thus $W_c^N(\gamma) = 1$.
+The analogous statement holds for $W_b(\gamma')$. This shows that the gauge invariant observables are $\ZZ_N-$valued as opposed to $U(1)$. Thus, the theory actually has a $\ZZ_N \times \ZZ_N$ gauge symmetry, coming from the maps
 \[
 	\begin{tikzcd}
 		H^1(-; \ZZ_N) \rar & H^1(-; \U(1)) \rar & H^1(-; \U(1))
@@ -350,6 +355,16 @@ This is a lot larger than what one would na\"ively expect.
 Things are much simpler in BF theory where we only consider flat connections.
 One can see this written up in a paper of Freed, Moore, and Segal.
 
+There is a short exact sequence of groups
+\[
+	0 \to \ZZ_N \to U(1) \overset N \to U(1) \to 0 
+\]
+where the $U(1) \to U(1)$ map is exponentiation by $N$. This leads to a long exact sequence in homology
+\[
+	\ldots \to H^1(\cdot, \ZZ_N) \to H^1(\cdot, U(1)) \to H^1(\cdot, U(1)) \to \ldots
+\]
+where the gauge field $a \in H^1(\cdot, U(1))$ is mapped to $a^N \in H^1(\cdot, U(1))$. Since $a^N$ is trivial in the gauge theory, we can lift the $U(1)$ gauge field $a$ to a $\ZZ_N-$gauge field.
+
 \section{6/12 -- Global symmetries in variants of BF theory}
 
 \subsection{Simultaneous BF theories}
@@ -357,36 +372,40 @@ One can see this written up in a paper of Freed, Moore, and Segal.
 Let's see what happens when we combine two versions of BF theory at once.
 Consider the 5d theory with fields $b_2$, $c_2$, $A_1$, and $c_3$ and action
 \[
-	S = 2 \pi i \int N b_2 \wedge dc_1 + 2N A_1 \wedge dc_3.
+	S = 2 \pi i \int N b_2 \wedge dc_2 + 2N A_1 \wedge dc_3.
 \]
 The first term gives a $\ZZ_N^{(1)} \times \ZZ_N^{(1)}$ gauge symmetry, and the second term gives a $\ZZ_{2N}^{(0)} \times \ZZ_{2N}^{(2)}$ gauge symmetry.
 From the operators $W_c$ and $W_b$ corresponding to the first term, we get $\ZZ_N^{(2)}$ and $\ZZ_N^{(2)}$ global symmetries.
-From the (similarly defined) operators $V_A$ and $V_{c_3}$, we get $\ZZ_N^{(3)}$ and $\ZZ_N^{(1)}$ global symmetries.
+From the (similarly defined) operators $V_A$ and $V_{c_3}$, we get $\ZZ_{2N}^{(3)}$ and $\ZZ_{2N}^{(1)}$ global symmetries.
+Note that so far, all these operators are invertible because $\exists$ some $k$ such that $\mathrm{op}^k = 1$.
 
 \subsection{Interacting terms}
 
-Can we get non-invertible global symmetries from something like this
-Yes: add in non-dynamical fields $\phi$ and $\beta$, and add an interaction term to the action:
+Can we get non-invertible global symmetries from something like this?
+Yes: add in non-dynamical fields $\phi$ and $\beta$ (we may use the gauge symmetry of $A$ and $b_2$ to eliminate these fields), and add an interaction term to the action:
 \[
-	S = 2 \pi i \int N b_2 \wedge dc_1 + 2N A_1 \wedge dc_3 + \frac{1}{2N} (d\phi - 2 N A) \wedge (d\beta - N b)^2.
+	S = 2 \pi i \int N b_2 \wedge dc_1 + 2N A_1 \wedge dc_3 + \frac{1}{2N} (d\phi - 2 N A) \wedge (d\beta - N b_2)^2.
 \]
-This forces the gauge symmetry groups to interact with each other.
+This forces the gauge symmetry groups to ``interact'' with each other.
 
 The new equations of motion include
 \[
-	2N dc_3 - (d\beta - Nb)^2 = 0.
+	2N dc_3 - (d\beta - Nb_2)^2 = 0.
 \]
 This equation implies that our original $V_{c_3}$ is no longer a topological operator.
-We seek to correct this somehow.
+We seek to correct this somehow. Using the shift symmetry, let us set $\beta = 0$.
+\[
+	2 N dc_3 - N^2b_2^2 = 0
+\]
 If $\Sigma_3$ is a boundary, say $\Sigma_3 = \partial Y$, then we can require
 \[
 	V_{c_3}(\Sigma_3) = \exp\left(\frac{1}{2} N \int_Y b^2\right).
 \]
-In general, we can define a topological operator
+Think of this as an \emph{inflow from the bulk}. In general, we can define a topological operator
 \[
 	V_{c_3}(\Sigma_3) = \int d[a] \exp\left(2\pi i \int_{\Sigma_3} c_3 + 2\pi i \int_{\Sigma_3} N a \wedge da + a \wedge b\right)
 \]
-Essentially, we have an anomaly on the bulk (breaking the $\ZZ_N^{(2)}$ symmetry), and we define a new TQFT on the defect to cancel this out.
+Essentially, we have an anomaly on the bulk (breaking the $\ZZ_N^{(2)}$ symmetry), and we define a new TQFT (here, a 3d Chern-Simons theory) on the defect to cancel this out.
 This is ``stacking.''
 There are other theories we could use to cancel the anomaly, but the above method is ``minimal.''
 
@@ -400,18 +419,25 @@ We can compute some fusion rules of this new $V$ operator:
 or something similar.
 Ultimately, this localizes to 
 \[
-	V \otimes V^\dagger = A(\Sigma_3) \sum_{b \in H^2(\Sigma_3; \ZZ_N)} e^{2\pi i \int_{\Sigma_3} b}.
+	V \otimes V^\dagger = A(\Sigma_3) \sum_{\Sigma_2 \in H^2(\Sigma_3; \ZZ_N)} e^{2\pi i \int_{\Sigma_3} b}.
 \]
-for some TQFT coefficient $A(\Sigma_3)$ (depending only on $\Sigma_3$, not on the bulk).
-The sum here is a ``condensation defect.''
+for some TQFT coefficient $A(\Sigma_3)$ (depending only on $\Sigma_3$, not on the bulk). The sum here is a ``condensation defect.''
 Working this out precisely is left to the reader as an exercise (though if anyone reading this has all the details, feel free to add them).
+But what's crucial is that $A$ need not be $1$ and this means that the operator $V(\Sigma_3)$ need not be invertible.
 
-The upshot is that the Lagrangian approach allows us to understand much of what's going on with categorical symmetries.
-We can even get the TQFT coefficients out of this.
+More generically, we find that 
+\begin{itemize}
+	\item $V_A$ is invertible,
+ 	\item $V_{c_3}$ is non-invertible,
+  	\item $W_{c_2}$ is non-invertible,
+   	\item $W_{b_2}$ is invertible.
+\end{itemize}
+
+The upshot here is that the Lagrangian approach still allows us to access non-invertible symmetries and categorical symmetries. We can even get the TQFT coefficients out of this.
 Adding more interaction terms can give even more complicated fusion rules (which are still accessible via the Lagrangian presentation).
 
 \subsection{Super Yang-Mills}
 
-In general, we can consider the action of a 5d symmetry TFT on 4d $\SU(N)$ or $\PSU(N)$ super-Yang-Mills.
+In general, we can consider the action of a 5d symmetry TFT on 4d $\SU(N)$ or $\PSU(N)$ super-Yang-Mills. Both these theories have the same SymTFT but the topological boundary condition imposed on the other boundary is different in the two cases.
 This 4d theory has interesting topological operators: Wilson lines and 't Hooft lines.
 Fully understanding the bulk TFT allows us to work with the symmetries of the boundary theory.
