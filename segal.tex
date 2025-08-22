@@ -4,375 +4,1255 @@
 
 \subsection{From classical to quantum}
 
-In classical mechanics, one focuses one's attention on a fixed space $M_0$ and obtains a configuration space $X$ from that.
-Dynamics are specified by giving a Lagrangian $L: TX \to \RR$, which we assume is positive, inhomogeneous, and quadratic on tangent vectors.
-Under these hypotheses, the Lagrangian can be viewed as a generalized Riemannian metric, so that time evolution is given by a (generalized) ``geodesic flow.''
-This gives rise to a symplectic form $\omega$ and Poisson bracket $\{-,-\}$ on $T^* X$.
-Furthermore, from the Lagrangian $L$, we may extract a Hamiltonian $H: T^*X \to \RR$ such that
-\[
-	\frac{d}{dt} f = \{ H, f \} \hspace{1em} \forall f \in \Cinfty(X).
-\]
-Thus we may view a classical dynamical system as a triple $(Y, \omega, H)$ with $(Y, \omega)$ a symplectic manifold and $H: Y \to \RR$ a function.
+In classical physics, one starts assuming that one knows what space and time are:
+There is a fixed $3$-dimensional spatial manifold $M_0$, and time is a copy of the real
+line. 
+From this, one then obtains a configuration space $X$, which depends on the details of the
+system one is studying.
 
-Quantum mechanics can be viewed as a complex noncommutative analogue of this.
-We replace $(Y, \omega, H)$ by a triple $(\Ac, \star, H)$ with $\Ac$ a (topological) $\CC$-algebra, $\star$ an antilinear involution on $\Ac$, and $H \in \Ac$.
-For an observable $f \in \Ac$, we require
-\[
-	\frac{d}{dt} f = i h [H, f].
-\]
-If the quantum system $(\Ac, \star, H)$ is a ``quantization'' of a classical system $(Y, \omega, H)$, then there is a deep relationship between the two.
-For example, we should view $\Ac$ as a completion / extension of $\Cinfty(Y)$, and we can relate the values of an observable to the eigenvalues of the corresponding operator.
+Dynamics are specified by giving a Lagrangian
+\begin{equation*}
+L \colon TX \to \RR
+\end{equation*}
+which we assume is positive, inhomogeneous, and quadratic on tangent vectors.
+The Lagrangian endows $T^*X$ with the structure of a symplectic manifold, which defines
+a Poisson bracket $\left\{-,-\right\}$ on $C^\infty\left(T^* X\right)$. 
 
-The above picture privileges the time dimension, so it is fundamentally non-relativistic.
-Working relativistically requires us to move from finite-dimensional spaces to infinite-dimensional spaces.
-Heuristically, we take $Y$ to be our space of fields on spacetime (typically $M = M_0 \times \RR$), and we fix a Lagrangian $L: Y \to \RR$.
-However, $\Ac$ should now be viewed as a space of functions on an ``almost finite-dimensional manifold.''
-This requires many corrections! 
+The Lagrangian can be viewed as a generalized Riemannian metric so that 
+time evolution is given by a (generalized) ``geodesic flow.''
+Another way of saying this is that $L$ 
+determines a closely related function $H\colon T^*X \to \RR$, called the Hamiltonian, which
+governs the time evolution of the system according to
+\begin{equation*}
+\frac{d}{dt} f = \{ H, f \} \hspace{3em} \forall f \in \Cinfty \left(T^* X\right) \ .
+\end{equation*}
+Thus we may view a classical dynamical system as a triple $(Y, \omega, H)$ with $(Y,
+\omega)$ a symplectic manifold and $H\in C^\infty\left(Y\right)$ a function.
+
+Quantum mechanics can be viewed as a complex noncommutative analogue of this:
+We replace $(Y, \omega, H)$ by a triple $(\Ac, \star, H)$ with $\Ac$ a (topological)
+$\CC$-algebra, $\star$ an antilinear involution on $\Ac$, and $H \in \Ac$.
+For an observable $f \in \Ac$, an analogous equation governs the time evolution:
+\begin{equation*}
+\frac{d}{dt} f = i \hslash \left[H , f\right] \ .
+\end{equation*}
+
+One should think that when we pass from classical to quantum theory, 
+the commutative algebra $C^\infty\left(Y\right)$ is
+replaced by the associative algebra $\Ac$.
+If the algebra $\Ac$ turns out to in fact be commutative itself, then of course the
+bracket would always vanish, and an antilinear involution is just a real structure on
+$\Ac$. So if $\Ac$ is commutative, the data of the associated quantum system is just a
+real commutative algebra. Real commutative algebras are equivalent to certain spaces, e.g. by
+taking the spectrum, and in some cases even manifolds.
+
+Conversely, one should imagine that introducing the $*$-structure is passing from real
+algebras to complex algebras. 
+But at the same time, we introduce some noncommutativity.
+If the quantum system $\left(\Ac , \star , H\right)$ is a ``quantization'' of a classical
+system $(Y, \omega, H)$ in this sense, then there is a deep relationship between the two:
+$\Ac$ is meant to be a deformation of functions on $Y$, and the relationship between the
+two was meant to have all kinds of properties which can be described geometrically.
+For example, given a function $f$ on $Y$ (classical observable), the volume\footnote{The
+exterior power of the symplectic form defines a volume form on $Y$.}
+of various subspaces of $Y$ (defined in terms of $f$) are meant to relate to eigenvalues
+of the corresponding quantum observable in $\Ac$.
+
+\subsection{Relativity and infinite-dimensional space}
+
+The systems people had in mind, when quantum theory was first studied, were
+systems with finitely many degrees of freedom. 
+At the same time, everything so far is intrinsically nonrelativistic, because it singles
+out the role of time, and working relativistically requires us to move from finite-dimensional spaces to
+infinite-dimensional spaces:
+Even the system consisting of two particles moving about somehow trying to attract one
+another has infinitely many degrees of freedom. 
+The point being that, because forces are not exchanged instantaneously but rather at the
+speed of light, it is not good enough to simply know where the particle is at the relevant
+time. One also needs to know all that the particle has been doing for a little bit of time
+in the past. 
+So there are no finite-dimensional relativistic systems. 
+From a more modern point of view, this is the fact that the Poincar\'e group has no
+finite-dimensional representations. 
+
+Some of the field-theoretic framework discussed above breaks down in the
+infinite-dimensional setting. 
+For example the study of vector fields, differential
+equations, etc. in classical mechanics does not carry over naively to infinite-dimensional
+manifolds.
+
+The original point of view on quantum field theory was that we should still start with a
+classical system, for instance described by some kind of functions on spacetime, and then
+quantize this to produce examples of QFTs.
+The first issue is, that if we took this picture seriously, then the mathematics of
+quantum field theory would be totally  different than what it is:
+If one thinks of the field as a water wave or something of the sort, then one would have
+an infinite-dimensional manifold of configurations with much more difficult dynamical
+questions concerning analysis and PDEs than one actually finds in quantum systems. 
+
+What one actually finds when one quantizes quantum fields is the following. 
+Heuristically, we take $Y$ to be our space of fields on spacetime (typically $M = M_0
+\times \RR$), and we fix a Lagrangian $L\colon T Y \to \RR$.
+One might imagine that $\Ac$ should be functions on $Y$, but in fact it is functions on
+something very different, which one should think of as an  ``almost finite-dimensional
+manifold''  since it can be described as consisting of infinitely expanding finite pieces
+as in the following example.
 
 \begin{ex}
-	Consider scalar field theory, with $M = M_0 \times \RR$ and $Y = \Cinfty(M)$.
-	Then $\Ac$ looks like functions on a stratified configuration space
-	\[
-		\coprod_{n \geq 0} \Conf_n(M_0),
-	\]
-	where $\Conf_n(M_0)$ is the space of sets of $n$ distinct unordered points on $M_0$.
+Consider scalar field theory: spacetime is $M = M_0 \times \RR$, and the space of fields is
+$Y = C^\infty\left(M\right)$. 
+Then $\Ac$ looks like functions on a stratified configuration space
+\begin{equation*}
+\coprod_{n \geq 0} \Conf_n(M_0),
+\end{equation*}
+where $\Conf_n(M_0)$ is the space of sets of $n$ distinct unordered points on $M_0$.
 \end{ex}
+
+% Lecture 1 - 24 mins
 
 \subsection{Approaching quantum field theory}
 
-Heuristically, we should ``spread things out over spacetime'' by attaching an algebra $\Oc_x$ to every point $x \in M$ and letting
-\[
-	\Ac \approx \bigotimes_{x \in M} \Oc_x.
-\]
-This has been formalized in the approach of algebraic quantum field theory -- see e.g.\ the definition of Haag, which assigns an algebra $\Ac_U$ to each open set $U \subset M$.
+Heuristically, one should ``spread things out over spacetime''. 
+For instance, at the level of the algebra, one might have a decomposition,
+\begin{equation*}
+	\Ac \sim \bigotimes_{x \in M} \Oc_x \ ,
+\end{equation*}
+where $\Oc_x$ is an algebra assigned to a point $x\in M$.
+One instance where this has been formalized is the
+approach of algebraic quantum field theory -- see e.g. work of Haag \cite{HK} -- which
+assigns an algebra $\Ac_U$ to each open set $U \subset M$. 
+A related framework is that of ``factorization algebras'' as in 
+\cite{CG1,CG2}.
 
 An alternative approach, which we will pursue, privileges the time dimension.
-In this approach, we define a $d$-dimensional quantum field theory as a symmetric monoidal functor
-\[
-	E: \Cob_{d-1} \to \Vect.
-\]
-Here $\Cob_{d-1}$ is the symmetric monoidal category with:
+In this approach, we define a $d$-dimensional quantum field theory as a symmetric monoidal
+functor
+\begin{equation*}
+	E \colon \Cob_{d,d-1} \to \Vect \ .
+\end{equation*}
+Here $\Cob_{d,d-1}$ is the symmetric monoidal category with:
 \begin{itemize}
-	\item Objects: $(d - 1)$-manifolds, often assumed compact or compact with boundary (and thought of as time slices)
-	\item Morphisms $M_0 \to M_1$: $d$-dimensional cobordisms from $M_0$ to $M_1$ (thought of as controlling time evolution)
-	\item Monoidal structure: disjoint union of manifolds / cobordisms
+	\item Objects are $\left(d-1\right)$-manifolds\footnote{All manifolds are assumed to be
+    oriented. Sometimes objects of the cobordism category
+    are assumed to be compact or compact with boundary.}
+	\item Morphisms $M_0 \to M_1$ are cobordisms from $M_0$ to $M_1$ (i.e. $d$-dimensional
+    manifolds with boundary given by the disjoint union of $M_0$ and $M_1$)
+	\item Monoidal structure is disjoint union of manifolds / cobordisms
 \end{itemize}
-and $\Vect$ is the symmetric monoidal category of (possibly infinite-dimensional) topological vector spaces (with $\otimes$ as tensor product).
+and $\Vect$ is the symmetric monoidal category of (possibly infinite-dimensional)
+topological vector spaces (with $\otimes$ as tensor product).
 
-There are many other ways to view quantum field theory.
-For example, one could think of QFT as a continuum limit of lattice models.
+\begin{rmk}
+Heuristically, one should think of the image of a $\left(d-1\right)$-manifold (thought of
+as a time slice) under $E$ as the Hilbert space at that moment in time. 
+The image of a cobordism between two time slices should be thought of as the linear map
+given by time evolution of a state in the Hilbert space. 
+\end{rmk}
 
-QFT is traditionally seen as describing ``the world except for gravity.''
-That is, we think of spacetime as fixed, without allowing for the effects of gravity.
-However, QFT can tell us about what sorts of gravitational effects are possible.
+Quantum field theory is a very diverse subject. 
+One can be interested in it from the point of view of fundamental physics, which is the
+perspective generally taken in these notes. 
+But there are many other areas where quantum field theory intervenes. 
+For instance the study of some continuum limit of a lattice model in statistical
+mechanics.
 
-The perspective on QFT that we will follow has the advantage that it allows for direct comparisons between QFTs.
-Thus, in principle, we may consider a ``moduli space'' of QFTs (of a given type).
-We can think of gravitational effects as acting upon this moduli space.
+In classical physics, space and time are fixed notions.
+QFT is traditionally seen as describing ``the world except for gravity,''
+and gravity concerns the dynamics of spacetime itself.
+This might lead one to believe that, as in classical physics, the notion of spacetime is
+fixed in advance.
+One of the points of these notes is that this is not quite true:
+The constructions are not blind to the type of spacetime you feed in.
+
+In fact, QFT can actually inform us about the nature of spacetime as follows. 
+If one were trying to include gravity into this framework, one would
+need to incorporate the moduli space of all possible spacetimes. 
+The perspective on QFT that we will follow has the advantage that it allows one to
+identify when two QFTs are the `same'.
+Thus, in principle, one can consider a ``moduli space'' of QFTs of a given type.
+However, the nature of these moduli spaces of theories depends on the specific
+definition of the category $\Cob_{d,d-1}$, i.e. on the notion of spacetime that we are
+working with. 
+The upshot is that now there is a well-defined question:
+What is a notion of `spacetime' for which these two moduli spaces (of spacetimes vs. of
+theories) are of the same type, or at least can be incorporated into the same framework?
 
 \subsection{The perspective of Connes}
 
-We'd like to use geometry to understand the noncommutative world of QFT.
-This can be accessed by studying the spectrum of our Hamiltonian $H$.
-Operators which evolve slowly in time ``nearly commute'' with $H$ and thus must be ``nearly diagonal.''
-We're mostly interested in studying such operators (as the time scale of humans is much slower than that of the universe).
-Thus, when studying QFT, we're interested in algebras which are ``nearly commutative.''
+% Lecture 1 - 40 mins
 
-Connes was interested in finding a mildly noncommutative generalization of algebras of functions on a manifold $M$.
-Recall that we can define the Clifford algebra $\Cliff(T_m M)$ as the algebra with generators $\{ \gamma_\xi \}_{\xi \in T_m M}$ and relations $\gamma_\xi^2 = -\norm{\xi}^2$.
-Let $\Bc$ be a bundle of finite-dimensional algebras on $M$ containing $\Cliff(T_m M)$, and take a connection on $\Bc$.
+The states of a quantum system with algebra $\Ac$ are (positive, normalized) linear forms
+$\Ac \to \CC$.
+If a state is actually a ring homomorphism, then it induces a map:
+\begin{equation*}
+\Spec \CC = \pt \to \Spec \Ac \ ,
+\end{equation*}
+i.e. classical states are points of the spectrum.
+The geometric properties of a commutative algebra are well-known: it essentially is the
+algebra of functions on its spectrum, i.e. space of classical states. 
+But what is geometric about noncommutative algebras?
+
+Before discussing this, we first note that we will not be considering arbitrary
+noncommutative algebras but rather ones which are ``nearly commutative''.
+As human beings, we can only see things which move very slowly:
+We cannot even see a bullet, which itself is moving quite slowly with respect to the
+scale of quantum physics. 
+No matter how one interprets the elements of our algebra, what is certain is that their
+rate of change is governed by whether or not they commute with the
+distinguished positive self-adjoint element $H\in \Ac$, the Hamiltonian.
+In other words, things which are sufficiently slow can be thought of as ``nearly
+stationary'', which means that they ``nearly commute'' with $H$, and therefore must be 
+``nearly diagonal.''
+It is important to hang onto the fact that, when studying QFT, one is interested in
+algebras which are ``nearly commutative''.
+
+Connes was interested in finding a mildly noncommutative generalization of algebras of
+functions on a manifold $M$.
+Recall that we can define the Clifford algebra $\Cliff\left(T_m M\right)$ to be generated
+by 
+\begin{equation*}
+\left\{\gamma_\xi\right\}_{\xi\in T_m M} 
+\quad\text{with relations}\quad
+\gamma_\xi^2 = -\norm{\xi}^2 \ .
+\end{equation*}
+Let $\Bc$ be a bundle of finite-dimensional algebras on $M$ containing 
+$\Cliff\left(T_m M\right)$ and fix a connection on $\Bc$.
 Let $\Dsl$ be the Dirac operator
-\[
-	\Dsl = \sum_i \gamma_{\xi_i} \otimes \frac{\partial}{\partial x_i},
-\]
-and let $H = \Dsl^2$.
-Connes gave a formula for $\tr \Dsl^2$ and extracted interesting physical objects, e.g.\ the Higgs field, from $\Dsl$.
+\begin{equation*}
+\Dsl = \sum_i \gamma_{\xi_i} \otimes \frac{\partial}{\partial x_i} \ ,
+\end{equation*}
+and set the Hamiltonian to be $H = \Dsl^2$.
+
+Connes produced a version of the standard model in this framework.
+He gave a formula for $\tr \Dsl^2$ which, for suitable choices of $\Bc$, 
+produced similar terms to the standard model Lagrangian.
+For instance one finds the ordinary Yang-Mills term for a connection and 
+the natural Einstein gravitational action.
+The really impressive thing was that when you allow the algebra to be a direct sum of
+multiple finite-dimensional algebras (so it wasn't simple, but had different components)
+then one discovers a Higgs field.
 From Connes' perspective, the Dirac operator is ``as good as'' the metric.
 
 \subsection{Algebra from functorial QFT}
 
 Suppose we view spacetime $M$ as a cobordism from $M_0$ to $M_1$.
 Fix a $d$-dimensional quantum field theory $E$, where $E = \dim M$.
-For $x \in M$, we can define a vector space of operators $\Oc_x$ by taking a small disk $D_x$ about $x$ and letting $\Oc_x = E_{\partial D_x}$.
-We can view a punctured copy of $M$ as giving a cobordism
-\[
-	M \sqcup \left(\sqcup_i \partial D_{x_i} \right) \to M_1,
-\]
-so that applying $E$ gives $E_{M_0} \otimes (\otimes_i \Oc_{x_i}) \to E_{M_1}$.
+For $x \in M$, we can define a vector space of operators $\Oc_x$ by taking a small disk
+$D_x$ about $x$ and letting $\Oc_x = E_{\partial D_x}$.
+We can view a punctured copy of $M$ as giving a cobordism 
+\begin{equation*}
+M \sqcup \left(\sqcup_i \partial D_{x_i} \right) \to M_1 \ ,
+\end{equation*}
+so that applying $E$ gives a linear map:
+\begin{equation*}
+E_{M_0} \otimes \left(\otimes_i \Oc_{x_i}\right) \to E_{M_1} \ .
+\end{equation*}
 This gives a sort of ``higher multiplication'' on the spaces of operators $\Oc_{x_i}$.
 
 We can make this much more precise in special cases.
 For example, if $E$ is topological, then $\Oc_{x_i} = \Oc$ is independent of $x_i$.
-Taking $M_0 = \emptyset$ and $M_1 = S^{d-1}$, we obtain a family of multiplications $\Oc^{\otimes n} \to \Oc$.
+Taking $M_0 = \emptyset$ and $M_1 = S^{d-1}$, we obtain a family of multiplications
+$\Oc^{\otimes n} \to \Oc$.
 
 \begin{ex}
-	If $d = 2$, the cap / cup / pair-of-pants cobordisms equip $A = \Oc$ with the structure of a finite-dimensional commutative Frobenius algebra.
-	This means that $A$ is a unital algebra with a nondegenerate trace $\theta: A \to \CC$.
+If $d = 2$, the cap / cup / pair-of-pants cobordisms equip $A = \Oc$ with the structure of
+a finite-dimensional commutative Frobenius algebra.
+This means that $A$ is a unital algebra with a nondegenerate trace $\theta \colon A \to \CC$.
+The pair of pants gives rise to the multiplication, and then 
+cap and cup give rise to the inclusion of the unit and trace respectively.
 \end{ex}
 
 It is interesting to extend this picture to non-topological $2$-dimensional QFTs.
-Here, one can set up a moduli space of QFTs and obtain a gravitational flow.
+In this setting one can set up a moduli space of $2$-dimensional QFTs, which looks very
+much like the moduli space of Riemannian manifolds.
+If the bordisms come with a Riemannian metric, then one obtains a flow on this moduli
+space, given by rescaling the metric. 
+It was then discovered that this scaling in fact gives the gravitational flow.
 This was a major historical motivation for string theory.
 
-The second lecture will discuss the importance of positive energy to this theory.
-The third lecture will discuss scaling, and the fourth lecture will focus on finding a suitable definition for $\Cob$.
+% The second lecture will discuss the importance of positive energy to this theory.
+% The third lecture will discuss scaling, and the fourth lecture will focus on finding a
+% suitable definition for $\Cob$.
 
-\section{6/10 -- Positive Energy}
+\section{6/10 -- Positivity of Energy}
 
-\subsection{Warmup}
+\subsection{Finite-dimensional quantum mechanics}
+
+The behavior of classical systems and quantum systems is of course very different.
+If one tracks down why this is, it has everything to do with positivity of energy.
 
 Consider a quantum mechanical system with Hilbert space $\Hc$.
-The Hamiltonian is a self-adjoint operator $H: \Hc \to \Hc$, and we can integrate $iH$ to get unitary operators $U_t = e^{i H t}: \Hc \to \Hc$ describing the time evolution of the system.
+The Hamiltonian is a self-adjoint operator $H \colon \Hc \to \Hc$, and we can integrate $iH$ to
+get a $1$-parameter unitary group of 
+operators $U_t = e^{i H t} \colon \Hc \to \Hc$ describing the time evolution of the system.
 
-Assuming $H \geq 0$ has strong consequences for the theory.
-In this case, $U_{-}: \RR \to \End(\Hc)$ is the boundary value of the function on the complex upper half-plane also given by $t \mapsto e^{i H t}$.
+Assuming that the Hamiltonian is positive
+(i.e. that $\Spec H \subset [0,\infty ) \subset \RR$)
+seems quite innocuous, but it has strong consequences for the theory.
+This essentially implies that ``nothing can ever happen for the first time,''
+which was first noticed by Fermi as early as 1932 \cite{F}.
 
-To fit this into QFT, consider $\CC$ as a bundle over $\RR$, where the inner product on the base is Lorentzian and the inner product on the fiber is Riemannian.
-Think of $\RR$ as our spacetime $M$ and the fiber as $V = T_x M$.
+In more detail:
+the $1$-parameter unitary group $U_{-} \colon \RR \to \End(\Hc)$ is the boundary value of the
+function on the complex upper half-plane given by $t \mapsto e^{i H t}$.
+The boundary value of a bounded holomorphic function in the upper half-plane must vanish
+identically if it vanishes on an open interval of the real axis.
+Therefore, taking positivity of energy literally, 
+a state $\zeta \in \Hc$ for which $U_t\left(\zeta\right)$ remains in some closed subspace
+$\Hc_0 \subset \Hc$ for all $t < 0$ must remain in this subspace for all $t$.
+Note that on the boundary (the real axis) we have unitary operators, 
+and within the upper half space on the positive imaginary axis we have 
+contraction operators.
 
-We will introduce the notion of a \emph{complex metric} on a real vector space $V$.
-This is a quadratic form $V \to \CC$ satisfying a certain condition to be determined later.
+From a physical perspective, one might imagine that the cobordisms involved in functorial
+QFT are equipped with Lorentzian metrics. 
+One should imagine that we have Lorentzian metrics 
+(represented by unitary operators on some Hilbert space)
+living along the real axis. Along the positive imaginary axis we have Riemannian metrics
+(represented by contraction operators), and we want to ``fill in'' the upper half space
+with what are called \emph{complex metrics}, originally introduced by Kontsevich-Segal
+\cite{KS}. Just as an ordinary metric on a smooth manifold is a positive definite 
+inner-product on each tangent space, a complex metric is a $\CC$-valued quadratic form on
+each (real) tangent space, with a certain positivity condition stated in 
+\Cref{sec:C_met}.
 
-\subsection{Historical digression}
+\subsection{Representations of loop groups}
+\label{sec:loop_groups}
 
-The notion of a complex metric was introduced by Kontsevich and Segal.
-Segal was originally interested in loop groups $\Lc G = \Map(S^1, G)$.
-There is a nice class of ``positive energy'' representations of loop groups.
-These extend to representations of $\Diff^+(S^1) \ltimes \Lc G$ which are also ``positive energy'' in a certain sense.
-This notion effectively means that the actions respect the grading $\Hc = \oplus_{k \geq 0} \Hc_k$ coming from an $S^1$-action.
+One source of motivation for the introduction of the notion of an allowable complex metric 
+comes from the theory of loop groups \cite{PS}.
+Given some compact Lie group $G$, the \emph{loop group} is the group of smooth maps 
+\begin{equation*}
+\Lc G = \Map\left(S^1 , G\right)
+\end{equation*}
+under pointwise multiplication. The general theory of representations of loop groups is
+quite complicated, but the theory of so-called ``positive energy'' representations is
+analogous to the theory of finite-dimensional Lie groups.
+One property of the positive energy representations is a certain functoriality with
+respect to $S^1$: 
+The group $\Diff^+\left(S^1\right)$ of oriented-preserving diffeomorphisms of the circle
+act on $\Lc G$ by automorphisms. One characterization of positive energy representations
+is that they extend to representations of $\Diff^+(S^1) \ltimes \Lc G$
+which have ``positive energy'' in the following sense:
+Given a representation by unitary operators on a Hilbert space $\Hc$, there is an action
+of the circle which gives a grading 
+\begin{equation*}
+\Hc = \oplus_{k \geq 0} \Hc_k
+\end{equation*}
+The representation has \emph{positive energy} if the action of
+$\Diff^+\left(S^1\right)$ (via $\Aut\left(\Lc G\right)$) is compatible with this grading.
 
-An even simpler illustrative case is that of ``discrete series'' representations of $\PSL_2(\RR)$.
-Embed $\PSL_2(\RR) \hookrightarrow \PSL_2(\CC)$.
-Let $\PSL_2^<(\CC)$ be the subsemigroup of M\"obius transformations sending the unit disk $D$ to a proper subdisk of itself.
-Then $\PSL_2^<(\CC)$ acts by contraction on the discrete series representations.
+This discussion generalizes the simpler discussion of the representation theory of
+$G = \PSL_2\left(\RR\right)$. (Note that $\PSL_2\left(\RR\right)$ contains
+$\Diff^+\left(S^1\right)$.)
+Irreducible unitary representations of this group are essentially all of two kinds: the 
+\emph{discrete series} and the \emph{principal series}.
+The group $G$ contains a copy of the circle, as rotations of the projective line. 
+In the case of a \emph{principal} series representation, rotation of the circle acts with a
+spectrum which extends from $-\infty$ to $\infty$.
+In the case of \emph{discrete} series representations, rotation of the circle acts 
+so that the weights are bounded below, i.e. the discrete series representations have
+a positive energy property. 
 
-There is a similar story for loop groups, if we consider the semigroup of holomorphic $f: D \to D$ with $f(D) \subset \mathring{D}$.
-The Kontsevich-Segal definition connects to this somehow (I didn't quite catch how).
+This means that the discrete series representations extend to bounded holomorphic
+representations of a certain semigroup acting by contraction operators.
+In particular, $\PSL_2\left(\RR\right)$ lies on the boundary of a complex sub-semigroup 
+$\PSL_2^{<}\left(\CC\right) \subset \PSL_2\left(\CC\right)$ 
+given by M\"obius transformations of the Riemann sphere sending the unit disk to a proper
+subdisk of itself. Then $\PSL_2^<(\CC)$ acts on the discrete series
+representations, and it acts via contractions by the maximum modulus principal. 
+
+It was (independently) realized by Kontsevich, Segal, and Neretin in the 80s
+\cite{Ner,S:CFT} that there is an infinite-dimensional complex semigroup which has
+precisely the same relationship to $\Diff^+\left(S^1\right)$ as 
+$\PSL_2^{<}\CC$ has to $\PSL_2 \RR$.
+In particular, consider the complex semigroup of holomorphic maps from the disk to itself
+which embed the disk in its own interior.
+The group $\Diff^+\left(S^1\right)$ lies on the boundary of this semigroup.
+On can imagine that these are the maps which don't really shrink the disk but rather just
+act a diffeomorphism on the boundary. 
 
 \subsection{Complex metrics}
+\label{sec:C_met}
+
+Recall we are interested in imposing a positivity condition on
+complex-valued quadratic forms on a finite-dimensional real vector space 
+$g \colon V \to \CC$ in order to introduce an appropriate notion of a complex-valued
+metric on a real manifold. 
+Write $V_C = V\otimes \CC$ for the complexification of $V$.
+
+A first guess might have been to study points in the Siegel `generalized upper half
+space'. This is the space of $\CC$-valued quadratic forms with positive-definite real
+part. For $\dim_\RR V = n$, this is the space of $n\times n$ complex symmetric
+matrices with $\mathop{Re} A$ positive definite.
+
+One way the Siegel upper half space appears is the following.
+Suppose we are interested in an improper Gaussian integral of the form:
+\begin{equation*}
+\int_{\RR^n} \exp\left(
+i x^T A x 
+\right)
+\end{equation*}
+for a real $n\times n$ symmetric matrix $A$.
+Even in the $1$-dimensional case, the usual strategy is to move the real number into the
+upper half plane to make this a Gaussian integral.
+One can also do this with a matrix as follows. Begin with a complex symmetric matrix whose imaginary
+part is positive definite, i.e. a point of the Siegel upper half space. 
+The integral is a proper Gaussian integral for such matrices and converges.
+The value of the original integral can then be defined as the limit as the imaginary part
+goes to zero. 
 
 \begin{dfn}
-	A \emph{complex metric} on a real vector space $V$ is a quadratic form $g: V \to \CC$ such that, if $\lambda_k$ are the eigenvalues of the matrix corresponding to $g$ and $\lambda_k = e^{i \theta_k} \abs{\lambda_k}$, then $\sum_i \abs{\theta_i} < \pi$.
+A \emph{complex metric} on a real vector space $V$ is a quadratic form
+$g \colon V \to \CC$ such that, if $\lambda_k$ are the eigenvalues of the 
+matrix corresponding to $g$ and 
+$\lambda_k = e^{i \theta_k} \abs{\lambda_k}$, then
+\begin{equation}
+\sum_i \abs{\theta_i} < \pi \ .
+\label{eqn:C_metric}
+\end{equation}
+\label{dfn:C_metric}
 \end{dfn}
 
+\begin{rmk}
 We can equivalently state this as
-\[
-	-\pi \leq \sum_i \pm \theta_i \leq \pi.
-\]
+\begin{equation*}
+-\pi \leq \sum_i \pm \theta_i \leq \pi \ .
+\end{equation*}
 One may view the $\theta_i$ as weights of the corresponding spin representation.
+\end{rmk}
 
-For $v \in V$, we have $g(v) \in \CC \setminus (-\infty, 0)$, so $g(v)$ has a canonical square root.
+\begin{ex}
+If $g$ happens to be real then each $\abs{\theta_i}$ is either $0$ or $\pi$, and the
+condition \eqref{eqn:C_metric} implies that in fact $g$ is positive definite.
+Therefore there is a subspace of real positive definite metrics in the space of allowable
+complex metrics. Similarly, \eqref{eqn:C_metric} implies that real $g$ on the so-called
+\emph{Shilov boundary} of the space of allowable complex metrics can have at most one
+$\abs{\theta_i} = \pi$, the rest must vanish. Therefore the real Lorentzian metrics, and
+no other nondegenerate metrics, lie on the Shilov boundary of the space of allowable complex metrics. 
+\label[ex]{allowable_real}
+\end{ex}
+
+This definition turns out to be equivalent to the following characterization. 
+One consequence of \eqref{eqn:C_metric}, is that $\max \theta_i - \min \theta_i < \pi$. 
+This means that, for all $v \in V$,
+we have $g(v) \in \CC \setminus (-\infty, 0)$.
+Therefore $g(v)$ has a canonical square root with positive real part. 
 Thus we may assign a ``complex length'' in the positive half-plane to every $v \in V$.
 
-Given an inner product $V \times V \to \CC$, we get an inner product on $\wedge^k V$ with squared norm given by $\alpha \wedge (\star \alpha)$.
-Really, this is better thought of as a map $\wedge^k V \times \wedge^k V \to \wedge^d V$, for $d = \dim V$.
+Recall that, given the inner product on $V$, we obtain a Hodge star operator $\star$ which
+sends $k$-forms, i.e. elements of $\wedge^k V^*$ to $\left(n-k\right)$-forms
+(twisted by the orientation bundle)
+where $n = \dim_\RR V$.
+This allows us to, starting from the inner product $V \times V \to \CC$, define a
+quadratic form on $\wedge^k V^*$ for all $k \geq 0$:
+\begin{equation*}
+\begin{tikzcd}[row sep=tiny]
+\wedge^k V^* \ar{r}&
+\CC \simeq 
+\wedge^n\left(V^*\right)_\CC 
+\\
+\alpha \ar[mapsto]{r}&
+\alpha \wedge \star \alpha
+\end{tikzcd}
+\end{equation*}
 
-We'll change topics now.
+The Hodge star sends the constant function to the volume element:
+\begin{equation*}
+\star 1 = \vol_g = \left(\det g\right)^{1/2} \abs{ dx^1 \cdots dx^n }
+\end{equation*}
+We think of $\vol_g$ as an element of the complex line 
+$\wedge^n \left(V^*\right)_\CC$, the complexification of the real line of real volume
+forms (tensored with the real orientation line).
+We say that an element of the real part of the line $\wedge^nV^*_\CC$
+is positive if it is a positive volume-element. 
 
-\subsection{Application to QFT}
+\begin{thm}[\cite{KS}]
+A quadratic form $g \colon V \to \CC$ 
+satisfies \Cref{dfn:C_metric} if and only if for all $k\geq 0$ the real part of
+the quadratic form
+\begin{equation*}
+\wedge^k\left(V^*\right)  \to \wedge^n\left(V^*\right)_\CC
+\end{equation*}
+sending $\alpha$ to $\alpha \wedge \star \alpha$ is positive-definite.
+\end{thm}
 
-If we want to view a QFT as a functor $E$ defined on a category of cobordisms, we should require:
+% Lecture 2 - 40 minutes 
+
+\subsection{Representations of bordism categories}
+
+If we want to view a QFT as a functor $E$ defined on a category of cobordisms, we should
+require:
 \begin{itemize}
-	\item Cobordisms should be equipped with complex metrics.
-	\item The induced maps $U_M : E_{M_0} \to E_{M_1}$ should be holomorphic in $M$ (viewed as living in some complex analytic moduli space of complex metrics).
-	\item The operators $U_M$ should be \emph{trace class}: there should be bases $\xi_i$ for $E_{M_0}$ and $\eta_i$ for $E_{M_1}$ with $\xi_i \mapsto \lambda_i \eta_i$ and $\sum_i \abs{\lambda_i} < \infty$.
+\item Cobordisms should be equipped with complex metrics.
+\item The induced maps $U_M \colon E_{M_0} \to E_{M_1}$ should be holomorphic in $M$ 
+(viewed as living in some complex analytic moduli space of complex metrics).
+\item The operators $U_M$ should be \emph{trace class}: 
+there should be bases $\xi_i$ for $E_{M_0}$ and $\eta_i$ for $E_{M_1}$ with 
+$\xi_i \mapsto \lambda_i \eta_i$ and $\sum_i \abs{\lambda_i} < \infty$.
 \end{itemize}
 
-The case of Lorentzian metrics occurs ``on the boundary'' of the moduli space of complex metrics.
-Thus usual Lorentzian QFTs can be viewed as holomorphic degenerations of nice QFTs.
+The main result of \cite{KS} establishes what happens on the boundary of the space of
+field theories of this sort. This will follow a familiar pattern from representation
+theory.
 
-Some simpler examples are similar in principle:
-\begin{itemize}
-	\item $\Diff^+(S^1)$ can be viewed as the boundary of the semigroup of contraction mappings.
-	\item $\U(n) \subset \GL_n(\CC)$ can be viewed as the boundary of the semigroup of contraction operators $\CC^n \to \CC^n$.
-\end{itemize}
+Recall from \Cref{sec:loop_groups}, that $\Diff^+(S^1)$ can be viewed as the
+boundary of a certain holomorphic semigroup of contraction operators. 
+We saw that this was an infinite-dimensional example of what we saw with the action of the
+circle inside of $\PSL_2 \CC$. 
+Another familiar instance of this phenomenon is the unitary group $U_n$ in
+$\GL_n\left(\CC\right)$:
+Consider the semigroup of contraction operators, i.e. $A \colon \CC^n \to \CC^n$ such that
+$\norm{A\xi} < \norm{\xi}$. 
+These form a ball in $\GL_n\left(\CC\right)$, and the unitary group is the Shilov
+boundary. 
 
-However, $\PSL_2(\RR)$ is not compact, so we can't view it as a boundary.
+The Shilov boundary is the smallest closed subset in which an 
+analog of the maximum modulus principle holds:
+It has the property that, 
+if I am given any holomorphic function on the domain which extends continuously to the
+topological boundary, then it obtains its maximum on the Shilov boundary. 
+Note that this implies that any holomorphic function on the domain that extends to
+the topological boundary at all are determined by their values on the Shilov boundary. 
+The field theoretic analogue of this statement is that a Lorentzian field theory is 
+completely determined by its Wick rotation to Riemannian spacetime. 
 
-Viewing our spacetime $M$ as Lorentzian, we can ask for $M$ to be ``globally hyperbolic,'' so every point in $M_0$ can be connected to a point in $M_1$ via a timelike curve.
-This is similar to requiring that there are no black holes.
-The results of Kontsevich-Segal are best in the case of globally hyperbolic metrics.
+Recall however that, unlike $\U\left(n\right)$, $\PSL_2(\RR)$ is not compact so there are
+other things on the boundary outside of $\PSL_2\left(\RR\right)$. 
+The entire Shilov boundary of the semigroup of contraction operators is the solid torus
+consisting of $\PSL_2\left(\RR\right)$ (the real M\"obius
+transformations) compactified by the 2-torus of degenerate M\"obius transformations. 
+The statement is that the contraction representation extends to $\PSL_2 \RR$, but perhaps
+not the degenerate points on the boundary. 
+It was shown in \cite{KS} that this has a direct analogue in the field theoretic situation.
 
-Heuristically, we are requiring the existence of a Dirac operator and requiring that this Dirac operator is a contraction operator.
+Recall from \Cref{allowable_real} that real Lorentzian metrics, and no other
+nondegenerate metrics, lie on the Shilov boundary of the space of allowable complex
+metrics. 
+Consider Lorentzian cobordisms $M$ between Riemannian manifolds $M_0$ and $M_1$
+as our basic notion of spacetime. There is a subclass of these which are ``globally
+hyperbolic,'' meaning every point in 
+$M_0$ can be connected to a point in $M_1$ via a timelike curve.
+This is analogous to requiring that there are no black holes:
+If one does not assume that the metric is globally hyperbolic then
+one can imagine finding a timelike curve which falls into a 
+closed sub trajectory, i.e. it might leave $M_0$ and never reach $M_1$ while remaining
+timelike. 
 
-\section{6/11 -- Desired Properties of QFT; Scaling}
+What was shown in \cite{KS} is that theories which are defined for these 
+positive metrics have boundary values which are unitary on the part of the Lorentzian
+metrics which are globally hyperbolic.
+When one drops the globally hyperbolicity, the associated operators stop being unitary,
+and in fact become unbounded. 
+This is precisely analogous to when one tries to get a 
+degenerate M\"obius transformation (i.e. real $2\times 2$ rank $1$ matrix) 
+to act on a discrete series representation. 
 
-In his first lecture, Ibou Bah proposed five properties that a (nice) QFT should satisfy: \emph{unitarity}, \emph{locality}, \emph{causality}, \emph{cluster decomposition}, and \emph{renormalization}.
-We will first try to understand how these relate to Segal's perspective.
+\section{6/11 -- Desired Properties of QFT}
+
+In his first lecture, Ibou Bah proposed five properties that a (nice) QFT should satisfy:
+\begin{enumerate}[label = (\roman*)]
+\item \emph{unitarity}, 
+\item \emph{locality}, 
+\item \emph{causality}, 
+\item \emph{renormalization}, and
+\item \emph{cluster decomposition}.
+\end{enumerate}
+We will discuss these properties in the setting of functorial field theory. 
 
 \subsection{Renormalization}
 
-Historically, understanding renormalization was crucial to the development of QFT.
-This is somewhat arcane from a mathematical point of view.
-However, one should note that renormalizability of a Lagrangian does have a natural relationship to the calculus of variations.
+Quantum field theory started off, historically, by thinking of itself as the process of
+quantizing a wavelike system:
+One had a scalar field, or a vector field, or a bundle with a connection, and then one
+is trying to quantize the space of such field configurations. 
+One way to study these theories is by defining a generalized Riemannian metric on the
+space of these field configurations.
+Then the system, classically at least, should follow a geodesic in this space of
+configurations as it develops in time. 
 
-Consider a $\sigma$-model where our fields are maps $M \to N$.
-If $M$ and $N$ have Riemannian metrics, we can define an energy functional.
-For $M = \RR$ or $S^1$, this recovers the usual energy functional on paths.
-This is well-behaved and has a good Morse theory.
-When $\dim M = 2$, this is almost well-behaved, except there are problems with bubbling.
-For $\dim M > 2$, things are terrible.
+The crucial step in the historical development of QFT was the understanding of
+the process of renormalization. 
+The idea is that only some Lagrangians make good sense: the ones for which one can carry
+out the process of renormalization.
+The condition that allows one to do this is precisely the condition one encounters in the
+calculus of variations.
 
-The upshot is that (at least in this case?) renormalizability happens exactly when we expect things to be mathematically well-behaved.
+Fixing a manifold $N$, there is a field theory in any dimension, called the $\sigma$-model
+into $N$, given as follows.
+Given some spacetime manifold $M$, the fields on $M$ are maps from $M\to N$.
+If $M$ and $N$ have Riemannian metrics, we can define an energy functional on the space of
+such maps. For instance when $M = \RR$ or $S^1$ we obtain the usual expression for the
+energy of a path in a Riemannian manifold. 
+Starting with a random smooth curve between points in a Riemannian manifold, there is a
+well-behaved Morse theory: given a path between two points, there is a gradient flow to
+a geodesic between them. 
+When $\dim M = 2$, things are almost well-behaved, except there are famously problems with
+bubbling. For $\dim M > 2$ the Morse theory is totally wrong:
+For $3$-dimensional $M$, following the gradient flow of some map $M\to N$ will
+not lead to some nice e.g. harmonic map at a critical point, but rather $M$ disintegrates
+into shreds. This is trying to move backwards along a heat flow.
 
 \subsection{Unitarity}
 
-If $M$ is a cobordism from $M_0$ to $M_1$, we can reverse orientations on the boundary and view $\ol{M}$ as a cobordism from $\ol{M}_1$ to $\ol{M}_0$.
-When $M$ is Riemannian, this doesn't significantly affect things.
-However, when $M$ is Lorentzian, this changes the direction of time.
+% Lecture 3 - 10 minutes 
 
-If $U_M: \Hc_{M_0} \to \Hc_{M_1}$ is the induced map, then we can think of $U_{\ol{M}}: \Hc_{\ol{M}_1} \to \Hc_{\ol{M}_0}$ as suitably ``adjoint'' to $U_M$.
-More precisely, we can write $\Hc_{M_i}$ and $\Hc_{\ol{M}_i}$ as duals, and this connects $U_M$ to $U_{\ol{M}}$.
-We will assume that $U_{\ol{M}} = \ol{U_M}$.
-Reflection-positivity turns into the assumption that the pairing $\Hc_{M_0} \otimes \Hc_{\ol{M}_0} \to \CC$ is positive (at least in nice cases?).
+Let $M$ be an oriented cobordism from $M_0$ to $M_1$.
+Writing $\ol{M}_i$ for $M_i$ with its orientation reversed, the cobordism $M$ can equally
+well be regarded as an oriented cobordism:
+
+If $M$ is an oriented cobordism from $M_0$ to $M_1$, 
+it can always be regarded, without changing the orientations or anything, as a cobordism:
+\begin{equation*}
+M^{\mathrm{rev}} \colon \overline{M}_1 \to \ol{M}_0 \ .
+\end{equation*}
+Note that we did not change the orientation on $M$, we are just regarding it as a bordism
+in the opposite direction. 
+Write the corresponding Hilbert spaces and linear maps between them as:
+\begin{align*}
+U_M \colon \Hc_{M_0} \to \Hc_{M_1}
+&&
+U_{M^{\mathrm{rev}}} \colon \Hc_{\overline{M}_1} \to
+\Hc_{\overline{M}_0}
+\end{align*}
+The Hilbert spaces $\Hc_{M_i}$ and $\Hc_{\ol{M}_i}$ are canonically dual:
+Directly from the axioms, one can define morphisms 
+\begin{equation}
+\raisebox{25pt}{
+\rotatebox{-90}{
+\begin{tikzpicture}[xscale=-1,baseline ={(current bounding box.center)}]
+\begin{scope}
+\clip (-0.01,-2) rectangle (0.5,0.5);
+\node[cylinder,draw=black,aspect=0.7,
+minimum height=20pt,minimum width=20pt,
+shape border rotate=180,cylinder uses custom fill, cylinder body     
+fill=gray!60,cylinder end fill=gray!10] (A) {};
+\node[cylinder,draw=black,aspect=0.7,
+minimum height=20pt,minimum width=20pt,
+shape border rotate=180,cylinder uses custom fill, cylinder body     
+fill=gray!60,cylinder end fill=gray!10] at (0,-40pt) {};
+\end{scope}
+\begin{scope}
+\clip (0,-2) rectangle (-2,0.5);
+\draw[fill,color=gray!60] (0,-20pt) circle (30pt);
+\draw[fill,color=white] (0,-20pt) circle (10pt);
+\draw[color=black] (0,-20pt) circle (30pt);
+\draw[color=black] (0,-20pt) circle (10pt);
+\end{scope}
+\end{tikzpicture}
+}}
+\quad \mapsto \quad 
+\begin{tikzcd}
+\Hc_{M_i} \otimes \Hc_{\ol{M_i}} \arrow{d} \\
+\CC
+\end{tikzcd}
+\quad \text{ and } \quad
+\raisebox{-25pt}{
+\rotatebox{90}{
+\begin{tikzpicture}[xscale=-1,baseline ={(current bounding box.center)}]
+\begin{scope}
+\clip (-0.01,-2) rectangle (0.5,0.5);
+\node[cylinder,draw=black,aspect=0.7,
+minimum height=20pt,minimum width=20pt,
+shape border rotate=180,cylinder uses custom fill, cylinder body     
+fill=gray!60,cylinder end fill=gray!10] (A) {};
+\node[cylinder,draw=black,aspect=0.7,
+minimum height=20pt,minimum width=20pt,
+shape border rotate=180,cylinder uses custom fill, cylinder body     
+fill=gray!60,cylinder end fill=gray!10] at (0,-40pt) {};
+\end{scope}
+\begin{scope}
+\clip (0,-2) rectangle (-2,0.5);
+\draw[fill,color=gray!60] (0,-20pt) circle (30pt);
+\draw[fill,color=white] (0,-20pt) circle (10pt);
+\draw[color=black] (0,-20pt) circle (30pt);
+\draw[color=black] (0,-20pt) circle (10pt);
+\end{scope}
+\end{tikzpicture}
+}}
+\quad \mapsto \quad 
+\begin{tikzcd}
+\CC
+\arrow{d} \\
+\Hc_{\ol{M}_i} \otimes \Hc_{M_i} 
+\end{tikzcd}
+\label{eq:ev_coev}
+\end{equation}
+such that the Zorro axiom is satisfied: 
+\begin{equation*}
+\raisebox{-23pt}{
+\begin{tikzpicture}[baseline={(current bounding box.center)}]
+\begin{scope}
+\clip (-0.01,-2) rectangle (0.5,0.5);
+\node[cylinder,draw=black,aspect=0.7,
+minimum height=20pt,minimum width=20pt,
+shape border rotate=0,cylinder uses custom fill, cylinder body     
+fill=gray!60,cylinder end fill=gray!10] (A) {};
+\node[cylinder,draw=black,aspect=0.7,
+minimum height=20pt,minimum width=20pt,
+shape border rotate=0,cylinder uses custom fill, cylinder body     
+fill=gray!60,cylinder end fill=gray!10] at (0,-40pt) {};
+\end{scope}
+\begin{scope}
+\clip (0,-2) rectangle (-2,0.5);
+\draw[fill,color=gray!60] (0,-20pt) circle (30pt);
+\draw[fill,color=white] (0,-20pt) circle (10pt);
+\draw[color=black] (0,-20pt) circle (30pt);
+\draw[color=black] (0,-20pt) circle (10pt);
+\end{scope}
+\end{tikzpicture}
+}
+\quad \circ \quad 
+\raisebox{23pt}{
+\begin{tikzpicture}[xscale=-1,baseline ={(current bounding box.center)}]
+\begin{scope}
+\clip (-0.01,-2) rectangle (0.5,0.5);
+\node[cylinder,draw=black,aspect=0.7,
+minimum height=20pt,minimum width=20pt,
+shape border rotate=180,cylinder uses custom fill, cylinder body     
+fill=gray!60,cylinder end fill=gray!10] (A) {};
+\node[cylinder,draw=black,aspect=0.7,
+minimum height=20pt,minimum width=20pt,
+shape border rotate=180,cylinder uses custom fill, cylinder body     
+fill=gray!60,cylinder end fill=gray!10] at (0,-40pt) {};
+\end{scope}
+\begin{scope}
+\clip (0,-2) rectangle (-2,0.5);
+\draw[fill,color=gray!60] (0,-20pt) circle (30pt);
+\draw[fill,color=white] (0,-20pt) circle (10pt);
+\draw[color=black] (0,-20pt) circle (30pt);
+\draw[color=black] (0,-20pt) circle (10pt);
+\end{scope}
+\end{tikzpicture}
+}
+\simeq\qquad
+\begin{tikzpicture}[baseline={(current bounding box.center)}]
+  \node[cylinder,draw=black,aspect=0.7,
+  minimum height=60pt,minimum width=20pt,
+  shape border rotate=0,cylinder uses custom fill, cylinder body     
+  fill=gray!60,cylinder end fill=gray!10] (A) {};
+\draw[dashed]
+    let \p1 = ($ (A.after bottom) - (A.before bottom) $),
+        \n1 = {0.5*veclen(\x1,\y1)-\pgflinewidth},
+        \p2 = ($ (A.bottom) - (A.after bottom)!.5!(A.before bottom) $),
+        \n2 = {veclen(\x2,\y2)-\pgflinewidth}
+  in
+    ([xshift=-\pgflinewidth] A.before bottom) arc [start angle=270, delta angle=180,
+    x radius=\n2, y radius=\n1];
+\end{tikzpicture}
+\end{equation*}
+It also follows directly from the axioms that $U_M$ is always adjoint to $U_{\ol{M}}$
+in the algebraic sense.
+
+Continue to consider the oriented cobordism $M$ from $M_0$ to $M_1$.
+Now, rather than simply reversing the direction of $M$ as above, we will reverse the
+orientation (and take the complex conjugate metric) on $M$ itself, to obtain a cobordism
+\begin{equation*}
+\overline{M} \colon \overline{M_0} \to \overline{M_1} \ .
+\end{equation*}
+In the case of a Riemannian metric this will of course leave the metric fixed, 
+but in the case of a Lorentzian metric it will appropriately change the
+direction of time.
+In order to discuss unitary, one should impose the further condition that 
+\begin{equation}
+U_{\ol{M}} = \ol{U_M} \ .
+\label{eq:conj}
+\end{equation}
+In addition to this, we would like to assume \emph{reflection-positivity}:
+A reflection structure induces a hermitian metric on the vector space of states
+and positivity is the condition that these hermitian structures be positive definite.
 
 \subsection{Locality}
 
-Given a point $x \in M$, we can view point operators as being defined on sufficiently small disks $D$ about $x$.
-This gives algebras $\Oc_x = \lim_{x \in D} E_D$, where $E$ is the QFT.
-In the first lecture here, we discussed how this relates to operadic multiplication.
-This is quite similar to the language of operator product expansion used in physics.
+Let $M$ be a manifold. We are interested in making observations at various points.
+Recall that one can associate, to any point $x\in M$, a topological vector space 
+$\Oc_x$ of observables:
+Consider a collection of balls around (or neighborhoods of) $x$, getting smaller and
+smaller, forming an ordered set under inclusion. 
+The observables at $x$ then comprise the inverse limit of the 
+values of the given TQFT $E$ on the boundaries of these neighborhoods:
+\begin{equation*}
+\Oc_x = \varprojlim_{D\downarrow x} E_{\partial D}
+\end{equation*}
+Now consider the situation where several of these points are contained in some larger 
+region in $M$ which is fixed.
+Locality is then the fact that, there is an expansion of observables in this larger region
+in terms of observables which just come from the $\Oc_x$ for various points in the region.
+This is quite similar to the language of operator product expansion used in physics. 
+Mathematically this has been formalized in the language of 
+factorization algebras (algebras over the little-disk operad of $M$) \cite{CG1,CG2}.
 
 \subsection{Cluster decomposition}
 
-Saying that two events are a long time apart is essentially saying that there is a long cylinder between them in spacetime.
-This can also be viewed as factorizing the cobordism defining spacetime into a product involving said long cylinder.
-Recall that the long cylinder in spacetime corresponds to time evolution $e^{-i H t}$ in the QFT.
+The idea of working with manifolds with complex metrics (\Cref{sec:C_met}) 
+was to allow one to freely use the concept of Wick rotation: One might as well work with
+Riemannian manifolds for most purposes. 
+
+Imagine there are two clusters of points in spacetime $M$ such that the spacetime $M$ can
+be factorized into bordisms such that there is a cylindrical region separating them in
+spacetime.
+The cluster decomposition has to do with allowing this cylindrical bit to get very long. 
+Recall that in the Riemannian setting, the operator associated to this cylinder is just
+exponentiating a positive operator, at least for a unitary theory. 
+So the output of the first cluster gets scaled down to the vacuum vector by this
+exponentiated positive operator.
+It is then this vacuum vector which is fed into the  second cluster, rather than the
+potentially complicated output of the first cluster, making it clear why there is an
+associated factorization. 
 
 \subsection{Causality}
+\label{sec:causality}
 
-Consider a Lorentzian spacetime $M$ with boundaries $M_0$ and $M_1$.
-Placing operations at points $x$ in the interior of $M$ gives operations $\Oc_x \otimes E_{M_0} \to E_{M_1}$.
+Consider two spacelike separated points in a 
+Lorentzian manifold $M$ i.e. there is no smooth timelike curve between them. 
+In order to enforce some sort of causality, one would like to formalize the notion that,
+in this situation, observables at these points ought not to affect one another. In other
+words, the associated operators ought to commute.
+If $M$ is a cobordism from $M_0$ to $M_1$ then observables at a point $x$,
+$\Oc_x$, acts:
+\begin{equation*}
+\Oc_x \otimes E_{M_0} \to E_{M_1} 
+\end{equation*}
+However it doesn't make sense for this to commute with another such $\Oc_y$, since they
+are not defined on the same spaces. 
 
-We assume that our spacetime is globally hyperbolic, so every point in $M_0$ can be connected to a point in $M_1$ via a timelike path.
-This splits $M$ into a family of time slices (all diffeomorphic to each other).
-Given distinct points $x_i$ on the same time slice (so the $x_i$ are spacelike separated), causality ensures that we can define
-\[
-	\Oc_{x_1, \dots, x_n} \otimes \check{E}_{M_0} \to \hat{E}_{M_1},
-\]
-where $\check{-}$ denotes a dense subspace and $\hat{-}$ denotes a completion.
-This product is independent of the ordering.
-Using global hyperbolicity, we can extend this to any collection of spacelike separated points.
+Such a causality property can be formulated on a spacetime which is globally hyperbolic.
+This is assumption that every maximally-extended time-like geodesic in $M$ travels from
+$M_0$ to $M_1$.
+Here we are only considering compact cobordisms, thought these are not the usual focus in
+relativity theory.
+In this case, being globally hyperbolic is equivalent to the existence of a smooth 
+function $t \colon M \to \left[0,1\right]$ with gradient everywhere in the positive
+light-cone. Therefore the fibers of $r$ are all Riemannian, and there is in fact a
+diffeomorphism $M\simeq M_0 \times \left[0,1\right]$ by following the orthogonal
+trajectories of the time slices.
+Therefore this assumption allows one to identify the values of the TQFT $E_{M_0} \simeq
+E_{M_t}\simeq E_{M_1}$ for all time slices $M_t$. 
 
-The notion of ``small disk'' makes complete sense in a Riemannian metric, but it seems a bit odd in a Lorentzian metric.
-To make sense of this, we recall our notion of complex metric $g: V \to \CC$.
-If we pass to the complexification, we get a standard quadratic form $V_\CC \to \CC$.
-Thus we may consider $V$ as a subspace of $\CC^d \cong V_\CC$.
-The space of allowable complex metrics can be viewed as a contractible subspace of the Grassmannian of real subspaces of $V$.
-One can make sense of the algebras $\Oc_x$ from this perspective.
+Now rotate to a Riemannian metric on $M$.
+Given a time slice $M_t$, it is useful to consider the neighboring slices.
+Given a small cobordism around $M_t$, the incoming boundary has dense image in $E_{M_t}$.
+This is like the way that heat flow always pushes $L^2$ functions onto smooth functions. 
+So inside of $E_{M_t}$, we will always have some dense subspace, which we can think of as
+like the smooth functions in a Hilbert space.
+The outgoing boundary corresponds to the dual of the smooth functions, the distributions. 
+This is a completion of $E_{M_t}$.
+
+So we have seen that the assumption of being globally hyperbolic allowed us to identify
+the values of the theory on every time slice, and now we have also seen that they come
+equipped with a dense subspace and a nice completion. 
+Given distinct points $x_i$ on the same time slice (so the $x_i$ are spacelike separated),
+we can now form the operator 
+\begin{equation*}
+\Oc_{x_1, \dots, x_n} \otimes \check{E}_{M_0} \to \hat{E}_{M_1} \ ,
+\end{equation*}
+where $\check{\left(-\right)}$ denotes a dense subspace and $\hat{\left(-\right)}$ denotes a completion.
+One should think of this as something like an operator with a distributional kernel, i.e.
+something which only makes sense as an operator after one has 
+smoothed it a bit.
+On any particular time slice one can insert any number of operators, and this construction
+was clearly independent of the ordering of the points. 
+Using global hyperbolicity, we can extend this to any collection of spacelike separated
+points.
+
+\begin{rmk}
+The notion of ``small disk'' makes complete sense in a Riemannian metric, but it seems a
+bit odd in a Lorentzian metric.
+To make sense of this, we recall our notion of complex metric $g \colon V \to \CC$ on a
+real vector space.
+If we pass to the complexification, $V_\CC$, we get a quadratic form $V_\CC \to \CC$.
+If this is nondegenerate, all such are the same (up to $\Aut\left(V\right)$).
+So one might as well choose some coordinates, and think that $V\subset \CC^d$,
+where $d = \dim_\RR V$.
+
+One can now ask oneself, given a complex vector space with the standard quadratic form,
+what kind of subspaces $V$ are the ones we want?
+In the Grassmannian of $d$-dimensional real subspaces of $\CC^d$, there is a contractible
+open subspace formed by these allowable complex metrics.
+One way of thinking of the angles $\theta_i$ in \eqref{eqn:C_metric}
+is that they are actually the critical values of $\arg$ regarded as a function on the real
+projective space underlying $V$.
+
+For each such choice of embedding $V\subset \CC^d$, there will be a version of observables
+at $x$, $\Oc_x^{\left(V\right)}$.
+One might worry that this depends on the particular embedding $V\subset \CC^d$, however
+they all turn out to be canonically isomorphic. 
+\end{rmk}
 
 \subsection{Scaling}
+\label{sec:scaling}
 
-Let's return to the originally proposed topic of this lecture.
-Many things we'd like to prove about QFT can't be proved from the axioms we've given.
+There are some crucial aspects of quantum field theory which cannot presently be
+incorporated in the functorial framework. 
+This section will explain how a certain scaling axiom might address this. 
 
-Viewing our spacetime $M$ as a cobordism from $M_0$ to $M_1$, we should view a scalar field as a compactly-supported density on $M$.
-Such a scalar field should give an operator $E_{M_0} \to E_{M_1}$.
-This transformation $\Dens_c(M) \to \Hom(E_{M_0}, E_{M_1})$ can be called a \emph{Wightman field}.
-It's not clear how to relate this to the bundle of algebras $\Oc$ we've been discussing earlier.
+Wick rotation, as we have discussed, is meant to an idea of positive energy into the
+picture. On a general spacetime, this is encoded in terms of an energy-momentum tensor.
+This is meant to be a local operator, i.e. something of the form $\Oc_x$ in
+\Cref{sec:causality}. Unfortunately we cannot prove that the energy momentum is actually
+of this form: In ordinary QFT on Lorentzian spacetime, field operators are things which
+need to be smeared. More formally, they are operator-valued distributions. 
+Although the definition we gave for local operators does indeed yield a locally
+trivial vector space $\Oc_x$ over every point $x$ of our spacetime, but we haven't
+introduced anything which would suggest that it is interesting to smear things. 
 
-We also don't really know what to do about Lagrangians.
-From our definition, we can make sense of a moduli space of theories, and we get a renormalization group flow on this moduli space (by rescaling metrics).
-Reconciling our notion of fields (using this space) should help us make sense of Lagrangians.
-(It's not clear how global symmetries fit into this description.)
+Another way one might have defined field operators is as follows.
+Consider a cobordism $M$ from $M_0$ to $M_1$. 
+It is natural to say that a field for some QFT $E$, say a scalar field to begin with,
+is something which can be integrated against a smooth density on $M$ with compact
+support (away from the boundary of $M$). 
+From this perspective, a \emph{scalar field operator} or simply \emph{scalar field} might
+be defined to be a morphism from the fields to operators between $E_{M_0}$ and $E_{M_1}$:
+\begin{equation*}
+\Dens_c\left(M\right) \to \Hom\left(E_{M_0} , E_{M_1} \right) 
+\end{equation*}
+By tampering with the densities (making them tensor densities of various kinds, etc.) one 
+can define fields of various kinds, e.g. $1$-form fields, Riemannian metric fields etc..
+One example of something defined this way is the energy momentum tensor:
+When $M$ has a metric, we can differentiate the associated operator $E_{M}$ with respect
+to the metric. The energy momentum tensor is this derivative, regarded as a transformation
+of the above type: It associates an operator $E_{M_0}\to E_{M_1}$ to something dual to a
+smooth metric on $M$.
+General transformations of this type are \emph{Wightman fields}. 
 
-We should be able to fix these with a scaling axiom (defined in Riemannian signature).
-This should be something saying that our spaces of local operators $E_{(r)}$ (defined on disks of radius $r$) tend to a limit $E_{(0)}$.
-This would provide a filtration on the spaces $\Oc_x$ with associated graded $E_{(0)}$.
-Using this should allow us to relate $\Oc_x$ with densities.
+Now the question is if Wightman fields are the same as smooth sections of the bundle with
+fibers $\Oc_x$ as in \Cref{sec:causality}.
+It is unclear how to relate these two perspectives without making some additional
+assumptions. 
+So this was the first problem: Defining an energy-momentum tensor, and then seeing how
+these observables $\Oc_x$ behave under moving $x$, i.e. seeing 
+that these bundles of observables have something to do with operator-valued distributions. 
 
-Extending our theories to codimension 2 should also help us prove things.
+Another problem is to prove that there is a good relation between Lagrangians 
+(the thing that physicists think of as characterizing a QFT)
+and functorial QFTs.
+One upshot of the functorial QFT perspective is that there is a well-defined moduli space
+of theories. 
+Rescaling the complex metric induces a $1$-parameter flow, called the 
+renormalization group flow, on this moduli space.
+
+When we consider our moduli space of theories, and imagine making a deformation of it, we
+would like to be able to 
+prove that this deformation corresponds to a field in either of
+the two senses (which are of course meant to be the same).
+If one is able to do this, then one would have a fairly good link between theories
+defined by Lagrangians and functorial theories.
+
+We should be able to fix these with a scaling axiom 
+(defined in Riemannian signature) which allows us to smear observables. 
+Consider disks $D_r$ of radius $r$ around a point $x$, for $r\in \RR_{>0}$.
+For any functorial QFT $E$, we obtain an inverse system of vector spaces
+$E_{\left(r\right)} \coloneqq E_{\partial D_r}$. 
+We can think that this forms a bundle over $\RR_{>0}$ with fiber over $r$ given by
+$E_{\left(r\right)}$.
+It seems that the required condition is that this bundle can be extended from $\RR_{>0}$
+to $\RR_{\geq 0}$, so that is there is some $E_{\left(0\right)}$ associated to the point
+$x$ itself. 
+
+From this perspective a field operator, 
+i.e. an element of $\Oc_x$, is a section of this bundle.
+This will normally ``tend to infinity'' as $r\to 0$
+since outward propagation is given by a contraction operator.
+If one can extend the bundle to $0$, then one obtains a filtration on each $\Oc_x$, where 
+a section has filtration $k$ if 
+when you divide its representative in radius $r$ by $r^k$, 
+then it tends to a limit in this eventual space $E_{\left(0\right)}$.
+So we obtain a filtration by order of growth on the spaces $\Oc_x$, and 
+$E_{\left(0\right)}$ is the associated graded to this filtration. 
+
+An axiom of this kind would allow one to smear observables, which will allow us to pass
+between the two definitions of fields.
+Theories satisfying such an axiom are sometimes called 
+``asymptotically conformal''.
+
+The other thing, which we will focus on in the final lecture, 
+is that in order to prove that an infinitesimal deformation is given by a field, then we
+have to go from theories as we have defined them to ones which are ``extended''.
+We have to add a layer of extra structure to our theory: To manifolds of codimension two
+we will associate some kind of linear category. 
 
 \section{6/12 -- More Desired Properties of QFT; Connection to Homotopy Theory}
 
 \subsection{More on scaling}
+\label{sec:scaling_2}
 
-The notion of scaling seems quite common in physical treatments of QFT but is largely absent from mathematical treatments of the same.
-
-Segal began by studying 2d CFT to understand T-duality.
-One version of this identifies a sigma-model with torus target $T$ and another sigma-model with dual torus target $T^*$.
-This isomorphism isn't compatible with scaling: it interchanges short-distance and long-distance aspects of the theories.
+If you look at any physics book on QFT, scaling seems to be ubiquitous.
+However in more abstract mathematical models of QFT, it very much doesn't play a role. 
+For example consider the $2$-dimensional CFT given by the $\sigma$-model into a compact
+real torus $T$. T-duality is the statement that this theory is equivalent to the 
+$\sigma$-model into the Langlands dual torus $T^*$.
+On the other hand, this isomorphism is totally incompatible with scaling: 
+it interchanges short-distance and long-distance aspects of the theories.
 
 \subsection{Locality}
 
 Suppose that our theory sends a $(d-1)$-manifold $M$ to a (topological) vector space $E_M$.
 To say that our theory is local, we'd like to say that $E_M$ can be constructed ``locally on $M$.''
-More precisely, if $M = M_1 \cup_{\Sigma^{d-2}} M_2$, we'd like to construct $E_M$ from $E_{M_1}$, $E_{M_2}$, and ``$E_{\Sigma^{d-2}}$.''
-A na\"ive guess, ignoring the unknown $E_{\Sigma}$, fails: we typically have $E_{M_1} \otimes E_{M_2} \not\cong E_M$.
-To understand this further, let's consider an example.
+More precisely, if $M = M_1 \cup_{\Sigma^{d-2}} M_2$, we'd like to construct $E_M$ from
+$E_{M_1}$, $E_{M_2}$, and some to be determined $E_{\Sigma^{d-2}}$.
+It would be nice if we simply had that $E_{M_1} \otimes E_{M_2}$ is equivalent to  $E_M$,
+but this is not the case, as we see in the following low-dimensional example.
 
 \begin{ex}
-	Let $G$ be a compact Lie group and $\Lc G$ the loop group of $G$.
-	Assume $E_M$ is an irrep of $\Lc G$.
-	If we think of $M$ as an interval with glued endpoints, then considering paths from any subinterval to $G$ gives rise to a dense subspace of $E_M$.
-	It's not clear how to combine such subspaces to get $E_M$.
+Let $G$ be a compact Lie group and $\Lc G$ the loop group of $G$.
+Set $M = S^1$, so that the associated field theory is studying the representation theory
+of $\Lc G$. 
+Assume $E_M$ is an irrep of $\Lc G$.
+These representations have the following wonderful property. 
+If we think of $S^1$ as the quotient of an interval $I$, then we can define the subgroup
+$\Lc_I G$ of $\Lc G$ to consist of the maps from $I$ to $G$ which vanish smoothly around
+the endpoints. 
+The positive energy representation theory of $\Lc_I G$ turns out to be exactly the same as
+$\Lc G$. 
+
+Any other interval $I'\subset I$ defines an associated subgroup 
+$\Lc_{I'} G\subset \Lc_I G$.
+For any $I'$, the orbit of any vector in the original representation under the 
+group $\Lc_{I'} G$ will form a dense subset. 
+Another feature of positive energy representations of loop groups, is that they admit an
+intertwining action of the diffeomorphisms of the circle. 
+There is always a diffeomorphism sending any such $I'$ to any other such $I'' \subset I$,
+so we see that the positive energy representation theory of $\Lc_{I'} G$ is the same as
+any other $\Lc_{I''} G$. 
+
+In terms of locality, the point of this discussion was that if we decompose $M = S^1$
+as $M_1 = I'$ and its complement, then there is no difference between 
+$E_M$ and $E_{M_1}$, making it unclear how $E_{M_2}$ or $\Sigma$ should be involved in the
+expression. This might lead one to believe that having an intertwining action of
+diffeomorphisms is incompatible with locality, however this is not the case:
+the theory is indeed local. 
+\label[ex]{loop}
 \end{ex}
 
-In our case $M = M_1 \cup_{\Sigma^{d-2}} M_2$, we can construct $E_M$ as ``the space of operators on fields on all of $M$.''
-The algebras of local operators $\Ac_{M_1}$ and $\Ac_{M_2}$ acts on $E_M$.
-If we enlarge $M_1$ and $M_2$ slightly past $\Sigma$ (to get $M_1^+, M_2^+ \subset M$), we can get good results.
-Specifically, if $\Ac_{M_1}^{\mathrm{comm}}$ is the commutant of $\Ac_{M_1}$ acting on $E_M$, then $\Ac_{M_1}^{\mathrm{comm}}$ contains $\Ac_{M_2}$ and $\Ac_{M_1^+}$.
-The Tomita-Takesaki theorem tells us that $\Ac_{M_1}^{\mathrm{comm}}$ is the von Neumann algebra closure of $\Ac_{M_1}$ (?).
-Combining this with the action of $\Ac_{M_2}$ allows us to recover $E_M$ from the behavior of the field theory $M_1$ and $M_2$.
-Here $\Sigma$ gives us a bimodule relating $\Ac_{M_1}$ and $\Ac_{M_2}$.
+In a general QFT, one should imagine that the space $E_M$ is completely
+described by the action (on $E_M$) of all of the smeared operators which can be made out
+of fields on the whole manifold.
+Consider a decomposition $M = M_1 \cup_{\Sigma^{d-2}} M_2$.
+Looking just at the smeared operators from $M_1$, one can still obtain
+part of $E_M$, e.g. a dense subset by acting on a vacuum vector. 
+Write algebras of fields in each of these regions as $\Ac_{M_1}$ and $\Ac_{M_2}$. 
+As $M_1$ and $M_2$ are spacelike separated, these algebras commute.
+Therefore we have an action of $\Ac_{M_1}\otimes \Ac_{M_2}$ on $E_M$, which is enough to
+determine the action of all of the operators, i.e. we obtain the entirety of $E_M$, rather
+than a dense subset, when we leave out observables supported on $\Sigma$.
+
+On the other hand, if you just give me the individual actions of $\Ac_{M_1}$ and
+$\Ac_{M_2}$ on $E_M$, then it is unclear how to obtain the entire theory for the same
+reason as in \Cref{loop}.
+If we consider slightly larger regions containing $M_1$ and $M_2$, written:
+\begin{align*}
+M_1  \subset M_1^+ \subset M 
+&&
+M_2 \subset M_2^+ \subset M
+\end{align*}
+then the entire theory can be constructed from keeping track of what happened along the 
+intersection $M_1^+ \cap M_2^+$ for the following reason. 
+
+Write the commutant of $\Ac_{M_1}$ acting on $E_M$ as 
+$\Ac_{M_1}^{\mathrm{comm}}$. Note that this is a von Neumann algebra and it contains both:
+\begin{equation*}
+\Ac_{M_1^+}\subset
+\Ac_{M_1}^{\mathrm{comm}}
+\supset \Ac_{M_2}
+\end{equation*}
+The Tomita-Takesaki theorem tells us that there is an anti-involution 
+\begin{equation*}
+J \colon \Ac_{M_1} \to \Ac_{M_1}^{\mathrm{comm}}
+\end{equation*}
+and makes $\Ac_{M_1}^{\mathrm{comm}}$ the von Neumann closure of $\Ac_{M_1}$. 
+First of all this says that knowing the von Neumann algebra is not really knowing 
+anything at all: If you just want to know the von Neumann algebra
+that acts beyond the horizon, you know it already because it is completely determined by
+the operators you have in your hands. 
+That in fact doesn't tell you anything about what's really happening outside, but it tells
+you enough to reassemble the theory. 
+
+Consider the operators in $M_1^+$ as a representation of the von Neumann algebra of things
+which just live in the intersection $M_1^+\cap M_2$. 
+Similarly the operators in $M_2^+$ can be thought of as a representation of the von Neumann
+algebra of things on $M_2^+ \cap M_1$. Both of these things can be worked out just from
+the local data. This gives us enough information to reassemble the actual global
+situation:
+We can reassamble the full vector space $E_M$ from these two von Neumann algebras in such
+a way that $\Ac_{M_1}$ and $\Ac_{M_2}$ act on it. Since the combination of these two
+algebras generate the observables everywhere, we have obtained the whole theory. 
+This tells you what to associate to codimension $2$ submanifolds in order to extend the
+TQFT one dimension downwards. 
 
 \begin{ex}
-	Returning to loop groups, suppose we decompose the interval $I = I_1 \cup_{\pt} I_2$.
-	Consider the algebras of loops supported on each subinterval.
-	To glue these together, we need to be able to extend these slightly across $\pt$.
-	This corresponds to a bimodule relating the algebras.
-	In functional analysis, this corresponds to the ``Tomita-Takesaki flow.''
-	This is related to the action of Poincar\'e boosts in special relativity.
+Returning to \Cref{loop}, suppose we decompose the interval 
+$I = I_1 \cup_{\pt} I_2$. Consider all possible ways of extending $I_1$ into an ambient
+$2$-dimensional conformal manifold. 
+There is an algebra of loops supported on any such extension, 
+and invariance under diffeomorphisms of $S^1$ mean that they all have the same positive
+energy representation theory. 
+Bordisms between the different possible ways of extending $I_1$ induce 
+bimodules between these algebras which relate representations of the algebra supported on
+one extension to another.
+
+The upshot is that something in codimension $2$ should be sent to the data of 
+an algebra for each extension of $I_1$ along with bimodules relating the representations
+of these algebras.
+This is related to the ``Tomita-Takesaki flow.'' In the functional analysis literature
+this is usually considered along the real axis, in which case it is simply rescaling along
+any single flap. 
+We have discussed a Wick-rotated version: If we simply rescale one extension then we
+obtain a unitary, and the Wick rotation of this is a contraction operator. 
+But generally, to go from one extension to another, this is only realized by a bimodule.
+
+The category is actually not that difficult: In the case of the loop group, it is
+essentially the complexification of the action of $\Diff\left(S^1\right)$ on all of the
+little flaps around the point.
 \end{ex}
+
+\begin{rmk}
+This is well-known to people who do general relativity:
+In the context of field theories on Minkowski space this flow is known, when you do it
+radially, to be the action of  Poincar\'e boosts in and out along the trajectories of the
+Poincar\'e group.
+\end{rmk}
 
 \subsection{Non-commutative geometry}
 
-We can reconstruct a manifold $M$ from the behavior of modules over $\Cinfty(M)$.
-More generally, in non-commutative geometry, we study the category of modules over an algebra $A$.
-We say that Morita-equivalent algebras have the same geometry.
+There is a sense in which representations of bordism categories on linear categories can
+be thought of as living in the world of non-commutative geometry. 
+Before explaining this, consider the commutative ring $A = \Cinfty\left(M\right)$.
+The geometry of $M$ can be constructed completely by writing the points of $M$ as
+morphisms $A\to \CC$. In other words, the geometry of $M$ can be constructed entirely from
+the category of $A$-modules.
+Motivated by this, given a general noncommutative algebra $A$, we study the category
+of $A$-modules as an avatar of the noncommutative geometry captured by $A$. Note that
+therefore Morita equivalent noncommutative algebras describe the same noncommutative
+geometry.
 
-For example, we can study the $K$-theory of $A$.
-When $A = \Cinfty(M)$, the Chern character isomorphism lets us write
-\[
-	K(A) \otimes \QQ \cong \oplus_i H^{2i}(M; \QQ).
-\]
-The grading here relies on the existence of Adams operations (based on $E \mapsto \wedge^n E$, at least for line bundles).
+The $K$-theory of an algebra $A$ can be defined to be the finitely-generated projective
+modules over $A$. In the case $A = \Cinfty\left(M\right)$, we find that the $K$-theory
+encodes the cohomology of $M$, e.g. 
+\begin{equation*}
+K\left(A\right) \otimes \QQ = 
+\bigoplus
+H^{2i}\left(M , \QQ\right)
+\end{equation*}
+This decomposition relies directly on $A$ being commutative:
+This is the eigenspace decomposition for the Adams operations, which only exist when $A$
+is commutative. 
 
-In the non-commutative context, we don't have Adams operations.
-Instead, there's a formal group law, and we get lots of strangeness governed by chromatic homotopy theory.
-From a QFT perspective, the grading relies on some sort of scaling.
+If we were doing a corresponding thing with complex cobordism, a different cohomology
+theory, then a similar thing would be true:
+Instead of Adams operations, which is essentially just an action of the multiplicative
+group of the rationals on the $K$-theory, 
+one would get an action of some formal group, which involves the formal group law of the
+theory. 
+It would not give you a grading, but something more complicated 
+which is the subject of chromatic homotopy theory.
+This scaling we discussed in \Cref{sec:scaling,sec:scaling_2}
+(which essentially says that you are close to a commutative ring)
+is meant to provide the possibility of making a decomposition/grading like this.
 
-Rings of $\Cinfty$ functions also experience a sort of Bott periodicity.
-Consider the Schwartz space $\Cinfty_S(\RR^2)$ of functions decaying sufficiently rapidly at infinity.
-We can construct a non-commutative deformation $\Cinfty_S(\RR^2)_{(h)}$, which is isomorphic (via Fourier transformation) to the algebra of ``smoothing operators'' from $\Cinfty(\RR)$ to itself.
-By ``smoothing operator,'' we mean a smooth function $K(x, y)$, viewed as an integral transform
-\[
-	(Kf)(x) = \int f(y) K(x, y) dy.
-\]
-This algebra is Morita equivalent to $\CC$ (?), and deforming again recovers $\Cinfty_S(\RR^2)$ (?).
+% Lecture 4 - 36 minutes
 
-More generally, we can relate the geometry of $X$ with a compactified geometry of $X \times \RR^2$.
-This ends up producing Floer homotopy types.
+An important feature of this noncommutative homotopy category is the following notion of
+Bott periodicity.
+Consider the Schwartz space $\Cinfty_S(\RR^2)$ of functions decaying sufficiently rapidly
+at infinity.
+This can be thought of as the operators on a $2$-dimensional dynamical system, e.g. the
+position and momentum of something moving in a single dimension. 
+This has a canonical quantum/Heisenberg deformation,
+$\Cinfty_S\left(\RR^2\right)_{\hslash}$, 
+where functions on the two axes no longer commute, but rather the commutator is $i\hslash$. 
+This deformation 
+$\Cinfty_S\left(\RR^2\right)_{\hslash}$ is no longer commutative, and it is isomorphic
+(via Fourier transform) to the algebra of ``smoothing operators'' from
+$\Cinfty(\RR)$ to itself.
+By ``smoothing operator,'' we mean a smooth function $K\left(x,y\right)$, viewed as an integral transform
+\begin{equation*}
+\left(Kf\right)\left(x\right) = \int f\left(y\right) K\left(x,y\right) dy \ .
+\end{equation*}
+These smoothing operators essentially form a full matrix algebra:
+It only has one irreducible representation, which is the natural one on
+$\Cinfty\left(\RR\right)$, and is therefore Morita equivalent to $\CC$. 
+
+More generally, any object $X$ of the noncommutative homotopy category is 
+homotopy equivalent to $X\times \RR^2_{\mathrm{cpt}}$.
+In other words any object is equivalent to its two-fold suspension.
+This corresponds exactly to the fact that, in the noncommutative homotopy category,
+we lose the concept of dimension.
+
+This scaling axiom might put it back, but in general one hits this problem immediately. 
+This Bott-periodicity, required by this fundamental fact about quantization, 
+is the essential difference between the ordinary homotopy category and the noncommutative
+homotopy category:
+In the noncommutative case, allowing maps to suspend an even number of dimensions gives
+you naturally Floer homotopy types rather than ordinary homotopy types.
 
 \subsection{The smooth homotopy category}
 
-Long-distance behavior in QFT looks somewhat like homotopy theory.
-Short-distance behavior in QFT is a bit more open to debate.
-Many people like to think about lattices.
-However, Segal prefers to think about the short-distance behavior in terms of (rings of functions of) manifolds.\footnote{This may be more a matter of human taste in describing the universe than a fundamental fact of nature.}
+What is the right model of space on which one can do QFT?
+The main thing we have is the long-distance behavior, which sort of looks like homotopy
+theory: We don't have a notion of distance and things can be shoved around.
+On the other hand, we can also look at short distances.
+Segal believes that QFT is very much about manifolds, even at short
+distances.\footnote{Segal warns: This is something not everyone, e.g. lattice model
+practitioners, might not agree with.}
 
-We can ask how to represent QFTs geometrically.
-Classically, Brown's representability theorem lets us view homotopy theory as captured by contravariant functors from the homotopy category of finite CW complexes to sets.
-The ``smooth homotopy category'' replaces sets here by manifolds (and interprets everything in terms of suitable model categories).
+This is saying, in terms of the ring of
+functions, that when we look close up we have the formal power series ring in independent
+variables. There is indeed category with objects like this, and it has been much studied.
+Segal became interested in this long ago when working with Raoul Bott on the so-called
+Gelfand-Fuchs cohomology of vector fields on a manifold \cite{BS77}. 
+As is shown there, the cohomology of this Lie algebra looks like the cohomology of some
+space. 
+Once one asks the question of how a Lie algebra can look like a space, one realizes that
+we have secretly been doing this all the time:
+When we look at the cohomology of a finite-dimensional Lie algebra, say for a compact group, 
+it looks like cohomology of the compact group.
+E.g. the Heisenberg group doesn't seem to have any topology at all, but the Lie algebra
+still has cohomology groups.
 
-\begin{ex}
-	Given a Lie algebra $\gfr$, we can view the smooth homotopy type of $\gfr$ as given by sending $M$ to the moduli space of flat $\gfr$-connections on the trivial bundle on $M$.
-	Similarly, given a Lie group $G$, we can view the smooth homotopy type of $G$ as given by sending $M$ to the moduli space of flat $G$-bundles on $M$.
-\end{ex}
+Recall that the ordinary homotopy category can be defined as the contravariant functors
+from the category of finite CW-complexes (and homotopy classes of maps)
+to the category of sets with a certain Mayer-Vietoris property.
+Such functors correspond precisely to homotopy types by Brown's representability theorem.
+To define the \emph{smooth homotopy category}, one replaces the category of sets with
+category of smooth manifolds. 
+One can also replace the category of finite CW-complexes (and homotopy classes of maps)
+with the (equivalent) category of finite-dimensional smooth open manifolds and smooth maps
+between them up to smooth homotopy.
 
-There's a paper of Kapranov which interprets the Lie algebra of a based loop group $\Omega X$ in this context.
-Curvature is captured by maps $\Omega X \to G$.
+As was pointed out to Segal by Quillen in the 1960s, 
+Lie algebras and groups can be seen as objects of the smooth homotopy category as follows.
+Suppose we have a Lie algebra $\gfr$. To any object $M$ of the category of 
+finite-dimensional smooth open manifolds 
+we associate the space of flat $\gfr$-connections on the trivial bundle on $M$ up to
+isomorphism.
+This is the functor (object of the smooth homotopy category) representing $\gfr$. 
+One has to be slightly careful about the notion of equivalence here:
+Flat $\gfr$-connections certainly form a manifold
+(they are the $1$-forms obeying the curvature condition)
+and we need to quotient appropriately. 
+Similarly, given a Lie group $G$, we can view the smooth homotopy theory of $G$ as given
+by sending $M$ to the moduli space of flat $G$-bundles on $M$.
 
-Classical homotopy theory is ``perturbative:'' it is built one step at a time from sets (by adding homotopies, higher homotopies, etc.).
-Analysis is also ``perturbative:'' we take higher derivatives one at a time.
-However, the theories are ``perturbative'' in different dirrections: homotopy theory gives the ``long-distance perturbative theory'' while analysis gives ``short-distance perturbative theory.''
+Given any pointed manifold $p\in X$, one can form the based loop space 
+$\Omega_p X$. Work of Kapranov \cite{Kap07} exhibits $\Omega_p X$ as an object of 
+the smooth homotopy category. 
+For any bundle with connection on $X$ with structure group $G$, 
+there is an associated morphism $\Omega_p X \to G$ as objects of the smooth homotopy category.
+So this is the long-distance data: 
+Homotopy classes of morphisms $\Omega_p X \to G$ classify bundles.
+It is shown in \cite{Kap07} that the short-distance/local data, i.e. the induced map of
+Lie algebras, is exactly all of the curvature data from the Riemannian structure.
+
+The homotopy category is built from the category of sets in the following way:
+Beginning with a set, suppose you allow yourself the concept of a path from one point to
+another. Now allows yourself to add the concept of a homotopy between paths, etc..
+Said differently, homotopy theory is fundamentally ``perturbative''.
+Analysis is also ``perturbative:'' given a function we want to study near a point, first
+we study its value, and then we take its derivatives one at a time. 
+
+However, the theories are ``perturbative'' in different directions: homotopy theory gives
+the ``long-distance perturbative theory'' while analysis gives ``short-distance
+perturbative theory.''
+The upshot is that, just as QFT is done perturbatively with a short and long-distance
+version, the smooth homotopy category has a sort of homotopic perturbation
+theory in addition to a sort of local/infinitesimal one.
